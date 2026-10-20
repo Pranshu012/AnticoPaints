@@ -7,9 +7,8 @@ import {
   authoritativeProducts,
   getProductBySlug,
 } from "@/data/products";
-import { ArrowLeft, ArrowUpRight, Check, HelpCircle, Layers, ShieldCheck } from "lucide-react";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { ArrowLeft, ArrowRight, ArrowUpRight, HelpCircle } from "lucide-react";
+import { companyData } from "@/data/company";
 
 interface ProductPageProps {
   params: {
@@ -44,24 +43,22 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  const isAccessories = product.section === "accessories";
-
   return (
     <div className="bg-brand-offwhite min-h-screen">
-      {/* Breadcrumb Navigation */}
-      <div className="border-b border-brand-beige bg-brand-offwhite/95">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono">
+      {/* Clean Breadcrumb Navigation */}
+      <div className="border-b border-brand-beige/80 bg-brand-offwhite">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-sans">
             <Link
               href="/products"
-              className="text-brand-muted hover:text-brand-gold transition-colors inline-flex items-center gap-1.5"
+              className="text-brand-muted hover:text-brand-black transition-colors inline-flex items-center gap-1"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>The Collection</span>
+              <span>All Products</span>
             </Link>
             <span className="text-brand-beige-dark">/</span>
-            <span className="text-brand-gold-dark uppercase tracking-wider">
-              {product.categoryLabel}
+            <span className="text-brand-gold-dark font-medium">
+              {product.category}
             </span>
             <span className="text-brand-beige-dark">/</span>
             <span className="text-brand-black font-semibold truncate">
@@ -72,109 +69,71 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
       </div>
 
       {/* Main Product Showcase Section */}
-      <section className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <section className="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-start">
           
-          {/* Visual Presentation Frame */}
-          <div className="lg:col-span-7">
-            <div className="relative aspect-[4/3] w-full overflow-hidden border border-brand-beige bg-brand-beige/30 shadow-card">
+          {/* Visual Presentation Frame (4:3) */}
+          <div className="md:col-span-6 lg:col-span-7">
+            <div className="relative aspect-[4/3] w-full overflow-hidden border border-brand-beige rounded-sm bg-brand-beige/25 shadow-subtle">
               <Image
                 src={product.image}
                 alt={product.imageAlt}
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 60vw"
+                sizes="(max-width: 768px) 100vw, 55vw"
                 className="object-cover"
               />
-              <div className="absolute top-4 left-4">
-                <Badge variant="dark">{product.categoryLabel}</Badge>
-              </div>
-              {product.editorialNumber && (
-                <div className="absolute bottom-4 right-4 bg-brand-black/85 text-brand-gold px-3 py-1 text-xs font-mono border border-brand-gold/30">
-                  REF /{product.editorialNumber}
-                </div>
-              )}
             </div>
-
-            {/* Note on Photography / Replacement Assets */}
-            <p className="mt-4 text-[11px] text-brand-muted italic leading-relaxed">
-              * Note: Representation visual shown. Actual physical packaging format, label specifications, and batch numbers follow verified client production runs.
-            </p>
           </div>
 
-          {/* Editorial Content & Guidance Details */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-brand-gold" />
-                <span className="text-xs uppercase tracking-luxury text-brand-gold-dark font-mono font-semibold">
-                  {product.category}
-                </span>
-              </div>
+          {/* Clean Content & Enquiry Action */}
+          <div className="md:col-span-6 lg:col-span-5 space-y-6">
+            <div className="space-y-2">
+              <span className="text-xs uppercase tracking-wider font-sans font-semibold text-brand-gold-dark block">
+                {product.category}
+              </span>
 
               <h1 className="font-serif text-3xl sm:text-4xl text-brand-black tracking-tight leading-tight">
                 {product.name}
               </h1>
 
-              <p className="text-base text-brand-black/85 leading-relaxed font-sans pt-2">
+              <p className="text-base text-brand-black/80 leading-relaxed font-sans pt-1">
                 {product.description}
               </p>
             </div>
 
-            {/* Action Buttons */}
+            {/* Actions */}
             <div className="pt-2 flex flex-col sm:flex-row gap-3">
               <Link
                 href={product.enquiryLink}
-                className="flex-1 inline-flex items-center justify-center gap-2 py-4 px-6 bg-brand-black text-brand-offwhite text-xs uppercase tracking-luxury font-medium border border-brand-black hover:bg-brand-gold hover:border-brand-gold hover:text-brand-black transition-all duration-300 shadow-subtle group"
+                className="inline-flex items-center justify-center gap-2 py-3.5 px-6 bg-brand-black text-brand-offwhite text-xs font-sans uppercase tracking-luxury font-medium border border-brand-black hover:bg-brand-gold hover:border-brand-gold hover:text-brand-black transition-all duration-200 shadow-subtle"
               >
-                <span>Enquire About This Product</span>
-                <ArrowUpRight className="w-4 h-4 text-brand-gold group-hover:text-brand-black" />
+                <span>Enquire About {product.name}</span>
+                <ArrowRight className="w-3.5 h-3.5 text-brand-gold" />
               </Link>
 
               <Link
                 href="/products"
-                className="py-4 px-6 text-center text-xs uppercase tracking-luxury font-medium border border-brand-black/30 hover:border-brand-gold hover:text-brand-gold transition-colors"
+                className="py-3.5 px-6 text-center text-xs font-sans uppercase tracking-luxury font-medium border border-brand-beige hover:border-brand-black transition-colors"
               >
-                View Collection
+                Back to Products
               </Link>
             </div>
 
-            {/* Available Specifications / Product Guidance Box */}
-            {product.availableDetails && product.availableDetails.length > 0 && (
-              <div className="p-6 bg-brand-offwhite border border-brand-beige space-y-4 shadow-subtle">
-                <div className="flex items-center gap-2 text-xs font-mono text-brand-black uppercase tracking-wider font-semibold pb-2 border-b border-brand-beige">
-                  <Layers className="w-4 h-4 text-brand-gold-dark" />
-                  <span>Product Guidance &amp; Parameters</span>
-                </div>
-
-                <div className="space-y-3 text-xs font-sans">
-                  {product.availableDetails.map((item, idx) => (
-                    <div key={idx} className="space-y-1">
-                      <span className="font-semibold text-brand-black block">
-                        {item.label}
-                      </span>
-                      <p className="text-brand-muted leading-relaxed">
-                        {item.value}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+            {/* Clean Help Box */}
+            <div className="p-5 bg-brand-beige-light border border-brand-beige rounded-sm space-y-2 text-xs font-sans">
+              <div className="font-medium text-brand-black flex items-center gap-1.5">
+                <HelpCircle className="w-4 h-4 text-brand-gold-dark" />
+                <span>Need advice on this product?</span>
               </div>
-            )}
-
-            {/* Color Consultation Note for Paints & Finishes */}
-            {!isAccessories && (
-              <div className="p-4 bg-brand-beige/30 border-l-2 border-brand-gold text-xs text-brand-black/85 flex items-start gap-3">
-                <ShieldCheck className="w-4 h-4 text-brand-gold-dark shrink-0 mt-0.5" />
-                <p>
-                  Interested in shade selection? Explore our{" "}
-                  <Link href="/colours" className="text-brand-gold-dark font-medium underline">
-                    Curated Colour Library
-                  </Link>{" "}
-                  for compatible neutral and mineral palettes.
-                </p>
+              <p className="text-brand-black/75 leading-relaxed">
+                Our team is happy to assist with surface suitability, shade selection, and order quantities.
+              </p>
+              <div className="pt-1 text-[11px] text-brand-muted">
+                {companyData.contact.emailPlaceholder}
               </div>
-            )}
+            </div>
+
           </div>
 
         </div>

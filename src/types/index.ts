@@ -1,25 +1,20 @@
-export type ProductSection = 'featured' | 'paint-prep' | 'accessories';
-
-export interface ProductDetailField {
-  label: string;
-  value: string;
-}
+export type ProductCategoryType = 
+  | 'Texture & Finishes' 
+  | 'Primers' 
+  | 'Emulsions' 
+  | 'Accessories';
 
 export interface ProductItem {
   slug: string;
   name: string;
-  category: string;
-  categoryLabel: string;
-  section: ProductSection;
-  shortDescription: string;
+  category: ProductCategoryType;
   description: string;
   image: string;
   imageAlt: string;
-  badge?: string;
-  editorialNumber?: string;
-  availableDetails?: ProductDetailField[];
   enquiryLink: string;
 }
+
+export type ProductSection = 'featured' | 'paint-prep' | 'accessories';
 
 export type ProductCategory = 
   | 'interior'
@@ -55,7 +50,7 @@ export interface Product {
   imageAlt?: string;
   isFeatured?: boolean;
   section?: ProductSection;
-  availableDetails?: ProductDetailField[];
+  availableDetails?: { label: string; value: string }[];
   enquiryLink?: string;
 }
 

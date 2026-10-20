@@ -1,43 +1,29 @@
 import React from "react";
 import type { Metadata } from "next";
-import {
-  getFeaturedProduct,
-  getPaintAndPrepProducts,
-  getAccessoryProducts,
-} from "@/data/products";
-import { ProductsHero } from "@/components/products/ProductsHero";
-import { FeaturedTexture } from "@/components/products/FeaturedTexture";
-import { PaintAndPrepGrid } from "@/components/products/PaintAndPrepGrid";
-import { AccessoriesSection } from "@/components/products/AccessoriesSection";
-import { ProductEnquiryCTA } from "@/components/products/ProductEnquiryCTA";
+import { getAllProducts } from "@/data/products";
+import { CompactProductHero } from "@/components/products/CompactProductHero";
+import { ProductCatalogView } from "@/components/products/ProductCatalogView";
+import { CompactProductEnquiryCTA } from "@/components/products/CompactProductEnquiryCTA";
 
 export const metadata: Metadata = {
-  title: "Products & Wall Finishes | Antico Paints",
+  title: "Products | Antico Paints",
   description:
-    "Explore our range of wall finishes, primers, emulsions and painting essentials. Every coat. Every detail.",
+    "Explore our range of wall finishes, primers, emulsions and painting essentials. Find the right product for your next project.",
 };
 
 export default function ProductsPage() {
-  const featuredProduct = getFeaturedProduct();
-  const paintAndPrepProducts = getPaintAndPrepProducts();
-  const accessoryProducts = getAccessoryProducts();
+  const products = getAllProducts();
 
   return (
     <div className="bg-brand-offwhite min-h-screen">
-      {/* Section A — Products hero */}
-      <ProductsHero />
+      {/* A. Compact Product Introduction */}
+      <CompactProductHero totalCount={products.length} />
 
-      {/* Section B — Featured product: Texture */}
-      <FeaturedTexture product={featuredProduct} />
+      {/* B, C, D. Interactive Category Navigation & Unified Product Grid */}
+      <ProductCatalogView products={products} />
 
-      {/* Section C — Paint and preparation (Cement Wall Primer, Luxury Emulsion, Eco Emulsion) */}
-      <PaintAndPrepGrid products={paintAndPrepProducts} />
-
-      {/* Section D — Painting accessories (Roller Masker, Masking Tape) */}
-      <AccessoriesSection products={accessoryProducts} />
-
-      {/* Section E — Product enquiry */}
-      <ProductEnquiryCTA />
+      {/* E. Compact Final Enquiry Section */}
+      <CompactProductEnquiryCTA />
     </div>
   );
 }

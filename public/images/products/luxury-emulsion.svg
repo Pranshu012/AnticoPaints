@@ -1,26 +1,39 @@
 <svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="600" fill="#FCFBF8"/>
-  <rect x="24" y="24" width="752" height="552" fill="#E9E0D2" fill-opacity="0.3" rx="2"/>
+  <defs>
+    <linearGradient id="luxuryWall" x1="200" y1="0" x2="600" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FCFBF8"/>
+      <stop offset="35%" stop-color="#F2EDE4"/>
+      <stop offset="75%" stop-color="#E2D7C5"/>
+      <stop offset="100%" stop-color="#CDBEA8"/>
+    </linearGradient>
+    <linearGradient id="warmSconce" x1="400" y1="0" x2="400" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#B89655" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FCFBF8" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Velvet finish wall backdrop -->
-  <rect x="80" y="80" width="640" height="440" fill="#E9E0D2" fill-opacity="0.6"/>
-  <circle cx="280" cy="300" r="160" fill="#FCFBF8" fill-opacity="0.65"/>
-  <circle cx="280" cy="300" r="110" fill="#B89655" fill-opacity="0.15"/>
+  <!-- Wall Background -->
+  <rect width="800" height="600" fill="url(#luxuryWall)"/>
 
-  <!-- Product Presentation Container Silhouette -->
-  <rect x="340" y="190" width="240" height="270" rx="4" fill="#171717"/>
-  <ellipse cx="460" cy="190" rx="120" ry="26" fill="#262626"/>
-  <ellipse cx="460" cy="184" rx="108" ry="20" fill="#B89655"/>
-  <ellipse cx="460" cy="460" rx="120" ry="26" fill="#171717"/>
+  <!-- Architectural Wall Niche / Panel Detail -->
+  <rect x="120" y="80" width="560" height="440" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="2"/>
+  <rect x="130" y="90" width="540" height="420" fill="none" stroke="#D5C9B5" stroke-opacity="0.4" stroke-width="1"/>
 
-  <!-- Minimalist Luxury Label -->
-  <rect x="360" y="245" width="200" height="155" fill="#FCFBF8" rx="2"/>
-  <rect x="360" y="245" width="200" height="6" fill="#B89655"/>
-  <text x="460" y="280" font-family="sans-serif" font-weight="bold" font-size="14" fill="#171717" text-anchor="middle" letter-spacing="2">ANTICO</text>
-  <text x="460" y="310" font-family="serif" font-size="14" fill="#171717" text-anchor="middle" font-weight="600">LUXURY EMULSION</text>
-  <text x="460" y="335" font-family="sans-serif" font-size="9" fill="#737373" text-anchor="middle" letter-spacing="1">ARCHITECTURAL FINISH</text>
-  <line x1="410" y1="355" x2="510" y2="355" stroke="#B89655" stroke-width="1"/>
-  <text x="460" y="375" font-family="sans-serif" font-size="8" fill="#171717" text-anchor="middle">PREMIUM INTERIOR SYSTEM</text>
+  <!-- Gentle ambient light cone from top -->
+  <polygon points="320,0 480,0 680,600 120,600" fill="url(#warmSconce)"/>
 
-  <text x="140" y="495" font-family="sans-serif" font-size="10" fill="#737373" letter-spacing="2">03 // FINISH</text>
+  <!-- Architectural skirting / floor shadow -->
+  <rect x="0" y="550" width="800" height="50" fill="#171717" fill-opacity="0.08"/>
+  <line x1="0" y1="550" x2="800" y2="550" stroke="#171717" stroke-opacity="0.15" stroke-width="1.5"/>
+
+  <!-- Paint Swatch Fan / Colour Test Visual -->
+  <g transform="translate(480, 360)">
+    <!-- Swatch 1 -->
+    <rect x="-40" y="-80" width="60" height="130" rx="3" fill="#FCFBF8" stroke="#D5C9B5" stroke-width="1.5" transform="rotate(-15)"/>
+    <!-- Swatch 2 -->
+    <rect x="-10" y="-85" width="60" height="130" rx="3" fill="#E9E0D2" stroke="#D5C9B5" stroke-width="1.5" transform="rotate(0)"/>
+    <!-- Swatch 3 -->
+    <rect x="20" y="-80" width="60" height="130" rx="3" fill="#B89655" stroke="#97773D" stroke-width="1.5" transform="rotate(15)"/>
+  </g>
 </svg>

@@ -1,30 +1,38 @@
 <svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="600" fill="#FCFBF8"/>
-  <rect x="24" y="24" width="752" height="552" fill="#E9E0D2" fill-opacity="0.3" rx="2"/>
-  
-  <!-- Concrete wall block background -->
-  <rect x="80" y="80" width="640" height="440" fill="#D5C9B5" fill-opacity="0.35"/>
-  <line x1="80" y1="300" x2="720" y2="300" stroke="#FCFBF8" stroke-width="1.5"/>
-  <line x1="400" y1="80" x2="400" y2="520" stroke="#FCFBF8" stroke-width="1.5"/>
+  <defs>
+    <linearGradient id="concreteBg" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C2BCB2"/>
+      <stop offset="100%" stop-color="#9E988D"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Primer Roller Sweep Visual -->
-  <path d="M140 140 L460 140 L440 460 L120 460 Z" fill="#FCFBF8" fill-opacity="0.85"/>
-  <line x1="460" y1="140" x2="440" y2="460" stroke="#B89655" stroke-width="2"/>
-  
-  <!-- Product Presentation Container Silhouette -->
-  <rect x="420" y="200" width="220" height="260" rx="4" fill="#171717"/>
-  <ellipse cx="530" cy="200" rx="110" ry="24" fill="#262626"/>
-  <ellipse cx="530" cy="194" rx="98" ry="18" fill="#B89655"/>
-  <ellipse cx="530" cy="460" rx="110" ry="24" fill="#171717"/>
-  
-  <!-- Label -->
-  <rect x="440" y="250" width="180" height="150" fill="#FCFBF8" rx="2"/>
-  <rect x="440" y="250" width="180" height="6" fill="#B89655"/>
-  <text x="530" y="285" font-family="sans-serif" font-weight="bold" font-size="14" fill="#171717" text-anchor="middle" letter-spacing="2">ANTICO</text>
-  <text x="530" y="315" font-family="serif" font-size="13" fill="#171717" text-anchor="middle" font-weight="600">CEMENT WALL PRIMER</text>
-  <text x="530" y="340" font-family="sans-serif" font-size="9" fill="#737373" text-anchor="middle" letter-spacing="1">PREPARATION COAT</text>
-  <line x1="480" y1="360" x2="580" y2="360" stroke="#B89655" stroke-width="1"/>
-  <text x="530" y="380" font-family="sans-serif" font-size="8" fill="#171717" text-anchor="middle">SUBSTRATE BASE SYSTEM</text>
+  <!-- Raw Concrete / Cement Wall Background -->
+  <rect width="800" height="600" fill="url(#concreteBg)"/>
 
-  <text x="140" y="495" font-family="sans-serif" font-size="10" fill="#737373" letter-spacing="2">02 // PREPARE</text>
+  <!-- Subtle concrete mortar blocks -->
+  <line x1="0" y1="200" x2="800" y2="200" stroke="#7A756B" stroke-opacity="0.3" stroke-width="2"/>
+  <line x1="0" y1="400" x2="800" y2="400" stroke="#7A756B" stroke-opacity="0.3" stroke-width="2"/>
+  <line x1="320" y1="0" x2="320" y2="200" stroke="#7A756B" stroke-opacity="0.3" stroke-width="2"/>
+  <line x1="600" y1="200" x2="600" y2="400" stroke="#7A756B" stroke-opacity="0.3" stroke-width="2"/>
+  <line x1="240" y1="400" x2="240" y2="600" stroke="#7A756B" stroke-opacity="0.3" stroke-width="2"/>
+
+  <!-- Applied White Preparatory Primer Band -->
+  <path d="M0 0 L480 0 L420 600 L0 600 Z" fill="#FCFBF8" fill-opacity="0.94"/>
+  
+  <!-- Wet coat edge feathered into concrete -->
+  <path d="M480 0 Q 510 120, 470 240 T 450 420 Q 480 520, 420 600" stroke="#E9E0D2" stroke-width="12" fill="none"/>
+  
+  <!-- Paint Roller in action -->
+  <g transform="translate(420, 220) rotate(-18)">
+    <!-- Roller cylinder -->
+    <rect x="-35" y="-120" width="70" height="240" rx="14" fill="#FCFBF8" stroke="#D5C9B5" stroke-width="3"/>
+    <ellipse cx="0" cy="-120" rx="35" ry="12" fill="#E9E0D2"/>
+    <ellipse cx="0" cy="120" rx="35" ry="12" fill="#D5C9B5"/>
+    
+    <!-- Metal bracket -->
+    <path d="M0 -120 L0 -140 L-90 -140 L-90 180 L0 180 L0 120" stroke="#171717" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <!-- Handle -->
+    <path d="M-90 20 L-180 20 L-260 20" stroke="#171717" stroke-width="10" stroke-linecap="round" fill="none"/>
+    <rect x="-240" y="8" width="90" height="24" rx="4" fill="#B89655"/>
+  </g>
 </svg>

@@ -1,25 +1,30 @@
 <svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="600" fill="#FCFBF8"/>
-  <rect x="24" y="24" width="752" height="552" fill="#E9E0D2" fill-opacity="0.3" rx="2"/>
+  <defs>
+    <linearGradient id="ecoWall" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FCFBF8"/>
+      <stop offset="50%" stop-color="#F5F1E9"/>
+      <stop offset="100%" stop-color="#E5DDD0"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Clean Everyday Paint Backdrop -->
-  <rect x="80" y="80" width="640" height="440" fill="#D5C9B5" fill-opacity="0.25"/>
-  <path d="M120 440 L340 180 L520 440 Z" fill="#FCFBF8" fill-opacity="0.75"/>
+  <!-- Wall Background -->
+  <rect width="800" height="600" fill="url(#ecoWall)"/>
 
-  <!-- Product Container Silhouette -->
-  <rect x="360" y="200" width="230" height="260" rx="4" fill="#171717"/>
-  <ellipse cx="475" cy="200" rx="115" ry="24" fill="#262626"/>
-  <ellipse cx="475" cy="194" rx="102" ry="18" fill="#B89655"/>
-  <ellipse cx="475" cy="460" rx="115" ry="24" fill="#171717"/>
+  <!-- Smooth, Fresh Roller Lap Lines -->
+  <path d="M160 0 L280 0 L280 600 L160 600 Z" fill="#FFFFFF" fill-opacity="0.4"/>
+  <path d="M280 0 L400 0 L400 600 L280 600 Z" fill="#FAF6EE" fill-opacity="0.3"/>
+  <path d="M400 0 L520 0 L520 600 L400 600 Z" fill="#FFFFFF" fill-opacity="0.4"/>
+  <path d="M520 0 L640 0 L640 600 L520 600 Z" fill="#FAF6EE" fill-opacity="0.3"/>
 
-  <!-- Label -->
-  <rect x="380" y="250" width="190" height="150" fill="#FCFBF8" rx="2"/>
-  <rect x="380" y="250" width="190" height="6" fill="#B89655"/>
-  <text x="475" y="285" font-family="sans-serif" font-weight="bold" font-size="14" fill="#171717" text-anchor="middle" letter-spacing="2">ANTICO</text>
-  <text x="475" y="315" font-family="serif" font-size="14" fill="#171717" text-anchor="middle" font-weight="600">ECO EMULSION</text>
-  <text x="475" y="340" font-family="sans-serif" font-size="9" fill="#737373" text-anchor="middle" letter-spacing="1">WALL-PAINTING ESSENTIAL</text>
-  <line x1="425" y1="360" x2="525" y2="360" stroke="#B89655" stroke-width="1"/>
-  <text x="475" y="380" font-family="sans-serif" font-size="8" fill="#171717" text-anchor="middle">EVERYDAY INTERIOR PROJECT</text>
+  <!-- Clean Diagonal Natural Light Beam from Window -->
+  <polygon points="260,0 540,0 720,600 440,600" fill="#FFFFFF" fill-opacity="0.25"/>
 
-  <text x="140" y="495" font-family="sans-serif" font-size="10" fill="#737373" letter-spacing="2">04 // PAINT</text>
+  <!-- Minimal Painter's Roller Silhouette on Clean Wall -->
+  <g transform="translate(320, 300) rotate(24)">
+    <rect x="-25" y="-90" width="50" height="180" rx="8" fill="#FAF8F2" stroke="#D5C9B5" stroke-width="2"/>
+    <!-- Wire frame -->
+    <path d="M0 -90 L0 -105 L-65 -105 L-65 140 L0 140 L0 90" stroke="#171717" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <path d="M-65 18 L-130 18" stroke="#171717" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <rect x="-170" y="8" width="55" height="20" rx="3" fill="#171717"/>
+  </g>
 </svg>
