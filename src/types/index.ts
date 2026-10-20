@@ -123,6 +123,7 @@ export interface CompanyInfo {
 
 export interface CommitmentPrinciple {
   id: string;
+  number: string;
   title: string;
   description: string;
 }
@@ -132,21 +133,26 @@ export interface AboutContent {
     eyebrow: string;
     heading: string;
     description: string;
+    image: string;
+    imageAlt: string;
   };
   mission: {
+    eyebrow: string;
     heading: string;
-    content: string;
+    description: string;
   };
   commitment: {
+    eyebrow: string;
     heading: string;
-    introduction: string;
     principles: CommitmentPrinciple[];
   };
-  closing: {
+  cta: {
     heading: string;
-    content: string;
-    buttonText: string;
-    buttonLink: string;
+    description: string;
+    primaryButtonText: string;
+    primaryButtonLink: string;
+    secondaryButtonText: string;
+    secondaryButtonLink: string;
   };
 }
 

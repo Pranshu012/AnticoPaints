@@ -39,48 +39,55 @@ export const companyData: CompanyInfo = {
 export const aboutPageData: AboutContent = {
   intro: {
     eyebrow: "ABOUT ANTICO PAINTS",
-    heading: "Built around understanding and trust.",
+    heading: "Good products start with good listening.",
     description:
-      "Our approach begins with understanding what our customers need and continually working to serve them better.",
+      "We believe serving customers well begins with understanding their needs, responding thoughtfully and continually improving our product range.",
+    image: "/images/about/about-wall-craft.svg",
+    imageAlt: "Antico Paints decorative wall texture and artisan trowel application",
   },
   mission: {
-    heading: "Understanding needs. Building trust.",
-    content:
-      "Our mission is to understand our customers’ needs, earn their trust, and continually improve our products and processes through quality-focused systems and dedicated effort.",
+    eyebrow: "OUR MISSION",
+    heading: "Understand needs. Earn trust. Keep improving.",
+    description:
+      "To understand our customers’ needs, earn their trust, and continually improve our products and processes through quality-focused practices and dedicated effort.",
   },
   commitment: {
-    heading: "Closer to our customers, every day.",
-    introduction:
-      "We believe good customer relationships begin with listening, understanding and responding. We strive to make it easy for our customers to reach us, understand their requirements and find products suited to their needs.",
+    eyebrow: "OUR COMMITMENT",
+    heading: "How we work with our customers.",
     principles: [
       {
-        id: "accessibility",
-        title: "Accessibility",
-        description: "Make it easy for customers to connect with us and seek assistance.",
+        id: "accessible",
+        number: "01",
+        title: "Be accessible",
+        description: "Make it easy for customers to connect with us.",
       },
       {
-        id: "understanding",
-        title: "Understanding",
+        id: "understand-needs",
+        number: "02",
+        title: "Understand their needs",
         description: "Work closely with customers to understand their requirements.",
       },
       {
-        id: "responsiveness",
-        title: "Responsiveness",
-        description: "Listen to enquiries and concerns and respond thoughtfully.",
+        id: "listen-respond",
+        number: "03",
+        title: "Listen and respond",
+        description: "Listen to questions and concerns, and respond thoughtfully.",
       },
       {
-        id: "continuous-improvement",
-        title: "Continuous improvement",
-        description: "Keep improving our product range to serve varied customer needs.",
+        id: "keep-improving",
+        number: "04",
+        title: "Keep improving",
+        description: "Continue improving our product range to serve varied customer needs.",
       },
     ],
   },
-  closing: {
-    heading: "Always working to serve you better.",
-    content:
-      "We continually work to improve and expand our product range in line with the varied requirements of our customers.",
-    buttonText: "Explore Our Products",
-    buttonLink: "/products/",
+  cta: {
+    heading: "Looking for the right product?",
+    description: "Explore our range of textures, primers, emulsions and painting accessories.",
+    primaryButtonText: "Explore Products",
+    primaryButtonLink: "/products/",
+    secondaryButtonText: "Contact Us",
+    secondaryButtonLink: "/contact/",
   },
 };
 
