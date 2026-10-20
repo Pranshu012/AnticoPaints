@@ -58,35 +58,44 @@ export function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav
-            className="hidden md:flex items-center space-x-8"
-            aria-label="Primary Navigation"
-          >
-            {NAV_ITEMS.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname?.startsWith(item.href.replace(/\/$/, ""));
+          {/* Desktop Navigation & Dealer CTA */}
+          <div className="hidden md:flex items-center space-x-7">
+            <nav
+              className="flex items-center space-x-7"
+              aria-label="Primary Navigation"
+            >
+              {NAV_ITEMS.map((item) => {
+                const isActive =
+                  item.href === "/"
+                    ? pathname === "/"
+                    : pathname?.startsWith(item.href.replace(/\/$/, ""));
 
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`text-xs uppercase tracking-luxury font-sans font-medium transition-colors relative py-1.5 ${
-                    isActive
-                      ? "text-brand-black font-semibold"
-                      : "text-brand-black/70 hover:text-brand-gold"
-                  }`}
-                >
-                  {item.name}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-gold" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`text-xs uppercase tracking-luxury font-sans font-medium transition-colors relative py-1.5 ${
+                      isActive
+                        ? "text-brand-black font-semibold"
+                        : "text-brand-black/70 hover:text-brand-gold"
+                    }`}
+                  >
+                    {item.name}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-gold" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <Link
+              href="/become-a-dealer/"
+              className="inline-flex items-center justify-center px-4 py-2 bg-brand-black text-brand-offwhite hover:bg-brand-gold hover:text-brand-black text-xs font-sans font-medium uppercase tracking-wider rounded-xs transition-colors shadow-xs"
+            >
+              Become a Dealer
+            </Link>
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden">
@@ -132,6 +141,15 @@ export function Header() {
               );
             })}
           </nav>
+
+          <div className="pt-2 border-t border-brand-beige/60">
+            <Link
+              href="/become-a-dealer/"
+              className="w-full inline-flex items-center justify-center px-5 py-3 bg-brand-black text-brand-offwhite hover:bg-brand-gold hover:text-brand-black text-xs font-sans font-semibold uppercase tracking-wider rounded-xs transition-colors text-center shadow-xs"
+            >
+              Become a Dealer
+            </Link>
+          </div>
         </div>
       )}
     </header>

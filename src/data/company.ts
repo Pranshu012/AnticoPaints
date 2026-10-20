@@ -27,14 +27,141 @@ export const companyData: CompanyInfo = {
   ],
   specificationsNotice: "Technical datasheets, VOC metrics, dry film thicknesses (DFT), and test certificates are provided for project evaluation. Final system guarantees require official technical site sign-off.",
   contact: {
-    emailPlaceholder: "[Placeholder: specifications@anticopaints.com / commercial@anticopaints.com]",
-    phonePlaceholder: "[Placeholder: +1 (800) 000-0000 / Direct Technical Desk]",
-    officeAddressPlaceholder: "[Placeholder: Corporate Architectural Center, Suite 400, Industrial Boulevard, Metro City]",
-    plantAddressPlaceholder: "[Placeholder: Manufacturing Facility & Central Technical R&D Lab, Sector 12, Industrial Corridor]",
-    businessHoursPlaceholder: "[Placeholder: Mon - Fri: 08:30 - 17:30 EST | Architectural Consultation by Appointment]"
+    emailPlaceholder: "anticopaints@gmail.com",
+    phonePlaceholder: "+91 9636261998",
+    officeAddressPlaceholder: "[Office Address Available Upon Inquiry]",
+    plantAddressPlaceholder: "[Manufacturing Facility & Central Lab]",
+    businessHoursPlaceholder: "Mon - Sat: 09:00 - 18:00 IST"
   },
-  complianceNotice: "[Placeholder: ISO 9001, ISO 14001, ASTM test standards, and Regional VOC compliance certificates to be inserted upon verification]"
+  complianceNotice: "[Quality and standards verification details available upon request]"
 };
+
+export const verifiedContactData = {
+  phone: {
+    label: "Call Antico Paints",
+    number: "+91 9636261998",
+    href: "tel:+919636261998",
+  },
+  email: {
+    label: "Email Antico Paints",
+    address: "anticopaints@gmail.com",
+    href: "mailto:anticopaints@gmail.com",
+  },
+};
+
+export const contactPageData = {
+  intro: {
+    eyebrow: "WE'RE HERE TO HELP",
+    heading: "Let's talk about your project.",
+    description:
+      "Questions about our products, colours or painting essentials? Get in touch with Antico Paints.",
+  },
+  form: {
+    heading: "Send us an enquiry",
+    supportingText:
+      "Share your question and we'll have the information needed to respond to you.",
+    enquiryTypes: [
+      "Product information",
+      "Colour or shade enquiry",
+      "Order or product availability",
+      "General question",
+      "Feedback",
+      "Other",
+    ],
+  },
+  dealerCrossLink: {
+    heading: "Interested in becoming a dealer?",
+    description: "Explore a potential dealership partnership with Antico Paints.",
+    linkText: "Discover Dealer Opportunities",
+    linkHref: "/become-a-dealer/",
+  },
+};
+
+export const dealerPageData = {
+  hero: {
+    eyebrow: "PARTNER WITH ANTICO PAINTS",
+    heading: "Become an Antico Paints Dealer.",
+    supportingText:
+      "Interested in adding Antico Paints to your business? Tell us about your business and location so our team can discuss the next steps with you.",
+    primaryCta: "Register Your Interest",
+    phoneCta: "Call +91 9636261998",
+    phoneHref: "tel:+919636261998",
+    image: "/images/dealer/dealer-retail-store.jpg",
+    imageAlt: "Retail paint store interior with shelves and paint cans",
+  },
+  targetAudience: {
+    heading: "Who can get in touch?",
+    introduction:
+      "We welcome dealership enquiries from businesses and individuals interested in exploring a potential partnership.",
+    items: [
+      "Paint retailers",
+      "Hardware and building-material stores",
+      "Distributors and wholesalers",
+      "Entrepreneurs exploring a paint business",
+    ],
+  },
+  process: {
+    eyebrow: "HOW IT WORKS",
+    heading: "Start with a conversation.",
+    steps: [
+      {
+        step: "01",
+        title: "Share your details",
+        description:
+          "Tell us about your business, contact information and location.",
+      },
+      {
+        step: "02",
+        title: "Discuss your requirements",
+        description:
+          "Our team can review your enquiry and learn more about your business interests.",
+      },
+      {
+        step: "03",
+        title: "Explore the next steps",
+        description:
+          "Discuss the product range, availability and applicable dealership requirements directly with the team.",
+      },
+    ],
+  },
+  form: {
+    heading: "Register your interest",
+    description:
+      "Share a few details about your business so our team can understand your enquiry.",
+    businessTypes: [
+      "Existing paint retailer",
+      "Hardware or building-material store",
+      "Distributor or wholesaler",
+      "Planning a new business",
+      "Other",
+    ],
+    consentText:
+      "I agree that Antico Paints may contact me regarding this dealership enquiry.",
+  },
+  faqs: [
+    {
+      question: "How do I express interest in becoming a dealer?",
+      answer:
+        "Complete the dealer enquiry form with your contact details, business type and location. The team can then discuss the next steps with you.",
+    },
+    {
+      question: "What information should I provide?",
+      answer:
+        "Share your name, mobile number, business type and location. You can also provide your business name and any additional details that may help explain your enquiry.",
+    },
+    {
+      question: "Does submitting the form guarantee dealership approval?",
+      answer:
+        "No. The form registers your interest. Any dealership opportunity, requirements and commercial terms must be discussed and confirmed directly with Antico Paints.",
+    },
+    {
+      question: "How can I contact Antico Paints directly?",
+      answer:
+        "Call +91 9636261998 or email anticopaints@gmail.com.",
+    },
+  ],
+};
+
 
 export const aboutPageData: AboutContent = {
   intro: {

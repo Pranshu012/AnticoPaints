@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone, Mail } from "lucide-react";
+import { verifiedContactData } from "@/data/company";
 
 const FOOTER_NAV_ITEMS = [
   { name: "Home", href: "/" },
@@ -9,6 +10,7 @@ const FOOTER_NAV_ITEMS = [
   { name: "Colours", href: "/colours/" },
   { name: "About", href: "/about/" },
   { name: "Contact", href: "/contact/" },
+  { name: "Become a Dealer", href: "/become-a-dealer/" },
 ];
 
 export function Footer() {
@@ -19,10 +21,10 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Row */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 pb-10 border-b border-brand-charcoal">
+        <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-10 pb-10 border-b border-brand-charcoal">
           
           {/* Logo & Brief Tagline */}
-          <div className="space-y-3">
+          <div className="space-y-3 max-w-sm">
             <Link href="/" className="inline-block" aria-label="Antico Paints Home">
               <Image
                 src="/images/logo/antico-logo-white.png"
@@ -33,41 +35,71 @@ export function Footer() {
                 style={{ maxHeight: "44px", width: "auto" }}
               />
             </Link>
-            <p className="text-xs text-brand-beige/70 font-sans max-w-sm">
+            <p className="text-xs text-brand-beige/70 font-sans leading-relaxed">
               Quality wall finishes, primers, emulsions and painting essentials.
             </p>
           </div>
 
-          {/* Clean 5 Primary Navigation Links */}
-          <nav aria-label="Footer Navigation">
-            <ul className="flex flex-wrap items-center gap-6 sm:gap-8 text-xs uppercase tracking-wider font-sans">
-              {FOOTER_NAV_ITEMS.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-brand-beige/80 hover:text-brand-gold transition-colors py-1 inline-block"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {/* Navigation Links & Direct Contact */}
+          <div className="space-y-6">
+            <nav aria-label="Footer Navigation">
+              <ul className="flex flex-wrap items-center gap-6 sm:gap-8 text-xs uppercase tracking-wider font-sans">
+                {FOOTER_NAV_ITEMS.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      className="text-brand-beige/80 hover:text-brand-gold transition-colors py-1 inline-block"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Direct Verified Contact Links */}
+            <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-xs font-sans text-brand-beige/80">
+              <a
+                href={verifiedContactData.phone.href}
+                className="inline-flex items-center gap-2 hover:text-brand-gold transition-colors"
+              >
+                <Phone className="w-3.5 h-3.5 text-brand-gold" />
+                <span>{verifiedContactData.phone.number}</span>
+              </a>
+
+              <a
+                href={verifiedContactData.email.href}
+                className="inline-flex items-center gap-2 hover:text-brand-gold transition-colors"
+              >
+                <Mail className="w-3.5 h-3.5 text-brand-gold" />
+                <span>{verifiedContactData.email.address}</span>
+              </a>
+            </div>
+          </div>
 
         </div>
 
         {/* Inquiry Prompt Row */}
         <div className="py-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-sans text-brand-beige/80 border-b border-brand-charcoal/60">
           <p>
-            Need product information? Connect with our team.
+            Questions about our products or partnership? Connect with our team.
           </p>
-          <Link
-            href="/contact/"
-            className="inline-flex items-center gap-1.5 text-brand-gold hover:text-brand-gold-light font-medium transition-colors"
-          >
-            <span>Contact Us</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/contact/"
+              className="inline-flex items-center gap-1.5 text-brand-gold hover:text-brand-gold-light font-medium transition-colors"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+            <Link
+              href="/become-a-dealer/"
+              className="inline-flex items-center gap-1.5 text-brand-offwhite hover:text-brand-gold font-medium transition-colors"
+            >
+              <span>Become a Dealer</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </div>
 
         {/* Bottom Copyright Row */}

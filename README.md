@@ -37,7 +37,8 @@ AnticoPaints/
 │   │   ├── products/               # Product collections directory & category filters
 │   │   ├── colours/                # Interactive chromatic library, LRV inspector & swatches
 │   │   ├── about/                  # Manufacturing philosophy, R&D facility, formulation standards
-│   │   └── contact/                # Specification desk, sample pot requests & tender enquiries
+│   │   ├── contact/                # General enquiries, phone/email contact & submission form
+│   │   └── become-a-dealer/        # Retail dealership enquiries, multi-step process & application form
 │   ├── components/
 │   │   ├── layout/                 # Shared Header and Footer
 │   │   ├── home/                   # Reusable Homepage sections
@@ -118,7 +119,31 @@ wrangler pages deploy out --project-name=antico-paints
 
 ---
 
-## 5. How to Add Products, Colours, Projects & Images
+## 5. Contact & Dealership Form Submissions
+
+The website features two distinct inquiry channels:
+1. **General Enquiries (`/contact`)**: For homeowner queries, colour questions, and product support.
+2. **Dealership Enquiries (`/become-a-dealer`)**: For retail store owners, distributors, and hardware merchants seeking commercial dealership partnerships.
+
+### Setting Up Live Email Notifications
+
+Both forms submit directly from the client browser to **Web3Forms** (or Formspree) to deliver messages directly to `anticopaints@gmail.com` with zero server infrastructure required:
+
+1. Obtain a free Access Key from [Web3Forms](https://web3forms.com) (registering `anticopaints@gmail.com`).
+2. Create or update `.env.local` in the project root:
+   ```bash
+   NEXT_PUBLIC_WEB3FORMS_KEY="your-access-key-here"
+   ```
+3. When building on Cloudflare Pages or Vercel, add `NEXT_PUBLIC_WEB3FORMS_KEY` to the environment variables in your deployment dashboard.
+4. If no key is set, the forms operate in fallback mode with full validation and prompt simulated success notifications without crashing.
+
+### Official Verified Contacts
+- **Phone**: `+91 9636261998` (`tel:+919636261998`)
+- **Email**: `anticopaints@gmail.com` (`mailto:anticopaints@gmail.com`)
+
+---
+
+## 6. How to Add Products, Colours, Projects & Images
 
 All data is strictly separated from presentation logic in `src/data/`.
 
@@ -186,7 +211,7 @@ All data is strictly separated from presentation logic in `src/data/`.
 
 ---
 
-## 6. Information Needed from Client to Replace Placeholders
+## 7. Information Needed from Client to Replace Placeholders
 
 The following items are designated with explicit `[Placeholder: ...]` markers and can be updated in `src/data/company.ts`, `src/data/products.ts`, and `src/data/projects.ts`:
 

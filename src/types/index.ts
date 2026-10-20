@@ -164,3 +164,28 @@ export interface HomeMissionContent {
   linkHref: string;
 }
 
+export interface ContactInfoVerified {
+  phone: {
+    label: string;
+    display: string;
+    href: string;
+  };
+  email: {
+    label: string;
+    display: string;
+    href: string;
+  };
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface DealerStep {
+  step: string;
+  title: string;
+  description: string;
+}
+
+
