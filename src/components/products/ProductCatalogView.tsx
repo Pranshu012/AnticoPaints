@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { ProductItem } from "@/types";
 import { CategoryFilterBar, CategoryOption } from "./CategoryFilterBar";
 import { UnifiedProductCard } from "./UnifiedProductCard";
@@ -18,7 +19,37 @@ const CATEGORY_OPTIONS: CategoryOption[] = [
 ];
 
 export function ProductCatalogView({ products }: ProductCatalogViewProps) {
-  const [activeCategoryId, setActiveCategoryId] = useState<string>("all");
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
+
+  const [activeCategoryId, setActiveCategoryId] = useState<string>(() => {
+    if (categoryParam && CATEGORY_OPTIONS.some((c) => c.id === categoryParam)) {
+      return categoryParam;
+    }
+    return "all";
+  });
+
+  // Sync state if URL query param changes
+  useEffect(() => {
+    if (categoryParam && CATEGORY_OPTIONS.some((c) => c.id === categoryParam)) {
+      setActiveCategoryId(categoryParam);
+    } else if (!categoryParam) {
+      setActiveCategoryId("all");
+    }
+  }, [categoryParam]);
+
+  const handleSelectCategory = (categoryId: string) => {
+    setActiveCategoryId(categoryId);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      if (categoryId === "all") {
+        url.searchParams.delete("category");
+      } else {
+        url.searchParams.set("category", categoryId);
+      }
+      window.history.replaceState(null, "", url.toString());
+    }
+  };
 
   const activeOption =
     CATEGORY_OPTIONS.find((c) => c.id === activeCategoryId) || CATEGORY_OPTIONS[0];
@@ -42,7 +73,7 @@ export function ProductCatalogView({ products }: ProductCatalogViewProps) {
       <CategoryFilterBar
         categories={CATEGORY_OPTIONS}
         activeCategoryId={activeCategoryId}
-        onSelectCategory={setActiveCategoryId}
+        onSelectCategory={handleSelectCategory}
         products={products}
       />
 
@@ -121,7 +152,7 @@ export function ProductCatalogView({ products }: ProductCatalogViewProps) {
                 <p className="text-sm font-sans text-brand-black">No products in this category.</p>
                 <button
                   type="button"
-                  onClick={() => setActiveCategoryId("all")}
+                  onClick={() => handleSelectCategory("all")}
                   className="mt-3 px-4 py-2 text-xs font-sans uppercase tracking-wider bg-brand-black text-brand-offwhite"
                 >
                   View All Products

@@ -4,8 +4,15 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { navigationLinks } from "@/data/company";
-import { Menu, X, ArrowUpRight, Palette } from "lucide-react";
+import { Menu, X } from "lucide-react";
+
+const NAV_ITEMS = [
+  { name: "Home", href: "/" },
+  { name: "Products", href: "/products/" },
+  { name: "Colours", href: "/colours/" },
+  { name: "About", href: "/about/" },
+  { name: "Contact", href: "/contact/" },
+];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,42 +21,27 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 transition-all duration-200 ${
         isScrolled
           ? "bg-brand-offwhite/95 backdrop-blur-md shadow-sm border-b border-brand-beige"
-          : "bg-brand-offwhite border-b border-brand-beige/60"
+          : "bg-brand-offwhite border-b border-brand-beige/70"
       }`}
     >
-      {/* Top Specification Banner */}
-      <div className="bg-brand-black text-brand-beige-light text-[11px] tracking-wider py-1.5 px-4 text-center border-b border-brand-charcoal">
-        <span className="inline-flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse"></span>
-          <span>Architectural Specification Service &amp; Project Consultations Open for 2026 Contracts</span>
-          <Link
-            href="/contact"
-            className="text-brand-gold hover:underline inline-flex items-center ml-1"
-          >
-            Enquire Desk <ArrowUpRight className="w-3 h-3 ml-0.5" />
-          </Link>
-        </span>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Brand Logo with Official Uploaded Shield and Wordmark */}
+        <div className="flex items-center justify-between h-18 sm:h-20">
+          {/* Official Brand Logo */}
           <Link
             href="/"
             className="group flex items-center focus-visible:outline-none py-1"
@@ -61,8 +53,8 @@ export function Header() {
               width={180}
               height={64}
               priority
-              className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-              style={{ maxHeight: "48px", width: "auto" }}
+              className="h-10 sm:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+              style={{ maxHeight: "44px", width: "auto" }}
             />
           </Link>
 
@@ -71,17 +63,17 @@ export function Header() {
             className="hidden md:flex items-center space-x-8"
             aria-label="Primary Navigation"
           >
-            {navigationLinks.map((item) => {
+            {NAV_ITEMS.map((item) => {
               const isActive =
                 item.href === "/"
                   ? pathname === "/"
-                  : pathname?.startsWith(item.href);
+                  : pathname?.startsWith(item.href.replace(/\/$/, ""));
 
               return (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-xs uppercase tracking-luxury font-medium transition-all duration-200 relative py-1 ${
+                  className={`text-xs uppercase tracking-luxury font-sans font-medium transition-colors relative py-1.5 ${
                     isActive
                       ? "text-brand-black font-semibold"
                       : "text-brand-black/70 hover:text-brand-gold"
@@ -89,30 +81,12 @@ export function Header() {
                 >
                   {item.name}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-gold transition-all duration-300" />
+                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-brand-gold" />
                   )}
                 </Link>
               );
             })}
           </nav>
-
-          {/* Action Button */}
-          <div className="hidden lg:flex items-center gap-4">
-            <Link
-              href="/colours"
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-luxury text-brand-black/80 hover:text-brand-gold py-2 px-3 transition-colors"
-            >
-              <Palette className="w-3.5 h-3.5 text-brand-gold" />
-              <span>Palette Studio</span>
-            </Link>
-
-            <Link
-              href="/#catalogues"
-              className="px-5 py-2.5 text-xs font-medium tracking-luxury uppercase bg-brand-black text-brand-offwhite border border-brand-black hover:bg-brand-gold hover:border-brand-gold hover:text-brand-black transition-all duration-300 shadow-subtle"
-            >
-              Catalogues
-            </Link>
-          </div>
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden">
@@ -133,31 +107,21 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Simple, Clean Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-brand-beige bg-brand-offwhite px-6 pt-6 pb-8 space-y-4 shadow-lg animate-fadeIn">
-          <div className="mb-4">
-            <Image
-              src="/images/logo/antico-logo.png"
-              alt="Antico Paints"
-              width={150}
-              height={54}
-              className="h-10 w-auto object-contain"
-              style={{ maxHeight: "40px", width: "auto" }}
-            />
-          </div>
-          <nav className="flex flex-col space-y-3" aria-label="Mobile Navigation">
-            {navigationLinks.map((item) => {
+        <div className="md:hidden border-t border-brand-beige bg-brand-offwhite px-6 py-6 space-y-4 shadow-lg animate-fadeIn">
+          <nav className="flex flex-col space-y-2" aria-label="Mobile Navigation">
+            {NAV_ITEMS.map((item) => {
               const isActive =
                 item.href === "/"
                   ? pathname === "/"
-                  : pathname?.startsWith(item.href);
+                  : pathname?.startsWith(item.href.replace(/\/$/, ""));
 
               return (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm tracking-luxury uppercase py-2 border-b border-brand-beige/50 ${
+                  className={`text-sm tracking-wide font-sans py-2.5 border-b border-brand-beige/40 ${
                     isActive
                       ? "text-brand-gold font-semibold"
                       : "text-brand-black hover:text-brand-gold"
@@ -168,21 +132,6 @@ export function Header() {
               );
             })}
           </nav>
-          <div className="pt-4 flex flex-col gap-3">
-            <Link
-              href="/colours"
-              className="flex items-center justify-center gap-2 py-3 text-xs tracking-luxury uppercase border border-brand-gold text-brand-black hover:bg-brand-gold/10"
-            >
-              <Palette className="w-4 h-4 text-brand-gold" />
-              Explore Colour Library
-            </Link>
-            <Link
-              href="/#catalogues"
-              className="py-3 text-center text-xs tracking-luxury uppercase bg-brand-black text-brand-offwhite hover:bg-brand-gold hover:text-brand-black"
-            >
-              Download Catalogues
-            </Link>
-          </div>
         </div>
       )}
     </header>

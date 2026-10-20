@@ -1,30 +1,30 @@
-import { Hero } from "@/components/home/Hero";
-import { CategoryGrid } from "@/components/home/CategoryGrid";
-import { ColourFamilyPreview } from "@/components/home/ColourFamilyPreview";
-import { ApplicationsGallery } from "@/components/home/ApplicationsGallery";
-import { CatalogueCTA } from "@/components/home/CatalogueCTA";
-import { EnquirySection } from "@/components/home/EnquirySection";
+import React from "react";
+import type { Metadata } from "next";
+import { SimpleHero } from "@/components/home/SimpleHero";
+import { SimpleCategoryGrid } from "@/components/home/SimpleCategoryGrid";
+import { SimpleAboutSection } from "@/components/home/SimpleAboutSection";
+import { SimpleContactCTA } from "@/components/home/SimpleContactCTA";
+
+export const metadata: Metadata = {
+  title: "Antico Paints | The Right Finish for Your Walls",
+  description:
+    "Explore wall textures, primers, emulsions and painting essentials for your next project from Antico Paints.",
+};
 
 export default function HomePage() {
   return (
     <>
-      {/* 1. Hero Section */}
-      <Hero />
+      {/* Section A: Clean Hero */}
+      <SimpleHero />
 
-      {/* 2. Product Categories */}
-      <CategoryGrid />
+      {/* Section B: Product Categories */}
+      <SimpleCategoryGrid />
 
-      {/* 3. Colour-Family Preview (Astral Paints-inspired Exploration) */}
-      <ColourFamilyPreview />
+      {/* Section C: Simple About Section */}
+      <SimpleAboutSection />
 
-      {/* 4. Applications / Architectural Gallery */}
-      <ApplicationsGallery />
-
-      {/* 5. Catalogue Call-To-Action (Luxture-inspired Collections & Catalogues) */}
-      <CatalogueCTA />
-
-      {/* 6. Contact / Project Consultation Enquiry */}
-      <EnquirySection />
+      {/* Section D: Contact CTA */}
+      <SimpleContactCTA />
     </>
   );
 }

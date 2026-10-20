@@ -1,120 +1,143 @@
+import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { companyData } from "@/data/company";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
-import { ShieldCheck, Factory, Sparkles, Droplets, Award, FileCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck, Sparkles, Layers, Paintbrush } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Our Formulations & Manufacturing | Antico Paints",
+  title: "About Us | Antico Paints",
   description:
-    "Learn about Antico Paints' architectural coatings philosophy, mineral pigment load, and commercial manufacturing standards.",
+    "Learn about Antico Paints: our range of wall finishes, primers, emulsions and painting essentials.",
 };
+
+const VALUES = [
+  {
+    icon: Layers,
+    title: "Surface Preparation",
+    description: "Reliable primers and sealers that ensure strong adhesion and enduring wall finishes.",
+  },
+  {
+    icon: Sparkles,
+    title: "Refined Textures",
+    description: "Decorative wall textures that bring tactile depth and character to interior and exterior surfaces.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Consistent Coverage",
+    description: "Emulsions formulated for smooth flow, uniform coverage, and rich colour presentation.",
+  },
+  {
+    icon: Paintbrush,
+    title: "Practical Essentials",
+    description: "Professional masking tapes and tools designed to keep project execution clean and precise.",
+  },
+];
 
 export default function AboutPage() {
   return (
     <div className="bg-brand-offwhite min-h-screen">
       {/* Hero Header */}
-      <section className="bg-brand-black text-brand-offwhite py-16 sm:py-24 border-b border-brand-charcoal">
+      <section className="bg-brand-black text-brand-offwhite py-14 sm:py-20 border-b border-brand-charcoal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-4">
-            <Badge variant="gold">Manufacturing &amp; Philosophy</Badge>
+            <span className="text-xs uppercase tracking-[0.2em] font-sans font-semibold text-brand-gold block">
+              ABOUT ANTICO PAINTS
+            </span>
             <h1 className="font-serif text-3xl sm:text-5xl text-brand-beige-light tracking-tight">
-              Architectural Precision. Formulated for Permanence.
+              A considered range for your painting needs.
             </h1>
             <p className="text-sm sm:text-base text-brand-beige/80 leading-relaxed font-sans">
-              Founded on the belief that commercial coatings should combine exacting optical depth 
-              with unyielding substrate resilience.
+              From wall preparation to decorative textures and smooth emulsions, Antico Paints offers products designed for reliable coverage and quality finishes.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Main Narrative & Values */}
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      {/* Main Narrative */}
+      <section className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Narrative */}
+          {/* Left Column: Mission & Story */}
           <div className="lg:col-span-7 space-y-6">
-            <span className="text-[10px] uppercase tracking-luxury text-brand-gold font-semibold block">
-              Formulation Principles
+            <span className="text-xs uppercase tracking-[0.2em] text-brand-gold font-semibold block">
+              OUR APPROACH
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl text-brand-black leading-snug">
-              Bridging Chemical Rigour and Design Sensibility
+            <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-brand-black leading-snug">
+              Quality finishes start with the right foundation.
             </h2>
             
-            <p className="text-sm text-brand-black/80 leading-relaxed">
-              Commercial projects demand paints that do not simply colour a wall, but protect the investment in underlying masonry, plaster, and metalwork. Antico Paints approaches paint formulation from an architectural standpoint.
+            <p className="text-sm sm:text-base text-brand-black/80 leading-relaxed">
+              Every successful paint job depends on proper surface preparation and dependable products. Whether you are refreshing an interior living room, creating a custom textured accent wall, or preparing new cement plaster for painting, Antico Paints provides the essentials you need.
             </p>
             
-            <p className="text-sm text-brand-black/80 leading-relaxed">
-              By combining high-solids acrylic emulsions, micronised lightfast mineral pigments, and advanced siloxane binders, our formulations provide smooth application, uniform dry-down, and low light scattering across glancing angles.
+            <p className="text-sm sm:text-base text-brand-black/80 leading-relaxed">
+              Our range includes cement wall primers for strong substrate binding, decorative textures for distinctive aesthetic character, smooth emulsions for rich interior colour, and professional accessories like masking tapes and edge protectors for clean execution.
             </p>
 
-            {/* Core Values Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
-              {companyData.values.map((val, idx) => (
-                <div key={idx} className="p-6 bg-brand-offwhite border border-brand-beige shadow-subtle space-y-2">
-                  <div className="text-brand-gold font-serif text-lg">0{idx + 1}.</div>
-                  <h3 className="font-serif text-base text-brand-black">{val.title}</h3>
-                  <p className="text-xs text-brand-muted leading-relaxed">{val.description}</p>
-                </div>
-              ))}
+            {/* Core Pillars Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
+              {VALUES.map((val, idx) => {
+                const Icon = val.icon;
+                return (
+                  <div key={idx} className="p-5 bg-white border border-brand-beige shadow-xs space-y-2">
+                    <Icon className="w-5 h-5 text-brand-gold" />
+                    <h3 className="font-serif text-base text-brand-black">{val.title}</h3>
+                    <p className="text-xs text-brand-muted leading-relaxed">{val.description}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
-          {/* Right Column: Manufacturing Facility & Placeholders */}
+          {/* Right Column: Clean Product Overview Card */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-brand-beige/25 border border-brand-beige p-8 shadow-subtle space-y-6">
-              <div className="flex items-center gap-3">
-                <Factory className="w-5 h-5 text-brand-gold-dark" />
-                <h3 className="font-serif text-xl text-brand-black">Manufacturing &amp; R&amp;D</h3>
-              </div>
-
-              <div className="space-y-4 text-xs font-sans text-brand-black/80">
-                <div className="p-4 bg-brand-offwhite border border-brand-beige">
-                  <span className="font-semibold block uppercase text-[10px] tracking-wider text-brand-muted mb-1">
-                    Central Manufacturing Facility:
+            <div className="bg-brand-beige/25 border border-brand-beige p-7 shadow-xs space-y-5">
+              <h3 className="font-serif text-xl text-brand-black">Our Product Range</h3>
+              
+              <ul className="space-y-3 text-xs font-sans text-brand-black/80">
+                <li className="p-3 bg-white border border-brand-beige">
+                  <span className="font-semibold block text-brand-black mb-0.5">
+                    Texture &amp; Finishes
                   </span>
-                  <p className="text-brand-black">{companyData.contact.plantAddressPlaceholder}</p>
-                  <p className="text-[11px] text-brand-muted mt-1 italic">
-                    [Placeholder: Facility production capacity, high-speed dispersers, and computerized tinting metrics pending verification]
+                  <p className="text-brand-muted">
+                    Decorative textures designed to give walls distinctive depth and tactile style.
                   </p>
-                </div>
+                </li>
 
-                <div className="p-4 bg-brand-offwhite border border-brand-beige">
-                  <span className="font-semibold block uppercase text-[10px] tracking-wider text-brand-muted mb-1">
-                    Corporate Entity &amp; Origin:
+                <li className="p-3 bg-white border border-brand-beige">
+                  <span className="font-semibold block text-brand-black mb-0.5">
+                    Primers &amp; Undercoats
                   </span>
-                  <p className="text-brand-black">{companyData.legalEntityPlaceholder}</p>
-                  <p className="text-[11px] text-brand-muted mt-1">
-                    {companyData.establishedPlaceholder}
+                  <p className="text-brand-muted">
+                    Cement wall primers that prepare and seal porous masonry before painting.
                   </p>
-                </div>
+                </li>
 
-                <div className="p-4 bg-brand-offwhite border border-brand-beige">
-                  <span className="font-semibold block uppercase text-[10px] tracking-wider text-brand-muted mb-1">
-                    Testing Standards &amp; Certifications:
+                <li className="p-3 bg-white border border-brand-beige">
+                  <span className="font-semibold block text-brand-black mb-0.5">
+                    Emulsions &amp; Wall Paints
                   </span>
-                  <p className="text-brand-black">{companyData.complianceNotice}</p>
-                </div>
-              </div>
-            </div>
+                  <p className="text-brand-muted">
+                    Smooth interior emulsions offering rich colour, dependable washability, and even coats.
+                  </p>
+                </li>
 
-            {/* Specifier Advisory Note */}
-            <div className="p-6 bg-brand-black text-brand-offwhite border border-brand-charcoal space-y-3">
-              <span className="text-[10px] uppercase tracking-widest text-brand-gold font-semibold">
-                Commercial Specification Guarantee
-              </span>
-              <p className="text-xs text-brand-beige/80 leading-relaxed">
-                We supply complete warranty matrices for qualified commercial projects when applied according to our written technical specification guidelines and approved primers.
-              </p>
+                <li className="p-3 bg-white border border-brand-beige">
+                  <span className="font-semibold block text-brand-black mb-0.5">
+                    Painting Accessories
+                  </span>
+                  <p className="text-brand-muted">
+                    Professional masking tapes and roller protectors for crisp paint lines and clean workspaces.
+                  </p>
+                </li>
+              </ul>
+
               <div className="pt-2">
                 <Link
-                  href="/contact"
-                  className="text-xs uppercase tracking-luxury text-brand-gold hover:underline inline-flex items-center gap-1 font-medium"
+                  href="/products/"
+                  className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-brand-black hover:text-brand-gold transition-colors"
                 >
-                  Contact Our Technical Desk →
+                  <span>Explore All Products</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
@@ -123,22 +146,23 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Sustainability & Environmental Stewardship */}
-      <section className="bg-brand-beige-light py-20 border-t border-brand-beige">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
-            <Badge variant="gold">Environmental Standards</Badge>
-            <h2 className="font-serif text-3xl sm:text-4xl text-brand-black">
-              Low-VOC Engineering &amp; Clean Formulations
-            </h2>
-            <p className="text-sm text-brand-muted leading-relaxed font-sans">
-              Interior air quality is a non-negotiable architectural requirement. 
-              Our emulsions and waterborne enamels are formulated without ozone-depleting solvents, 
-              meeting stringent VOC requirements for enclosed commercial, healthcare, and educational facilities.
-            </p>
-            <p className="text-xs text-brand-muted italic">
-              [Placeholder: Specific VOC g/L lab reports per formulation available upon request from the technical desk]
-            </p>
+      {/* Contact Prompt */}
+      <section className="bg-brand-black text-brand-offwhite py-14 border-t border-brand-charcoal">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <h2 className="font-serif text-2xl sm:text-3xl text-brand-offwhite">
+            Have questions about our products?
+          </h2>
+          <p className="text-sm text-brand-beige/80 max-w-xl mx-auto leading-relaxed">
+            Get in touch with our team for assistance, product guidance, and dealer inquiries.
+          </p>
+          <div className="pt-2">
+            <Link
+              href="/contact/"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-brand-gold text-brand-black hover:bg-brand-gold-light transition-colors text-xs uppercase tracking-wider font-medium"
+            >
+              <span>Contact Us</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </section>

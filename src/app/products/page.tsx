@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import type { Metadata } from "next";
 import { getAllProducts } from "@/data/products";
 import { CompactProductHero } from "@/components/products/CompactProductHero";
@@ -20,7 +20,15 @@ export default function ProductsPage() {
       <CompactProductHero totalCount={products.length} />
 
       {/* B, C, D. Interactive Category Navigation & Unified Product Grid */}
-      <ProductCatalogView products={products} />
+      <Suspense
+        fallback={
+          <div className="max-w-7xl mx-auto px-4 py-16 text-center text-xs font-sans text-brand-muted">
+            Loading products...
+          </div>
+        }
+      >
+        <ProductCatalogView products={products} />
+      </Suspense>
 
       {/* E. Compact Final Enquiry Section */}
       <CompactProductEnquiryCTA />
