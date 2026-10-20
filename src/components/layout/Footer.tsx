@@ -13,15 +13,14 @@ export function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-brand-charcoal">
           <div className="lg:col-span-5 space-y-6">
             <div className="space-y-3">
-              <div className="relative h-14 w-48 sm:w-56">
-                <Image
-                  src="/images/logo/antico-logo-white.png"
-                  alt="Antico Paints"
-                  fill
-                  sizes="(max-width: 640px) 192px, 224px"
-                  className="object-contain object-left"
-                />
-              </div>
+              <Image
+                src="/images/logo/antico-logo-white.png"
+                alt="Antico Paints"
+                width={200}
+                height={70}
+                className="h-12 sm:h-14 w-auto object-contain"
+                style={{ maxHeight: "56px", width: "auto" }}
+              />
               <span className="text-[10px] tracking-[0.25em] text-brand-gold uppercase font-sans block">
                 Commercial Architectural Manufacturing
               </span>

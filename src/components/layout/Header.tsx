@@ -55,16 +55,15 @@ export function Header() {
             className="group flex items-center focus-visible:outline-none py-1"
             aria-label="Antico Paints Home"
           >
-            <div className="relative h-12 w-40 sm:w-48 flex items-center">
-              <Image
-                src="/images/logo/antico-logo.png"
-                alt="Antico Paints"
-                fill
-                priority
-                sizes="(max-width: 640px) 160px, 192px"
-                className="object-contain object-left transition-transform duration-300 group-hover:scale-[1.02]"
-              />
-            </div>
+            <Image
+              src="/images/logo/antico-logo.png"
+              alt="Antico Paints"
+              width={180}
+              height={64}
+              priority
+              className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              style={{ maxHeight: "48px", width: "auto" }}
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -137,12 +136,14 @@ export function Header() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-brand-beige bg-brand-offwhite px-6 pt-6 pb-8 space-y-4 shadow-lg animate-fadeIn">
-          <div className="relative h-10 w-36 mb-4">
+          <div className="mb-4">
             <Image
               src="/images/logo/antico-logo.png"
               alt="Antico Paints"
-              fill
-              className="object-contain object-left"
+              width={150}
+              height={54}
+              className="h-10 w-auto object-contain"
+              style={{ maxHeight: "40px", width: "auto" }}
             />
           </div>
           <nav className="flex flex-col space-y-3" aria-label="Mobile Navigation">

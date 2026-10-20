@@ -17,14 +17,14 @@ export function Hero() {
           {/* Left Column: Architectural Typography & Value Prop */}
           <div className="lg:col-span-7 space-y-8">
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 border border-brand-gold/40 bg-brand-beige/30 text-xs tracking-widest uppercase text-brand-black font-medium">
-              <div className="relative w-4 h-4 shrink-0">
-                <Image
-                  src="/images/logo/antico-symbol.png"
-                  alt="Antico Symbol"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+              <Image
+                src="/images/logo/antico-symbol.png"
+                alt="Antico Symbol"
+                width={18}
+                height={18}
+                className="h-4 w-auto object-contain"
+                style={{ maxHeight: "18px", width: "auto" }}
+              />
               <span>Architectural Formulation &amp; Manufacturing</span>
             </div>
 
