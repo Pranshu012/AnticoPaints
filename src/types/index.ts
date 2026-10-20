@@ -1,3 +1,26 @@
+export type ProductSection = 'featured' | 'paint-prep' | 'accessories';
+
+export interface ProductDetailField {
+  label: string;
+  value: string;
+}
+
+export interface ProductItem {
+  slug: string;
+  name: string;
+  category: string;
+  categoryLabel: string;
+  section: ProductSection;
+  shortDescription: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  badge?: string;
+  editorialNumber?: string;
+  availableDetails?: ProductDetailField[];
+  enquiryLink: string;
+}
+
 export type ProductCategory = 
   | 'interior'
   | 'exterior'
@@ -16,17 +39,24 @@ export interface CategoryInfo {
 
 export interface Product {
   id: string;
+  slug?: string;
   name: string;
-  category: ProductCategory;
-  finish: string;
-  tagline: string;
+  category: ProductCategory | string;
+  categoryLabel?: string;
+  finish?: string;
+  tagline?: string;
+  shortDescription?: string;
   description: string;
-  coverage: string;
-  recommendedUse: string[];
-  features: string[];
-  datasheetPlaceholderUrl: string;
+  coverage?: string;
+  recommendedUse?: string[];
+  features?: string[];
+  datasheetPlaceholderUrl?: string;
   image: string;
+  imageAlt?: string;
   isFeatured?: boolean;
+  section?: ProductSection;
+  availableDetails?: ProductDetailField[];
+  enquiryLink?: string;
 }
 
 export interface ColourShade {

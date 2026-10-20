@@ -1,0 +1,30 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#171717"/>
+  <rect x="24" y="24" width="752" height="552" fill="#222222" rx="2"/>
+
+  <!-- Work zone grid lines -->
+  <line x1="80" y1="120" x2="720" y2="120" stroke="#333333" stroke-width="1"/>
+  <line x1="80" y1="240" x2="720" y2="240" stroke="#333333" stroke-width="1"/>
+  <line x1="80" y1="360" x2="720" y2="360" stroke="#333333" stroke-width="1"/>
+  <line x1="80" y1="480" x2="720" y2="480" stroke="#333333" stroke-width="1"/>
+
+  <!-- Unfolded Masking Film Drop Sheet Illustration -->
+  <polygon points="160,200 480,160 560,460 220,490" fill="#FCFBF8" fill-opacity="0.08"/>
+  <polygon points="180,210 470,175 540,440 240,470" fill="#E9E0D2" fill-opacity="0.12"/>
+  <line x1="160" y1="200" x2="480" y2="160" stroke="#B89655" stroke-width="4"/>
+
+  <!-- Roller Masker Dispenser Roll Silhouette -->
+  <rect x="240" y="240" width="280" height="140" rx="8" fill="#2A2A2A" stroke="#B89655" stroke-width="2"/>
+  <ellipse cx="280" cy="310" rx="35" ry="55" fill="#171717" stroke="#E9E0D2" stroke-width="1.5"/>
+  <ellipse cx="480" cy="310" rx="35" ry="55" fill="#2A2A2A" stroke="#E9E0D2" stroke-width="1.5"/>
+  
+  <!-- Film Roll Core -->
+  <circle cx="280" cy="310" r="16" fill="#B89655"/>
+
+  <!-- Label on dispenser -->
+  <text x="380" y="295" font-family="sans-serif" font-weight="bold" font-size="14" fill="#FCFBF8" letter-spacing="2">ROLLER MASKER</text>
+  <text x="380" y="320" font-family="sans-serif" font-size="10" fill="#B89655" letter-spacing="1">PREPARATION ESSENTIAL</text>
+  <text x="380" y="340" font-family="sans-serif" font-size="9" fill="#737373">SURFACE PROTECTION FILM</text>
+
+  <text x="80" y="525" font-family="sans-serif" font-size="10" fill="#737373" letter-spacing="2">05 // ACCESSORY</text>
+</svg>

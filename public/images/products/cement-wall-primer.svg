@@ -1,0 +1,30 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#FCFBF8"/>
+  <rect x="24" y="24" width="752" height="552" fill="#E9E0D2" fill-opacity="0.3" rx="2"/>
+  
+  <!-- Concrete wall block background -->
+  <rect x="80" y="80" width="640" height="440" fill="#D5C9B5" fill-opacity="0.35"/>
+  <line x1="80" y1="300" x2="720" y2="300" stroke="#FCFBF8" stroke-width="1.5"/>
+  <line x1="400" y1="80" x2="400" y2="520" stroke="#FCFBF8" stroke-width="1.5"/>
+
+  <!-- Primer Roller Sweep Visual -->
+  <path d="M140 140 L460 140 L440 460 L120 460 Z" fill="#FCFBF8" fill-opacity="0.85"/>
+  <line x1="460" y1="140" x2="440" y2="460" stroke="#B89655" stroke-width="2"/>
+  
+  <!-- Product Presentation Container Silhouette -->
+  <rect x="420" y="200" width="220" height="260" rx="4" fill="#171717"/>
+  <ellipse cx="530" cy="200" rx="110" ry="24" fill="#262626"/>
+  <ellipse cx="530" cy="194" rx="98" ry="18" fill="#B89655"/>
+  <ellipse cx="530" cy="460" rx="110" ry="24" fill="#171717"/>
+  
+  <!-- Label -->
+  <rect x="440" y="250" width="180" height="150" fill="#FCFBF8" rx="2"/>
+  <rect x="440" y="250" width="180" height="6" fill="#B89655"/>
+  <text x="530" y="285" font-family="sans-serif" font-weight="bold" font-size="14" fill="#171717" text-anchor="middle" letter-spacing="2">ANTICO</text>
+  <text x="530" y="315" font-family="serif" font-size="13" fill="#171717" text-anchor="middle" font-weight="600">CEMENT WALL PRIMER</text>
+  <text x="530" y="340" font-family="sans-serif" font-size="9" fill="#737373" text-anchor="middle" letter-spacing="1">PREPARATION COAT</text>
+  <line x1="480" y1="360" x2="580" y2="360" stroke="#B89655" stroke-width="1"/>
+  <text x="530" y="380" font-family="sans-serif" font-size="8" fill="#171717" text-anchor="middle">SUBSTRATE BASE SYSTEM</text>
+
+  <text x="140" y="495" font-family="sans-serif" font-size="10" fill="#737373" letter-spacing="2">02 // PREPARE</text>
+</svg>

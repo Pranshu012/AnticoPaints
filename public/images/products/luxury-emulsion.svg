@@ -1,0 +1,26 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#FCFBF8"/>
+  <rect x="24" y="24" width="752" height="552" fill="#E9E0D2" fill-opacity="0.3" rx="2"/>
+
+  <!-- Velvet finish wall backdrop -->
+  <rect x="80" y="80" width="640" height="440" fill="#E9E0D2" fill-opacity="0.6"/>
+  <circle cx="280" cy="300" r="160" fill="#FCFBF8" fill-opacity="0.65"/>
+  <circle cx="280" cy="300" r="110" fill="#B89655" fill-opacity="0.15"/>
+
+  <!-- Product Presentation Container Silhouette -->
+  <rect x="340" y="190" width="240" height="270" rx="4" fill="#171717"/>
+  <ellipse cx="460" cy="190" rx="120" ry="26" fill="#262626"/>
+  <ellipse cx="460" cy="184" rx="108" ry="20" fill="#B89655"/>
+  <ellipse cx="460" cy="460" rx="120" ry="26" fill="#171717"/>
+
+  <!-- Minimalist Luxury Label -->
+  <rect x="360" y="245" width="200" height="155" fill="#FCFBF8" rx="2"/>
+  <rect x="360" y="245" width="200" height="6" fill="#B89655"/>
+  <text x="460" y="280" font-family="sans-serif" font-weight="bold" font-size="14" fill="#171717" text-anchor="middle" letter-spacing="2">ANTICO</text>
+  <text x="460" y="310" font-family="serif" font-size="14" fill="#171717" text-anchor="middle" font-weight="600">LUXURY EMULSION</text>
+  <text x="460" y="335" font-family="sans-serif" font-size="9" fill="#737373" text-anchor="middle" letter-spacing="1">ARCHITECTURAL FINISH</text>
+  <line x1="410" y1="355" x2="510" y2="355" stroke="#B89655" stroke-width="1"/>
+  <text x="460" y="375" font-family="sans-serif" font-size="8" fill="#171717" text-anchor="middle">PREMIUM INTERIOR SYSTEM</text>
+
+  <text x="140" y="495" font-family="sans-serif" font-size="10" fill="#737373" letter-spacing="2">03 // FINISH</text>
+</svg>

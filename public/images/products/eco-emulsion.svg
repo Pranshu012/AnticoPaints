@@ -1,0 +1,25 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#FCFBF8"/>
+  <rect x="24" y="24" width="752" height="552" fill="#E9E0D2" fill-opacity="0.3" rx="2"/>
+
+  <!-- Clean Everyday Paint Backdrop -->
+  <rect x="80" y="80" width="640" height="440" fill="#D5C9B5" fill-opacity="0.25"/>
+  <path d="M120 440 L340 180 L520 440 Z" fill="#FCFBF8" fill-opacity="0.75"/>
+
+  <!-- Product Container Silhouette -->
+  <rect x="360" y="200" width="230" height="260" rx="4" fill="#171717"/>
+  <ellipse cx="475" cy="200" rx="115" ry="24" fill="#262626"/>
+  <ellipse cx="475" cy="194" rx="102" ry="18" fill="#B89655"/>
+  <ellipse cx="475" cy="460" rx="115" ry="24" fill="#171717"/>
+
+  <!-- Label -->
+  <rect x="380" y="250" width="190" height="150" fill="#FCFBF8" rx="2"/>
+  <rect x="380" y="250" width="190" height="6" fill="#B89655"/>
+  <text x="475" y="285" font-family="sans-serif" font-weight="bold" font-size="14" fill="#171717" text-anchor="middle" letter-spacing="2">ANTICO</text>
+  <text x="475" y="315" font-family="serif" font-size="14" fill="#171717" text-anchor="middle" font-weight="600">ECO EMULSION</text>
+  <text x="475" y="340" font-family="sans-serif" font-size="9" fill="#737373" text-anchor="middle" letter-spacing="1">WALL-PAINTING ESSENTIAL</text>
+  <line x1="425" y1="360" x2="525" y2="360" stroke="#B89655" stroke-width="1"/>
+  <text x="475" y="380" font-family="sans-serif" font-size="8" fill="#171717" text-anchor="middle">EVERYDAY INTERIOR PROJECT</text>
+
+  <text x="140" y="495" font-family="sans-serif" font-size="10" fill="#737373" letter-spacing="2">04 // PAINT</text>
+</svg>
