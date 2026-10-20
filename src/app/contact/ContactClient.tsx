@@ -10,7 +10,6 @@ interface FormErrors {
   fullName?: string;
   mobileNumber?: string;
   email?: string;
-  enquiryType?: string;
   message?: string;
   consent?: string;
 }
@@ -22,7 +21,6 @@ export function ContactClient() {
     fullName: "",
     mobileNumber: "",
     email: "",
-    enquiryType: form.enquiryTypes[0],
     message: "",
     consent: false,
     botcheck: "", // Honeypot
@@ -49,10 +47,6 @@ export function ContactClient() {
 
     if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       newErrors.email = "Please enter a valid email address.";
-    }
-
-    if (!formData.enquiryType) {
-      newErrors.enquiryType = "Please select an enquiry type.";
     }
 
     if (!formData.message.trim()) {
@@ -85,7 +79,6 @@ export function ContactClient() {
       fullName: formData.fullName.trim(),
       mobileNumber: formData.mobileNumber.trim(),
       email: formData.email.trim() || undefined,
-      enquiryType: formData.enquiryType,
       message: formData.message.trim(),
       consent: formData.consent,
       botcheck: formData.botcheck,
@@ -100,7 +93,6 @@ export function ContactClient() {
         fullName: "",
         mobileNumber: "",
         email: "",
-        enquiryType: form.enquiryTypes[0],
         message: "",
         consent: false,
         botcheck: "",
@@ -401,35 +393,6 @@ export function ContactClient() {
                     </p>
                   )}
                 </div>
-              </div>
-
-              {/* Enquiry Type Dropdown */}
-              <div>
-                <label
-                  htmlFor="contact-enquiryType"
-                  className="block text-xs uppercase tracking-wider font-semibold text-neutral-800 mb-1.5"
-                >
-                  Enquiry Type <span className="text-red-600" aria-label="required">*</span>
-                </label>
-                <select
-                  id="contact-enquiryType"
-                  required
-                  value={formData.enquiryType}
-                  onChange={(e) => {
-                    setFormData({ ...formData, enquiryType: e.target.value });
-                    if (errors.enquiryType) setErrors({ ...errors, enquiryType: undefined });
-                  }}
-                  className="w-full px-4 py-3 bg-brand-offwhite border border-brand-beige text-sm text-neutral-900 rounded-lg focus:outline-none focus:border-brand-gold"
-                >
-                  {form.enquiryTypes.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
-                {errors.enquiryType && (
-                  <p className="text-xs text-red-600 mt-1">{errors.enquiryType}</p>
-                )}
               </div>
 
               {/* Message */}

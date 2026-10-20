@@ -9,7 +9,7 @@ export interface ContactFormPayload {
   fullName: string;
   mobileNumber: string;
   email?: string;
-  enquiryType: string;
+  enquiryType?: string;
   message: string;
   consent: boolean;
   botcheck?: string; // Honeypot field for spam prevention
@@ -56,7 +56,7 @@ export async function submitEnquiry(
   const isDealer = payload.formType === "dealer_application";
   const subject = isDealer
     ? `[Antico Paints] New Dealership Enquiry: ${payload.fullName} (${(payload as DealerFormPayload).city})`
-    : `[Antico Paints] New Contact Enquiry: ${payload.fullName} (${payload.enquiryType})`;
+    : `[Antico Paints] New Contact Enquiry: ${payload.fullName}${payload.enquiryType ? ` (${payload.enquiryType})` : ""}`;
 
   // If a provider endpoint or key is configured
   if (accessKey || customEndpoint) {

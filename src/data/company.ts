@@ -60,14 +60,6 @@ export const contactPageData = {
     heading: "Send us an enquiry",
     supportingText:
       "Share your question and we'll have the information needed to respond to you.",
-    enquiryTypes: [
-      "Product information",
-      "Colour or shade enquiry",
-      "Order or product availability",
-      "General question",
-      "Feedback",
-      "Other",
-    ],
   },
   dealerCrossLink: {
     heading: "Interested in becoming a dealer?",
