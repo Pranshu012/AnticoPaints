@@ -42,8 +42,8 @@ export const aboutPageData: AboutContent = {
     heading: "Good products start with good listening.",
     description:
       "We believe serving customers well begins with understanding their needs, responding thoughtfully and continually improving our product range.",
-    image: "/images/about/about-wall-craft.svg",
-    imageAlt: "Antico Paints decorative wall texture and artisan trowel application",
+    image: "/images/about/about-wall-craft.png",
+    imageAlt: "Craftsman applying Antico Paints decorative wall texture with a trowel",
   },
   mission: {
     eyebrow: "OUR MISSION",

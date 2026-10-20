@@ -42,14 +42,14 @@ export default function AboutPage() {
             {/* Right: High-Quality Materiality / Texture Photograph */}
             <div className="lg:col-span-7">
               <div className="relative overflow-hidden rounded-xs border border-brand-beige shadow-card bg-brand-offwhite">
-                <div className="relative aspect-[4/3] w-full">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full">
                   <Image
                     src={intro.image}
                     alt={intro.imageAlt}
                     fill
                     priority
                     sizes="(min-width: 1024px) 58vw, 100vw"
-                    className="object-cover"
+                    className="object-cover object-center"
                   />
                 </div>
               </div>
