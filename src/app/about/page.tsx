@@ -25,7 +25,7 @@ export default function AboutPage() {
           
           {/* Left Column: Eyebrow, Heading & Paragraph */}
           <div className="lg:col-span-6 space-y-4">
-            <span className="text-xs uppercase tracking-[0.18em] font-sans font-semibold text-brand-gold block">
+            <span className="text-sm sm:text-base uppercase tracking-[0.16em] font-sans font-bold text-brand-gold block">
               {intro.eyebrow}
             </span>
 
@@ -64,7 +64,7 @@ export default function AboutPage() {
             
             {/* Left Column: Eyebrow Label */}
             <div className="lg:col-span-4">
-              <span className="text-xs uppercase tracking-[0.18em] font-sans font-semibold text-brand-gold block">
+              <span className="text-sm sm:text-base lg:text-lg uppercase tracking-[0.16em] font-sans font-bold text-brand-gold block">
                 {mission.eyebrow}
               </span>
             </div>
@@ -91,7 +91,7 @@ export default function AboutPage() {
         
         {/* Section Heading */}
         <div className="max-w-2xl mb-10 sm:mb-14 space-y-2">
-          <span className="text-xs uppercase tracking-[0.18em] font-sans font-semibold text-brand-gold block">
+          <span className="text-sm sm:text-base uppercase tracking-[0.16em] font-sans font-bold text-brand-gold block">
             {commitment.eyebrow}
           </span>
 
