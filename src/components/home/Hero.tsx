@@ -17,7 +17,14 @@ export function Hero() {
           {/* Left Column: Architectural Typography & Value Prop */}
           <div className="lg:col-span-7 space-y-8">
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 border border-brand-gold/40 bg-brand-beige/30 text-xs tracking-widest uppercase text-brand-black font-medium">
-              <span className="w-2 h-2 rounded-full bg-brand-gold" />
+              <div className="relative w-4 h-4 shrink-0">
+                <Image
+                  src="/images/logo/antico-symbol.png"
+                  alt="Antico Symbol"
+                  fill
+                  className="object-contain"
+                />
+              </div>
               <span>Architectural Formulation &amp; Manufacturing</span>
             </div>
 
@@ -108,7 +115,7 @@ export function Hero() {
                     <div className="flex items-center gap-2">
                       <span className="w-5 h-5 rounded-full border border-brand-gold" style={{ backgroundColor: "#FCFBF8" }} title="Antico Off-White" />
                       <span className="w-5 h-5 rounded-full border border-brand-gold" style={{ backgroundColor: "#E9E0D2" }} title="Travertine Beige" />
-                      <span className="w-5 h-5 rounded-full border border-brand-gold" style={{ backgroundColor: "#B89655" }} title="Burnished Gold" />
+                      <span className="w-5 h-5 rounded-full border border-brand-gold" style={{ backgroundColor: "#C08000" }} title="Antico Amber Gold" />
                     </div>
                   </div>
                 </div>

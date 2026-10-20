@@ -7,14 +7,14 @@ const galleryProjects = [
     title: 'The Pavilion Residence',
     sector: 'LUXURY RESIDENTIAL',
     bg: '#E9E0D2',
-    accent: '#B89655'
+    accent: '#C08000'
   },
   {
     id: 'project-commercial',
     title: 'Apex Financial Center',
     sector: 'COMMERCIAL ATRIUM',
     bg: '#D5C9B5',
-    accent: '#171717'
+    accent: '#111111'
   },
   {
     id: 'project-hospitality',
@@ -28,7 +28,7 @@ const galleryProjects = [
     title: 'Gallery of Contemporary Design',
     sector: 'INSTITUTIONAL MUSEUM',
     bg: '#E3E3E3',
-    accent: '#785E2F'
+    accent: '#C08000'
   }
 ];
 
@@ -37,8 +37,8 @@ galleryProjects.forEach(g => {
   <rect width="800" height="600" fill="#FCFBF8"/>
   <rect x="20" y="20" width="760" height="560" fill="${g.bg}" fill-opacity="0.5" rx="4"/>
   <!-- Architectural composition -->
-  <path d="M80 500 L80 180 L420 100 L420 500 Z" fill="#171717" fill-opacity="0.85"/>
-  <path d="M420 100 L720 200 L720 500 L420 500 Z" fill="#171717" fill-opacity="0.95"/>
+  <path d="M80 500 L80 180 L420 100 L420 500 Z" fill="#111111" fill-opacity="0.88"/>
+  <path d="M420 100 L720 200 L720 500 L420 500 Z" fill="#111111" fill-opacity="0.96"/>
   <line x1="80" y1="180" x2="720" y2="200" stroke="${g.accent}" stroke-width="4"/>
   
   <!-- Architectural fenestration -->
@@ -47,7 +47,7 @@ galleryProjects.forEach(g => {
   <rect x="480" y="240" width="90" height="120" fill="#FCFBF8" fill-opacity="0.2"/>
   <rect x="600" y="240" width="90" height="120" fill="#FCFBF8" fill-opacity="0.2"/>
   
-  <rect x="40" y="460" width="720" height="80" fill="#171717" fill-opacity="0.9"/>
+  <rect x="40" y="460" width="720" height="80" fill="#111111" fill-opacity="0.92"/>
   <text x="70" y="500" font-family="serif" font-size="20" fill="#FCFBF8" letter-spacing="1">${g.title}</text>
   <text x="70" y="525" font-family="sans-serif" font-size="12" fill="${g.accent}" letter-spacing="2">${g.sector}</text>
   <text x="730" y="515" font-family="sans-serif" font-size="11" fill="#DDD3BF" text-anchor="end">ANTICO ARCHITECTURAL COATINGS SPECIFIED</text>
@@ -64,18 +64,20 @@ const catalogues = [
 
 catalogues.forEach(c => {
   const svg = `<svg width="400" height="560" viewBox="0 0 400 560" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="400" height="560" fill="#171717"/>
-  <rect x="15" y="15" width="370" height="530" stroke="#B89655" stroke-width="1.5" fill="none"/>
-  <rect x="35" y="35" width="330" height="240" fill="#E9E0D2" fill-opacity="0.15"/>
-  <!-- Minimalist emblem -->
-  <circle cx="200" cy="155" r="50" stroke="#B89655" stroke-width="1.5"/>
-  <text x="200" y="162" font-family="serif" font-size="28" fill="#B89655" text-anchor="middle">A</text>
+  <rect width="400" height="560" fill="#111111"/>
+  <rect x="15" y="15" width="370" height="530" stroke="#C08000" stroke-width="1.5" fill="none"/>
+  <rect x="35" y="35" width="330" height="240" fill="#E9E0D2" fill-opacity="0.1"/>
+  <!-- Official Shield Emblem representation -->
+  <path d="M200 80 L260 105 L260 170 Q260 215 200 240 Q140 215 140 170 L140 105 Z" fill="none" stroke="#C08000" stroke-width="3"/>
+  <path d="M175 195 L200 130 L225 195 M185 175 L215 175" stroke="#C08000" stroke-width="3" stroke-linecap="round"/>
+  <path d="M200 130 Q235 130 235 152 Q235 175 200 175" stroke="#C08000" stroke-width="3" fill="none"/>
   
-  <text x="200" y="340" font-family="serif" font-size="18" fill="#FCFBF8" text-anchor="middle" letter-spacing="2">ANTICO PAINTS</text>
-  <line x1="120" y1="365" x2="280" y2="365" stroke="#B89655" stroke-width="1"/>
-  <text x="200" y="405" font-family="serif" font-size="16" fill="#B89655" text-anchor="middle" letter-spacing="1">${c.title}</text>
-  <text x="200" y="435" font-family="sans-serif" font-size="11" fill="#D5C9B5" text-anchor="middle">${c.sub}</text>
-  <text x="200" y="500" font-family="sans-serif" font-size="10" fill="#737373" text-anchor="middle">ARCHITECTURAL EDITION // CONFIDENTIAL</text>
+  <text x="200" y="330" font-family="sans-serif" font-weight="bold" font-size="20" fill="#FCFBF8" text-anchor="middle" letter-spacing="3">ANTICO</text>
+  <text x="200" y="358" font-family="sans-serif" font-weight="bold" font-size="20" fill="#C08000" text-anchor="middle" letter-spacing="3">PAINTS</text>
+  <line x1="120" y1="380" x2="280" y2="380" stroke="#C08000" stroke-width="1"/>
+  <text x="200" y="415" font-family="serif" font-size="15" fill="#C08000" text-anchor="middle" letter-spacing="1">${c.title}</text>
+  <text x="200" y="442" font-family="sans-serif" font-size="11" fill="#D5C9B5" text-anchor="middle">${c.sub}</text>
+  <text x="200" y="505" font-family="sans-serif" font-size="10" fill="#737373" text-anchor="middle">ARCHITECTURAL EDITION // CONFIDENTIAL</text>
 </svg>`;
   fs.writeFileSync(path.join(process.cwd(), `public/images/catalogues/${c.id}.svg`), svg);
 });

@@ -5,13 +5,13 @@
 @layer base {
   :root {
     --background: #FCFBF8;
-    --foreground: #171717;
+    --foreground: #111111;
   }
 
   html {
     scroll-behavior: smooth;
     background-color: #FCFBF8;
-    color: #171717;
+    color: #111111;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -19,19 +19,19 @@
 
   body {
     background-color: #FCFBF8;
-    color: #171717;
+    color: #111111;
     overflow-x: hidden;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   ::selection {
-    background-color: #B89655;
+    background-color: #C08000;
     color: #FCFBF8;
   }
 
   /* Accessible focus indicators */
   :focus-visible {
-    outline: 2px solid #B89655;
+    outline: 2px solid #C08000;
     outline-offset: 3px;
   }
 }
@@ -42,10 +42,10 @@
   }
   
   .gold-gradient {
-    background: linear-gradient(135deg, #C9AE77 0%, #B89655 50%, #97773D 100%);
+    background: linear-gradient(135deg, #D8991B 0%, #C08000 50%, #9A6500 100%);
   }
   
   .gold-border-gradient {
-    border-image: linear-gradient(to right, #B89655, #E9E0D2) 1;
+    border-image: linear-gradient(to right, #C08000, #E9E0D2) 1;
   }
 }

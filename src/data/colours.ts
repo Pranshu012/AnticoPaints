@@ -54,7 +54,7 @@ export const colourFamiliesData: ColourFamily[] = [
         lrv: 52,
         finishRecommendation: "Veluto Ultra-Matt",
         tone: "mid",
-        pairingSuggestions: ["Gilded Brass (AN-GO01)", "Slate Hearth (AN-AG04)"]
+        pairingSuggestions: ["Antico Amber Gold (AN-GO01)", "Slate Hearth (AN-AG04)"]
       }
     ]
   },
@@ -63,16 +63,16 @@ export const colourFamiliesData: ColourFamily[] = [
     name: "Regal Ochres & Mineral Golds",
     tagline: "Sunlit mineral pigments with warm, restrained metallic undertones",
     description: "Drawing from raw ochre quarries and aged gilt accents, these tones inject dignified warmth and refined energy into dining rooms, libraries, and facades.",
-    accentHex: "#B89655",
+    accentHex: "#C08000",
     shades: [
       {
         id: "burnished-gold",
-        name: "Burnished Imperial Gold",
+        name: "Antico Imperial Amber Gold",
         code: "AN-GO01",
-        hex: "#B89655",
+        hex: "#C08000",
         familyId: "golds-ochres",
         familyName: "Regal Ochres & Mineral Golds",
-        lrv: 38,
+        lrv: 36,
         finishRecommendation: "Aura Metallico Wash / Seta Silk",
         tone: "mid",
         pairingSuggestions: ["Antico Black (AN-AG07)", "Travertine Beige (AN-WN02)"]

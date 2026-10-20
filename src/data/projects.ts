@@ -8,7 +8,7 @@ export const projectsData: GalleryProject[] = [
     location: "[Placeholder: Architectural Villa, Coastal Cliffside]",
     description: "Monolithic lime-washed interior spaces paired with high-durability exterior weather membranes against ocean winds and salt mist.",
     productsUsed: ["Veluto Ultra-Matt Interior", "Travertino Lime Stucco", "ScudoGuard Exterior Finish"],
-    finishPalette: ["Antico Off-White (#FCFBF8)", "Travertine Beige (#E9E0D2)", "Burnished Gold (#B89655)"],
+    finishPalette: ["Antico Off-White (#FCFBF8)", "Travertine Beige (#E9E0D2)", "Antico Amber Gold (#C08000)"],
     image: "/images/gallery/project-residential.svg",
     yearPlaceholder: "[Placeholder: 2025 Completion]"
   },

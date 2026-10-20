@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navigationLinks } from "@/data/company";
@@ -48,22 +49,21 @@ export function Header() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Brand Logo */}
+          {/* Brand Logo with Official Uploaded Shield and Wordmark */}
           <Link
             href="/"
-            className="group flex items-center gap-3 focus-visible:outline-none"
+            className="group flex items-center focus-visible:outline-none py-1"
             aria-label="Antico Paints Home"
           >
-            <div className="w-9 h-9 border border-brand-gold flex items-center justify-center bg-brand-black text-brand-gold font-serif text-lg font-semibold transition-transform duration-300 group-hover:scale-105">
-              A
-            </div>
-            <div className="flex flex-col">
-              <span className="font-serif text-xl tracking-[0.18em] font-medium text-brand-black uppercase leading-tight group-hover:text-brand-gold-dark transition-colors">
-                Antico Paints
-              </span>
-              <span className="text-[9px] tracking-[0.25em] text-brand-muted uppercase font-sans">
-                Architectural Formulations
-              </span>
+            <div className="relative h-12 w-40 sm:w-48 flex items-center">
+              <Image
+                src="/images/logo/antico-logo.png"
+                alt="Antico Paints"
+                fill
+                priority
+                sizes="(max-width: 640px) 160px, 192px"
+                className="object-contain object-left transition-transform duration-300 group-hover:scale-[1.02]"
+              />
             </div>
           </Link>
 
@@ -137,6 +137,14 @@ export function Header() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-brand-beige bg-brand-offwhite px-6 pt-6 pb-8 space-y-4 shadow-lg animate-fadeIn">
+          <div className="relative h-10 w-36 mb-4">
+            <Image
+              src="/images/logo/antico-logo.png"
+              alt="Antico Paints"
+              fill
+              className="object-contain object-left"
+            />
+          </div>
           <nav className="flex flex-col space-y-3" aria-label="Mobile Navigation">
             {navigationLinks.map((item) => {
               const isActive =

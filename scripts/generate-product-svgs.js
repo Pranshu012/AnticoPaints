@@ -2,13 +2,13 @@ const fs = require('fs');
 const path = require('path');
 
 const products = [
-  { id: 'seta-satin', title: 'SETA SILK', sub: 'INTERIOR SATIN EMULSION', labelBg: '#FCFBF8', accent: '#B89655' },
-  { id: 'scudo-exterior', title: 'SCUDOGUARD', sub: 'EXTERIOR WEATHER SHIELD', labelBg: '#E9E0D2', accent: '#171717' },
-  { id: 'silicato-mineral', title: 'SILICATO MINERAL', sub: 'POTASSIUM SILICATE COATING', labelBg: '#FCFBF8', accent: '#785E2F' },
+  { id: 'seta-satin', title: 'SETA SILK', sub: 'INTERIOR SATIN EMULSION', labelBg: '#FCFBF8', accent: '#C08000' },
+  { id: 'scudo-exterior', title: 'SCUDOGUARD', sub: 'EXTERIOR WEATHER SHIELD', labelBg: '#E9E0D2', accent: '#111111' },
+  { id: 'silicato-mineral', title: 'SILICATO MINERAL', sub: 'POTASSIUM SILICATE COATING', labelBg: '#FCFBF8', accent: '#C08000' },
   { id: 'travertino-stucco', title: 'TRAVERTINO', sub: 'ARCHITECTURAL LIME STUCCO', labelBg: '#DDD3BF', accent: '#A37B3C' },
-  { id: 'metallico-patina', title: 'AURA METALLICO', sub: 'ARCHITECTURAL MICA WASH', labelBg: '#FCFBF8', accent: '#D8C59C' },
-  { id: 'primer-penetrante', title: 'PENETRANTE', sub: 'DEEP ALKALI SEALER PRIMER', labelBg: '#E9E0D2', accent: '#171717' },
-  { id: 'polyuretano-enamel', title: 'DURALUX ENAMEL', sub: 'WATERBORNE POLYURETHANE', labelBg: '#FCFBF8', accent: '#B89655' },
+  { id: 'metallico-patina', title: 'AURA METALLICO', sub: 'ARCHITECTURAL MICA WASH', labelBg: '#FCFBF8', accent: '#C08000' },
+  { id: 'primer-penetrante', title: 'PENETRANTE', sub: 'DEEP ALKALI SEALER PRIMER', labelBg: '#E9E0D2', accent: '#111111' },
+  { id: 'polyuretano-enamel', title: 'DURALUX ENAMEL', sub: 'WATERBORNE POLYURETHANE', labelBg: '#FCFBF8', accent: '#C08000' },
 ];
 
 products.forEach(p => {

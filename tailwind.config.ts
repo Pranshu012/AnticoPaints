@@ -11,15 +11,15 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          black: "#171717",
-          gold: "#B89655",
-          "gold-light": "#C9AE77",
-          "gold-dark": "#97773D",
+          black: "#111111",
+          charcoal: "#222222",
+          gold: "#C08000",
+          "gold-light": "#D8991B",
+          "gold-dark": "#9A6500",
           beige: "#E9E0D2",
-          "beige-light": "#F4EFE8",
+          "beige-light": "#F5EFE6",
           "beige-dark": "#D5C9B5",
           offwhite: "#FCFBF8",
-          charcoal: "#262626",
           muted: "#737373",
         },
       },
@@ -45,10 +45,10 @@ const config: Config = {
         ],
       },
       boxShadow: {
-        subtle: "0 1px 3px rgba(23, 23, 23, 0.05), 0 10px 25px -5px rgba(23, 23, 23, 0.03)",
-        card: "0 4px 20px -2px rgba(23, 23, 23, 0.06)",
-        hover: "0 12px 30px -4px rgba(23, 23, 23, 0.12)",
-        gold: "0 4px 20px -2px rgba(184, 150, 85, 0.25)",
+        subtle: "0 1px 3px rgba(17, 17, 17, 0.05), 0 10px 25px -5px rgba(17, 17, 17, 0.03)",
+        card: "0 4px 20px -2px rgba(17, 17, 17, 0.06)",
+        hover: "0 12px 30px -4px rgba(17, 17, 17, 0.12)",
+        gold: "0 4px 20px -2px rgba(192, 128, 0, 0.28)",
       },
       letterSpacing: {
         widest: "0.2em",

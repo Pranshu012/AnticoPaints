@@ -3,9 +3,9 @@
 A premium, modern, responsive website for **Antico Paints**, a commercial paint manufacturing company. Engineered for commercial architects, specifiers, interior designers, and corporate contractors.
 
 - **Design Inspiration**: The interactive chromatic exploration experience of Astral Paints paired with the structured product collections and architectural catalogues of Luxture.
-- **Brand Palette**:
-  - **Black**: `#171717` (dominant architectural structural ground)
-  - **Gold**: `#B89655` (restrained luxury accent)
+- **Brand Palette (Synchronized with Official Brand Logo)**:
+  - **Black**: `#111111` / `#000000` (dominant architectural structural ground)
+  - **Amber Gold**: `#C08000` / `#BF7F00` (warm imperial gold emblem & brand accent)
   - **Beige**: `#E9E0D2` (warm limestone & masonry foundation)
   - **Off-White**: `#FCFBF8` (luminous airy canvas)
 - **Architecture**: Next.js 14+ (App Router), TypeScript, Tailwind CSS, Static Export (`output: 'export'`) ready for **Cloudflare Pages** hosting.

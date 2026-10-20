@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { companyData, cataloguesData } from "@/data/company";
 import { categoriesData } from "@/data/products";
@@ -11,18 +12,19 @@ export function Footer() {
         {/* Top Brand & Mission Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-brand-charcoal">
           <div className="lg:col-span-5 space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 border border-brand-gold flex items-center justify-center bg-brand-black text-brand-gold font-serif text-xl font-semibold">
-                A
+            <div className="space-y-3">
+              <div className="relative h-14 w-48 sm:w-56">
+                <Image
+                  src="/images/logo/antico-logo-white.png"
+                  alt="Antico Paints"
+                  fill
+                  sizes="(max-width: 640px) 192px, 224px"
+                  className="object-contain object-left"
+                />
               </div>
-              <div>
-                <span className="font-serif text-2xl tracking-[0.2em] font-medium text-brand-offwhite uppercase block">
-                  Antico Paints
-                </span>
-                <span className="text-[10px] tracking-[0.25em] text-brand-gold uppercase font-sans">
-                  Commercial Architectural Manufacturing
-                </span>
-              </div>
+              <span className="text-[10px] tracking-[0.25em] text-brand-gold uppercase font-sans block">
+                Commercial Architectural Manufacturing
+              </span>
             </div>
 
             <p className="text-sm text-brand-beige/80 leading-relaxed font-sans max-w-md">
