@@ -1,28 +1,28 @@
-import { CompanyInfo, Catalogue } from "@/types";
+import { CompanyInfo, Catalogue, AboutContent, HomeMissionContent } from "@/types";
 
 export const companyData: CompanyInfo = {
   brandName: "Antico Paints",
   legalEntityPlaceholder: "[Placeholder: Commercial Paint Manufacturing Co. Ltd.]",
   establishedPlaceholder: "[Placeholder: Year Established / Founding Timeline]",
-  tagline: "Architectural Precision. Timeless Formulation.",
+  tagline: "The right finish for your walls.",
   missionStatement: 
-    "Engineered for architects, commercial specifiers, and discerning interior designers. Antico Paints formulates high-solids emulsions, high-durability exterior systems, and artisan architectural textures designed to withstand demanding environmental conditions.",
+    "Our mission is to understand our customers’ needs, earn their trust, and continually improve our products and processes through quality-focused systems and dedicated effort.",
   values: [
     {
-      title: "Pigment Density & Purity",
-      description: "Formulated with micronised minerals and lightfast pigments to achieve deep optical opacity and balanced surface reflectance across natural and artificial illumination."
+      title: "Accessibility",
+      description: "Make it easy for customers to connect with us and seek assistance."
     },
     {
-      title: "Commercial Durability",
-      description: "Developed to meet rigorous commercial scrubbing, wet-abrasion resistance, and exterior weathering thresholds required by large-scale specifications."
+      title: "Understanding",
+      description: "Work closely with customers to understand their requirements."
     },
     {
-      title: "Environmental Responsibility",
-      description: "Low-VOC formulations engineered with minimal solvent emissions, prioritising interior air quality and sustainable architectural standards [Placeholder: Green certification status pending client data]."
+      title: "Responsiveness",
+      description: "Listen to enquiries and concerns and respond thoughtfully."
     },
     {
-      title: "Architectural Advisory",
-      description: "Direct technical specification assistance, substrate compatibility audits, and custom batch colour formulation for commercial contracts."
+      title: "Continuous Improvement",
+      description: "Keep improving our product range to serve varied customer needs."
     }
   ],
   specificationsNotice: "Technical datasheets, VOC metrics, dry film thicknesses (DFT), and test certificates are provided for project evaluation. Final system guarantees require official technical site sign-off.",
@@ -35,6 +35,64 @@ export const companyData: CompanyInfo = {
   },
   complianceNotice: "[Placeholder: ISO 9001, ISO 14001, ASTM test standards, and Regional VOC compliance certificates to be inserted upon verification]"
 };
+
+export const aboutPageData: AboutContent = {
+  intro: {
+    eyebrow: "ABOUT ANTICO PAINTS",
+    heading: "Built around understanding and trust.",
+    description:
+      "Our approach begins with understanding what our customers need and continually working to serve them better.",
+  },
+  mission: {
+    heading: "Understanding needs. Building trust.",
+    content:
+      "Our mission is to understand our customers’ needs, earn their trust, and continually improve our products and processes through quality-focused systems and dedicated effort.",
+  },
+  commitment: {
+    heading: "Closer to our customers, every day.",
+    introduction:
+      "We believe good customer relationships begin with listening, understanding and responding. We strive to make it easy for our customers to reach us, understand their requirements and find products suited to their needs.",
+    principles: [
+      {
+        id: "accessibility",
+        title: "Accessibility",
+        description: "Make it easy for customers to connect with us and seek assistance.",
+      },
+      {
+        id: "understanding",
+        title: "Understanding",
+        description: "Work closely with customers to understand their requirements.",
+      },
+      {
+        id: "responsiveness",
+        title: "Responsiveness",
+        description: "Listen to enquiries and concerns and respond thoughtfully.",
+      },
+      {
+        id: "continuous-improvement",
+        title: "Continuous improvement",
+        description: "Keep improving our product range to serve varied customer needs.",
+      },
+    ],
+  },
+  closing: {
+    heading: "Always working to serve you better.",
+    content:
+      "We continually work to improve and expand our product range in line with the varied requirements of our customers.",
+    buttonText: "Explore Our Products",
+    buttonLink: "/products/",
+  },
+};
+
+export const homeMissionData: HomeMissionContent = {
+  eyebrow: "WHAT WE BELIEVE",
+  heading: "Built around understanding and trust.",
+  content:
+    "Our mission is to understand our customers’ needs, earn their trust and continually improve our products and processes.",
+  linkText: "About Us",
+  linkHref: "/about/",
+};
+
 
 export const cataloguesData: Catalogue[] = [
   {

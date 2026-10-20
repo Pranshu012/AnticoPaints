@@ -120,3 +120,41 @@ export interface CompanyInfo {
   };
   complianceNotice: string;
 }
+
+export interface CommitmentPrinciple {
+  id: string;
+  title: string;
+  description: string;
+}
+
+export interface AboutContent {
+  intro: {
+    eyebrow: string;
+    heading: string;
+    description: string;
+  };
+  mission: {
+    heading: string;
+    content: string;
+  };
+  commitment: {
+    heading: string;
+    introduction: string;
+    principles: CommitmentPrinciple[];
+  };
+  closing: {
+    heading: string;
+    content: string;
+    buttonText: string;
+    buttonLink: string;
+  };
+}
+
+export interface HomeMissionContent {
+  eyebrow: string;
+  heading: string;
+  content: string;
+  linkText: string;
+  linkHref: string;
+}
+

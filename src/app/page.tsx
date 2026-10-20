@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { SimpleHero } from "@/components/home/SimpleHero";
 import { SimpleCategoryGrid } from "@/components/home/SimpleCategoryGrid";
-import { SimpleAboutSection } from "@/components/home/SimpleAboutSection";
+import { HomeMissionSection } from "@/components/home/HomeMissionSection";
 import { SimpleContactCTA } from "@/components/home/SimpleContactCTA";
 
 export const metadata: Metadata = {
@@ -20,8 +20,8 @@ export default function HomePage() {
       {/* Section B: Product Categories */}
       <SimpleCategoryGrid />
 
-      {/* Section C: Simple About Section */}
-      <SimpleAboutSection />
+      {/* Section C: Mission Statement / What We Believe */}
+      <HomeMissionSection />
 
       {/* Section D: Contact CTA */}
       <SimpleContactCTA />
