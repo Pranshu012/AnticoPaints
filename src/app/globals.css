@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FCFBF8;
+    --foreground: #171717;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #FCFBF8;
+    color: #171717;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #FCFBF8;
+    color: #171717;
+    overflow-x: hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    background-color: #B89655;
+    color: #FCFBF8;
+  }
+
+  /* Accessible focus indicators */
+  :focus-visible {
+    outline: 2px solid #B89655;
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gold-gradient {
+    background: linear-gradient(135deg, #C9AE77 0%, #B89655 50%, #97773D 100%);
+  }
+  
+  .gold-border-gradient {
+    border-image: linear-gradient(to right, #B89655, #E9E0D2) 1;
+  }
+}
