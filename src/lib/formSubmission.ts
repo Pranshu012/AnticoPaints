@@ -105,7 +105,7 @@ export async function submitEnquiry(
       return {
         success: false,
         message:
-          "Network error while sending your enquiry. Please try again or contact Antico Paints directly at +91 9636261998 or anticopaints@gmail.com.",
+          "Network error while sending your enquiry. Please try again or contact Antico Paints directly at +91 8000642900 or anticopaints@gmail.com.",
       };
     }
   }

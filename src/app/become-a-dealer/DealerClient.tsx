@@ -419,7 +419,7 @@ export function DealerClient() {
                     setFormData({ ...formData, mobileNumber: e.target.value });
                     if (errors.mobileNumber) setErrors({ ...errors, mobileNumber: undefined });
                   }}
-                  placeholder="e.g. 9636261998"
+                  placeholder="e.g. 8000642900"
                   className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-lg focus:outline-none transition-colors ${
                     errors.mobileNumber
                       ? "border-red-500 focus:border-red-600 bg-red-50/20"

@@ -138,7 +138,7 @@ Both forms submit directly from the client browser to **Web3Forms** (or Formspre
 4. If no key is set, the forms operate in fallback mode with full validation and prompt simulated success notifications without crashing.
 
 ### Official Verified Contacts
-- **Phone**: `+91 9636261998` (`tel:+919636261998`)
+- **Phone**: `+91 8000642900` (`tel:+918000642900`)
 - **Email**: `anticopaints@gmail.com` (`mailto:anticopaints@gmail.com`)
 
 ---

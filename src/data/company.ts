@@ -28,7 +28,7 @@ export const companyData: CompanyInfo = {
   specificationsNotice: "Technical datasheets, VOC metrics, dry film thicknesses (DFT), and test certificates are provided for project evaluation. Final system guarantees require official technical site sign-off.",
   contact: {
     emailPlaceholder: "anticopaints@gmail.com",
-    phonePlaceholder: "+91 9636261998",
+    phonePlaceholder: "+91 8000642900",
     officeAddressPlaceholder: "[Office Address Available Upon Inquiry]",
     plantAddressPlaceholder: "[Manufacturing Facility & Central Lab]",
     businessHoursPlaceholder: "Mon - Sat: 09:00 - 18:00 IST"
@@ -39,8 +39,8 @@ export const companyData: CompanyInfo = {
 export const verifiedContactData = {
   phone: {
     label: "Call Antico Paints",
-    number: "+91 9636261998",
-    href: "tel:+919636261998",
+    number: "+91 8000642900",
+    href: "tel:+918000642900",
   },
   email: {
     label: "Email Antico Paints",
@@ -76,8 +76,8 @@ export const dealerPageData = {
     supportingText:
       "Interested in adding Antico Paints to your business? Tell us about your business and location so our team can discuss the next steps with you.",
     primaryCta: "Register Your Interest",
-    phoneCta: "Call +91 9636261998",
-    phoneHref: "tel:+919636261998",
+    phoneCta: "Call +91 8000642900",
+    phoneHref: "tel:+918000642900",
     image: "/images/dealer/dealer-retail-store.jpg",
     imageAlt: "Retail paint store interior with shelves and paint cans",
   },
@@ -149,7 +149,7 @@ export const dealerPageData = {
     {
       question: "How can I contact Antico Paints directly?",
       answer:
-        "Call +91 9636261998 or email anticopaints@gmail.com.",
+        "Call +91 8000642900 or email anticopaints@gmail.com.",
     },
   ],
 };

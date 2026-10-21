@@ -5,7 +5,7 @@ import { ContactClient } from "./ContactClient";
 export const metadata: Metadata = {
   title: "Contact Us | Antico Paints",
   description:
-    "Questions about our products, colours or painting essentials? Get in touch with Antico Paints by phone at +91 9636261998 or by email.",
+    "Questions about our products, colours or painting essentials? Get in touch with Antico Paints by phone at +91 8000642900 or by email.",
 };
 
 export default function ContactPage() {
