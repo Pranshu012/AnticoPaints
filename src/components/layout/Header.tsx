@@ -91,7 +91,7 @@ export function Header() {
 
             <Link
               href="/become-a-dealer/"
-              className="inline-flex items-center justify-center px-4 py-2 bg-brand-black text-brand-offwhite hover:bg-brand-gold hover:text-brand-black text-xs font-sans font-medium uppercase tracking-wider rounded-xs transition-colors shadow-xs"
+              className="inline-flex items-center justify-center px-4 py-2 bg-brand-black text-brand-offwhite hover:bg-brand-gold hover:text-brand-black text-xs font-sans font-medium uppercase tracking-wider rounded-md transition-colors shadow-sm"
             >
               Become a Dealer
             </Link>
@@ -145,7 +145,7 @@ export function Header() {
           <div className="pt-2 border-t border-brand-beige/60">
             <Link
               href="/become-a-dealer/"
-              className="w-full inline-flex items-center justify-center px-5 py-3 bg-brand-black text-brand-offwhite hover:bg-brand-gold hover:text-brand-black text-xs font-sans font-semibold uppercase tracking-wider rounded-xs transition-colors text-center shadow-xs"
+              className="w-full inline-flex items-center justify-center px-5 py-3 bg-brand-black text-brand-offwhite hover:bg-brand-gold hover:text-brand-black text-xs font-sans font-semibold uppercase tracking-wider rounded-md transition-colors text-center shadow-sm"
             >
               Become a Dealer
             </Link>
