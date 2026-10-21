@@ -2,8 +2,10 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Phone,
+  Mail,
   ArrowDown,
   Check,
   ChevronDown,
@@ -45,6 +47,7 @@ export function DealerClient() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");
+  const [mailtoUrl, setMailtoUrl] = useState<string | null>(null);
 
   // FAQ Accordion State (first open by default)
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -131,6 +134,7 @@ export function DealerClient() {
     if (result.success) {
       setSubmitStatus("success");
       setStatusMessage(result.message);
+      setMailtoUrl(result.mailtoUrl || null);
       setFormData({
         fullName: "",
         mobileNumber: "",
@@ -147,6 +151,7 @@ export function DealerClient() {
     } else {
       setSubmitStatus("error");
       setStatusMessage(result.message);
+      setMailtoUrl(result.mailtoUrl || null);
     }
   };
 
@@ -291,6 +296,20 @@ export function DealerClient() {
       >
         <div className="bg-white border border-brand-beige rounded-2xl p-6 sm:p-10 lg:p-12 shadow-card">
           
+          {/* Cross-Link to General Contact Form */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-brand-beige/70 pb-4 mb-8">
+            <span className="text-xs text-neutral-500 font-sans">
+              Looking for paint, colour advice or general questions?
+            </span>
+            <Link
+              href="/contact/?tab=general"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-900 hover:text-brand-gold transition-colors"
+            >
+              <span>Go to General Contact Form</span>
+              <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+
           <div className="max-w-2xl space-y-2 mb-8">
             <span className="text-xs sm:text-sm uppercase tracking-[0.18em] font-sans font-bold text-brand-gold block">
               DEALERSHIP APPLICATION
@@ -316,13 +335,24 @@ export function DealerClient() {
               <p className="font-sans text-sm leading-relaxed text-neutral-800">
                 {statusMessage}
               </p>
-              <button
-                type="button"
-                onClick={() => setSubmitStatus("idle")}
-                className="text-xs font-sans font-semibold underline text-neutral-900 hover:text-brand-gold pt-1"
-              >
-                Submit another enquiry
-              </button>
+              <div className="pt-2 flex flex-wrap items-center gap-4">
+                {mailtoUrl && (
+                  <a
+                    href={mailtoUrl}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-neutral-900 text-white rounded-lg text-xs font-semibold hover:bg-brand-gold hover:text-black transition-colors"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Open in Email App</span>
+                  </a>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setSubmitStatus("idle")}
+                  className="text-xs font-sans font-semibold underline text-neutral-900 hover:text-brand-gold"
+                >
+                  Submit another enquiry
+                </button>
+              </div>
             </div>
           )}
 
