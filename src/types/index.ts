@@ -183,6 +183,7 @@ export interface ContactInfoVerified {
     fullAddress: string;
     googleMapsUrl: string;
     mapEmbedUrl: string;
+    mapImageUrl?: string;
   };
 }
 

@@ -58,6 +58,7 @@ export const verifiedContactData = {
       "https://www.google.com/maps/search/?api=1&query=103+Gala+Building+Beside+KP+Hostel+Near+Samarpan+Flats+Gulbai+Tekra+Ahmedabad",
     mapEmbedUrl:
       "https://maps.google.com/maps?q=103%2C+Gala+Building%2C+Beside+KP+Hostel%2C+Near+Samarpan+Flats%2C+Gulbai+Tekra%2C+Ahmedabad&t=&z=16&ie=UTF8&iwloc=&output=embed",
+    mapImageUrl: "/images/contact/office-map.jpg",
   },
 };
 
