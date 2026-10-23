@@ -29,7 +29,7 @@ export const companyData: CompanyInfo = {
   contact: {
     emailPlaceholder: "anticopaints@gmail.com",
     phonePlaceholder: "+91 8000642900",
-    officeAddressPlaceholder: "[Office Address Available Upon Inquiry]",
+    officeAddressPlaceholder: "103, Gala Building, Beside KP Hostel, Near Samarpan Flats, Gulbai Tekra, Ahmedabad, Gujarat",
     plantAddressPlaceholder: "[Manufacturing Facility & Central Lab]",
     businessHoursPlaceholder: "Mon - Sat: 09:00 - 18:00 IST"
   },
@@ -46,6 +46,18 @@ export const verifiedContactData = {
     label: "Email Antico Paints",
     address: "anticopaints@gmail.com",
     href: "mailto:anticopaints@gmail.com",
+  },
+  office: {
+    label: "Visit Our Office",
+    building: "103, Gala Building",
+    landmark: "Beside KP Hostel, Near Samarpan Flats",
+    area: "Gulbai Tekra, Ahmedabad, Gujarat",
+    fullAddress:
+      "103, Gala Building, Beside KP Hostel, Near Samarpan Flats, Gulbai Tekra, Ahmedabad, Gujarat",
+    googleMapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=103+Gala+Building+Beside+KP+Hostel+Near+Samarpan+Flats+Gulbai+Tekra+Ahmedabad",
+    mapEmbedUrl:
+      "https://maps.google.com/maps?q=103%2C+Gala+Building%2C+Beside+KP+Hostel%2C+Near+Samarpan+Flats%2C+Gulbai+Tekra%2C+Ahmedabad&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
 };
 

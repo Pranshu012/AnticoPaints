@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Phone, Mail } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin } from "lucide-react";
 import { verifiedContactData } from "@/data/company";
 
 const FOOTER_NAV_ITEMS = [
@@ -73,6 +73,16 @@ export function Footer() {
               >
                 <Mail className="w-3.5 h-3.5 text-brand-gold" />
                 <span>{verifiedContactData.email.address}</span>
+              </a>
+
+              <a
+                href={verifiedContactData.office.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:text-brand-gold transition-colors"
+              >
+                <MapPin className="w-3.5 h-3.5 text-brand-gold shrink-0" />
+                <span>103, Gala Building, Gulbai Tekra, Ahmedabad</span>
               </a>
             </div>
           </div>

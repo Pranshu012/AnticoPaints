@@ -167,13 +167,22 @@ export interface HomeMissionContent {
 export interface ContactInfoVerified {
   phone: {
     label: string;
-    display: string;
+    number: string;
     href: string;
   };
   email: {
     label: string;
-    display: string;
+    address: string;
     href: string;
+  };
+  office?: {
+    label: string;
+    building: string;
+    landmark: string;
+    area: string;
+    fullAddress: string;
+    googleMapsUrl: string;
+    mapEmbedUrl: string;
   };
 }
 
