@@ -1,0 +1,17 @@
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="600" fill="#FCFBF8"/>
+  <rect x="30" y="30" width="540" height="540" fill="#E9E0D2" fill-opacity="0.25" rx="6"/>
+  <!-- Luxury paint container cylinder -->
+  <rect x="175" y="180" width="250" height="300" rx="8" fill="#111111"/>
+  <ellipse cx="300" cy="180" rx="125" ry="32" fill="#222222"/>
+  <ellipse cx="300" cy="172" rx="110" ry="24" fill="#C08000"/>
+  <ellipse cx="300" cy="480" rx="125" ry="32" fill="#111111"/>
+  <!-- Minimalist Label -->
+  <rect x="195" y="240" width="210" height="180" fill="#FCFBF8" rx="2"/>
+  <rect x="195" y="240" width="210" height="8" fill="#C08000"/>
+  <text x="300" y="290" font-family="sans-serif" font-weight="bold" font-size="18" fill="#111111" text-anchor="middle" letter-spacing="2">ANTICO</text>
+  <text x="300" y="320" font-family="serif" font-size="14" fill="#111111" text-anchor="middle">VELUTO ULTRA-MATT</text>
+  <text x="300" y="350" font-family="sans-serif" font-size="10" fill="#737373" text-anchor="middle">INTERIOR ARCHITECTURAL EMULSION</text>
+  <line x1="240" y1="375" x2="360" y2="375" stroke="#C08000" stroke-width="1"/>
+  <text x="300" y="398" font-family="sans-serif" font-size="9" fill="#171717" text-anchor="middle">SPECIFICATION GRADE // LOW-VOC</text>
+</svg>

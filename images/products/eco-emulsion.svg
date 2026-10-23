@@ -1,0 +1,30 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ecoWall" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FCFBF8"/>
+      <stop offset="50%" stop-color="#F5F1E9"/>
+      <stop offset="100%" stop-color="#E5DDD0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Wall Background -->
+  <rect width="800" height="600" fill="url(#ecoWall)"/>
+
+  <!-- Smooth, Fresh Roller Lap Lines -->
+  <path d="M160 0 L280 0 L280 600 L160 600 Z" fill="#FFFFFF" fill-opacity="0.4"/>
+  <path d="M280 0 L400 0 L400 600 L280 600 Z" fill="#FAF6EE" fill-opacity="0.3"/>
+  <path d="M400 0 L520 0 L520 600 L400 600 Z" fill="#FFFFFF" fill-opacity="0.4"/>
+  <path d="M520 0 L640 0 L640 600 L520 600 Z" fill="#FAF6EE" fill-opacity="0.3"/>
+
+  <!-- Clean Diagonal Natural Light Beam from Window -->
+  <polygon points="260,0 540,0 720,600 440,600" fill="#FFFFFF" fill-opacity="0.25"/>
+
+  <!-- Minimal Painter's Roller Silhouette on Clean Wall -->
+  <g transform="translate(320, 300) rotate(24)">
+    <rect x="-25" y="-90" width="50" height="180" rx="8" fill="#FAF8F2" stroke="#D5C9B5" stroke-width="2"/>
+    <!-- Wire frame -->
+    <path d="M0 -90 L0 -105 L-65 -105 L-65 140 L0 140 L0 90" stroke="#171717" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <path d="M-65 18 L-130 18" stroke="#171717" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <rect x="-170" y="8" width="55" height="20" rx="3" fill="#171717"/>
+  </g>
+</svg>

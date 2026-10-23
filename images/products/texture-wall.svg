@@ -1,0 +1,51 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wallBase" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FCFBF8"/>
+      <stop offset="50%" stop-color="#E9E0D2"/>
+      <stop offset="100%" stop-color="#D5C9B5"/>
+    </linearGradient>
+    <linearGradient id="lightAngle" x1="100" y1="0" x2="600" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#E9E0D2" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#171717" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base Wall -->
+  <rect width="800" height="600" fill="url(#wallBase)"/>
+
+  <!-- Troweled Stucco Surface Layers -->
+  <path d="M0 140 Q 250 110, 500 180 T 800 150 L 800 600 L 0 600 Z" fill="#E4D9C7" fill-opacity="0.5"/>
+  <path d="M0 260 Q 320 220, 620 310 T 800 280 L 800 600 L 0 600 Z" fill="#D8CCA8" fill-opacity="0.35"/>
+  <path d="M0 380 Q 280 340, 560 430 T 800 400 L 800 600 L 0 600 Z" fill="#C9BDAA" fill-opacity="0.3"/>
+
+  <!-- Light wash -->
+  <polygon points="120,0 520,0 360,600 0,600" fill="url(#lightAngle)"/>
+
+  <!-- Realistic Mineral Texture Strokes -->
+  <g stroke="#9C8F7A" stroke-opacity="0.28" stroke-width="1.5" stroke-linecap="round">
+    <path d="M80 120 Q 140 125 210 122"/>
+    <path d="M120 160 Q 180 166 260 160"/>
+    <path d="M280 110 Q 350 118 430 114"/>
+    <path d="M480 190 Q 550 200 640 192"/>
+    <path d="M160 280 Q 230 292 310 286"/>
+    <path d="M380 250 Q 450 262 530 255"/>
+    <path d="M590 280 Q 670 292 740 284"/>
+    <path d="M100 420 Q 180 432 270 425"/>
+    <path d="M320 390 Q 400 402 490 394"/>
+    <path d="M520 440 Q 600 452 690 445"/>
+    <path d="M220 510 Q 300 522 390 515"/>
+    <path d="M460 520 Q 540 532 630 525"/>
+  </g>
+
+  <!-- Fine textural stipples -->
+  <circle cx="180" cy="140" r="1.5" fill="#9C8F7A" fill-opacity="0.4"/>
+  <circle cx="260" cy="220" r="1.8" fill="#9C8F7A" fill-opacity="0.4"/>
+  <circle cx="440" cy="160" r="1.5" fill="#9C8F7A" fill-opacity="0.4"/>
+  <circle cx="580" cy="230" r="1.8" fill="#9C8F7A" fill-opacity="0.4"/>
+  <circle cx="340" cy="330" r="1.5" fill="#9C8F7A" fill-opacity="0.4"/>
+  <circle cx="680" cy="380" r="1.8" fill="#9C8F7A" fill-opacity="0.4"/>
+  <circle cx="230" cy="460" r="1.5" fill="#9C8F7A" fill-opacity="0.4"/>
+  <circle cx="510" cy="480" r="1.8" fill="#9C8F7A" fill-opacity="0.4"/>
+</svg>

@@ -1,0 +1,183 @@
+<svg width="900" height="700" viewBox="0 0 900 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Wall Surface Gradient -->
+    <linearGradient id="wallPlasterBase" x1="0" y1="0" x2="900" y2="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FCFBF8"/>
+      <stop offset="30%" stop-color="#F4ECE1"/>
+      <stop offset="70%" stop-color="#E8DFD0"/>
+      <stop offset="100%" stop-color="#D9CEBD"/>
+    </linearGradient>
+
+    <!-- Raking Daylight Wash (Soft angled beam from upper left) -->
+    <linearGradient id="rakingLight" x1="0" y1="0" x2="700" y2="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#FFFDF7" stop-opacity="0.5"/>
+      <stop offset="75%" stop-color="#EFE6D8" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#171717" stop-opacity="0.08"/>
+    </linearGradient>
+
+    <!-- Troweled Layer 1 -->
+    <linearGradient id="trowelLayer1" x1="100" y1="200" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#EDE4D6" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#DECFC0" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <!-- Troweled Layer 2 -->
+    <linearGradient id="trowelLayer2" x1="0" y1="350" x2="700" y2="650" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E2D6C5" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#CBBCA9" stop-opacity="0.5"/>
+    </linearGradient>
+
+    <!-- Trowel Tool Blade Gradient -->
+    <linearGradient id="bladeSteel" x1="560" y1="380" x2="780" y2="540" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FDFBF8"/>
+      <stop offset="25%" stop-color="#DDD8D0"/>
+      <stop offset="50%" stop-color="#BBB4AA"/>
+      <stop offset="85%" stop-color="#8C857B"/>
+      <stop offset="100%" stop-color="#5E5850"/>
+    </linearGradient>
+
+    <!-- Brass / Gold Handle Mount Gradient -->
+    <linearGradient id="brassMount" x1="620" y1="350" x2="740" y2="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E5C07B"/>
+      <stop offset="50%" stop-color="#B89655"/>
+      <stop offset="100%" stop-color="#8C6E33"/>
+    </linearGradient>
+
+    <!-- Wooden Handle Gradient -->
+    <linearGradient id="woodGrip" x1="660" y1="320" x2="760" y2="390" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5A3D28"/>
+      <stop offset="50%" stop-color="#3B2618"/>
+      <stop offset="100%" stop-color="#24170E"/>
+    </linearGradient>
+
+    <!-- Realistic Soft Cast Shadow Filter -->
+    <filter id="softDepthShadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="16"/>
+      <feOffset dx="18" dy="24"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.22"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="badgeShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="6" dy="10"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.12"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 1. Background Wall Plaster Foundation -->
+  <rect width="900" height="700" fill="url(#wallPlasterBase)"/>
+
+  <!-- 2. Sweeping Architectural Plaster Layers (Textured Trowel Marks) -->
+  <path d="M-50 160 C 220 120, 520 220, 950 140 L 950 750 L -50 750 Z" fill="url(#trowelLayer1)"/>
+  <path d="M-50 320 C 280 260, 580 390, 950 310 L 950 750 L -50 750 Z" fill="url(#trowelLayer2)"/>
+  <path d="M-50 480 C 200 420, 520 540, 950 460 L 950 750 L -50 750 Z" fill="#D2C3B0" fill-opacity="0.4"/>
+
+  <!-- 3. Raking Natural Daylight Wash -->
+  <polygon points="0,0 550,0 900,700 0,700" fill="url(#rakingLight)" style="mix-blend-mode: screen;"/>
+
+  <!-- 4. Tactile Stucco & Sand Stippling Texture -->
+  <g stroke="#9C8F7E" stroke-opacity="0.32" stroke-width="1.2" stroke-linecap="round">
+    <!-- Feathered relief lines from plaster float -->
+    <path d="M60 90 Q 200 110, 360 95"/>
+    <path d="M120 140 Q 300 160, 480 142"/>
+    <path d="M40 220 Q 220 235, 420 215"/>
+    <path d="M180 270 Q 380 295, 590 275"/>
+    <path d="M90 360 Q 320 385, 540 360"/>
+    <path d="M260 410 Q 480 435, 720 410"/>
+    <path d="M140 500 Q 380 525, 620 495"/>
+    <path d="M300 560 Q 520 585, 780 555"/>
+    <path d="M80 620 Q 320 645, 560 618"/>
+  </g>
+
+  <!-- Fine Mineral Sand Stipples -->
+  <g fill="#8C7F6E" fill-opacity="0.35">
+    <circle cx="140" cy="120" r="1.5"/>
+    <circle cx="280" cy="95" r="1.2"/>
+    <circle cx="420" cy="135" r="1.6"/>
+    <circle cx="210" cy="205" r="1.4"/>
+    <circle cx="360" cy="230" r="1.8"/>
+    <circle cx="510" cy="190" r="1.3"/>
+    <circle cx="160" cy="315" r="1.5"/>
+    <circle cx="320" cy="340" r="1.7"/>
+    <circle cx="480" cy="305" r="1.4"/>
+    <circle cx="640" cy="335" r="1.8"/>
+    <circle cx="240" cy="445" r="1.5"/>
+    <circle cx="410" cy="460" r="1.3"/>
+    <circle cx="580" cy="430" r="1.6"/>
+    <circle cx="720" cy="470" r="1.4"/>
+    <circle cx="190" cy="555" r="1.6"/>
+    <circle cx="370" cy="580" r="1.4"/>
+    <circle cx="530" cy="545" r="1.7"/>
+    <circle cx="690" cy="575" r="1.3"/>
+    <circle cx="280" cy="650" r="1.5"/>
+    <circle cx="490" cy="640" r="1.4"/>
+  </g>
+
+  <!-- 5. Artisan Venetian Trowel Resting on Wall (Material Craft Element) -->
+  <g filter="url(#softDepthShadow)">
+    <!-- Trowel Blade Shadow under blade -->
+    <path d="M520 370 L790 320 L760 560 L490 590 Z" fill="#171717" fill-opacity="0.18"/>
+
+    <!-- Trowel Stainless Blade with Polished Bevel -->
+    <polygon points="530,360 780,315 750,545 500,575" fill="url(#bladeSteel)"/>
+    <!-- Blade Top Bevel Highlight Line -->
+    <line x1="530" y1="360" x2="780" y2="315" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.8"/>
+    <!-- Blade Bottom Feathering Edge -->
+    <line x1="500" y1="575" x2="750" y2="545" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.4"/>
+
+    <!-- Wet Plaster Residue along Trowel Blade Edge (Authentic Application Detail) -->
+    <path d="M500 575 Q 560 568, 620 572 T 750 545" stroke="#EFE6D8" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.85"/>
+    <path d="M505 574 Q 570 567, 635 571 T 745 546" stroke="#FCFBF8" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.95"/>
+
+    <!-- Brass Mounting Bracket (Stem between blade and grip) -->
+    <rect x="625" y="380" width="30" height="75" rx="3" transform="rotate(-10 625 380)" fill="url(#brassMount)"/>
+    <circle cx="632" cy="410" r="4" fill="#3D3016"/>
+    <circle cx="642" cy="445" r="4" fill="#3D3016"/>
+
+    <!-- Solid Turned Walnut / Hardwood Ergonomic Grip -->
+    <g transform="translate(40, -10)">
+      <!-- Handle Shadow -->
+      <ellipse cx="610" cy="405" rx="70" ry="16" transform="rotate(-15 610 405)" fill="#171717" fill-opacity="0.25"/>
+      <!-- Wooden Handle Body -->
+      <path d="M545 400 C 560 385, 650 365, 680 375 C 695 380, 695 405, 680 415 C 650 425, 560 415, 545 400 Z" fill="url(#woodGrip)"/>
+      <!-- Brass Ferrule Ring at grip base -->
+      <ellipse cx="552" cy="400" rx="6" ry="12" fill="url(#brassMount)"/>
+      <!-- Subtle Specular Reflection along wood lacquer -->
+      <path d="M570 395 C 590 385, 640 378, 665 383" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- 6. Architectural Materiality Swatch Chip (Bottom Left) -->
+  <g filter="url(#badgeShadow)" transform="translate(60, 520)">
+    <!-- Swatch Tag Card -->
+    <rect width="260" height="120" rx="2" fill="#FFFFFF"/>
+    <rect width="260" height="120" rx="2" stroke="#E9E0D2" stroke-width="1"/>
+
+    <!-- Pure Off-White / Sand Paint Sample Strip -->
+    <rect x="16" y="16" width="60" height="88" rx="1" fill="#E8DECF"/>
+    <rect x="16" y="16" width="60" height="88" rx="1" stroke="#D5C9B5" stroke-width="1"/>
+
+    <!-- Swatch Information Typography -->
+    <text x="90" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#B89655" letter-spacing="1.5">ANTICO MATERIALITY</text>
+    <text x="90" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#171717">Hand-Troweled Sand Finish</text>
+    <text x="90" y="76" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#777777">Natural Lime &amp; Mineral Plaster</text>
+    <text x="90" y="94" font-family="monospace" font-size="10" fill="#999999">TEXTURE FINISH 01</text>
+  </g>
+
+  <!-- 7. Subtle Framing Gold Edge Accent -->
+  <line x1="0" y1="0" x2="900" y2="0" stroke="#E9E0D2" stroke-width="2"/>
+  <line x1="0" y1="699" x2="900" y2="699" stroke="#E9E0D2" stroke-width="2"/>
+</svg>

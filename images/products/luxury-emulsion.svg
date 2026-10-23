@@ -1,0 +1,39 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="luxuryWall" x1="200" y1="0" x2="600" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FCFBF8"/>
+      <stop offset="35%" stop-color="#F2EDE4"/>
+      <stop offset="75%" stop-color="#E2D7C5"/>
+      <stop offset="100%" stop-color="#CDBEA8"/>
+    </linearGradient>
+    <linearGradient id="warmSconce" x1="400" y1="0" x2="400" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#B89655" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FCFBF8" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Wall Background -->
+  <rect width="800" height="600" fill="url(#luxuryWall)"/>
+
+  <!-- Architectural Wall Niche / Panel Detail -->
+  <rect x="120" y="80" width="560" height="440" fill="none" stroke="#FFFFFF" stroke-opacity="0.6" stroke-width="2"/>
+  <rect x="130" y="90" width="540" height="420" fill="none" stroke="#D5C9B5" stroke-opacity="0.4" stroke-width="1"/>
+
+  <!-- Gentle ambient light cone from top -->
+  <polygon points="320,0 480,0 680,600 120,600" fill="url(#warmSconce)"/>
+
+  <!-- Architectural skirting / floor shadow -->
+  <rect x="0" y="550" width="800" height="50" fill="#171717" fill-opacity="0.08"/>
+  <line x1="0" y1="550" x2="800" y2="550" stroke="#171717" stroke-opacity="0.15" stroke-width="1.5"/>
+
+  <!-- Paint Swatch Fan / Colour Test Visual -->
+  <g transform="translate(480, 360)">
+    <!-- Swatch 1 -->
+    <rect x="-40" y="-80" width="60" height="130" rx="3" fill="#FCFBF8" stroke="#D5C9B5" stroke-width="1.5" transform="rotate(-15)"/>
+    <!-- Swatch 2 -->
+    <rect x="-10" y="-85" width="60" height="130" rx="3" fill="#E9E0D2" stroke="#D5C9B5" stroke-width="1.5" transform="rotate(0)"/>
+    <!-- Swatch 3 -->
+    <rect x="20" y="-80" width="60" height="130" rx="3" fill="#B89655" stroke="#97773D" stroke-width="1.5" transform="rotate(15)"/>
+  </g>
+</svg>
