@@ -91,8 +91,9 @@ export const dealerPageData = {
     primaryCta: "Register Your Interest",
     phoneCta: "Call +91 8000642900",
     phoneHref: "tel:+918000642900",
-    image: "/images/dealer/dealer-retail-store.jpg",
-    imageAlt: "Retail paint store interior with shelves and paint cans",
+    image: "/images/dealer/dealer-showroom.jpg",
+    imageAlt:
+      "Contemporary architectural paint showroom with elegant display shelving and texture finish gallery",
   },
   targetAudience: {
     heading: "Who can get in touch?",
