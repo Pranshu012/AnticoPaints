@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import {
   Phone,
   Mail,
@@ -14,7 +13,6 @@ import {
   MessageSquare,
   Store,
   ExternalLink,
-  Navigation,
 } from "lucide-react";
 import { contactPageData, dealerPageData, verifiedContactData } from "@/data/company";
 import { submitEnquiry } from "@/lib/formSubmission";
@@ -42,9 +40,6 @@ export function ContactClient() {
 
   // Tab State: "general" | "dealer"
   const [activeTab, setActiveTab] = useState<"general" | "dealer">("general");
-
-  // Map View Mode: "visual" | "interactive"
-  const [mapMode, setMapMode] = useState<"visual" | "interactive">("visual");
 
   // Read initial query parameter on mount without breaking Next.js static prerender
   useEffect(() => {
@@ -348,16 +343,21 @@ export function ContactClient() {
                 </a>
 
                 {/* Office Address Card */}
-                <div className="p-5 bg-white border border-brand-beige rounded-xl shadow-xs space-y-4">
+                <a
+                  href={verifiedContactData.office.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block p-5 bg-white border border-brand-beige rounded-xl hover:border-brand-gold transition-all duration-200 shadow-xs hover:shadow-subtle"
+                >
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-[#F5EFE6] border border-brand-beige flex items-center justify-center text-brand-gold shrink-0 mt-0.5">
+                    <div className="w-10 h-10 rounded-lg bg-[#F5EFE6] border border-brand-beige flex items-center justify-center text-brand-gold shrink-0 transition-colors group-hover:bg-brand-black group-hover:text-brand-offwhite mt-0.5">
                       <MapPin className="w-4 h-4" />
                     </div>
                     <div className="space-y-1">
                       <span className="text-xs uppercase tracking-wider font-semibold text-neutral-500 block">
                         Office Location
                       </span>
-                      <p className="font-sans text-sm font-bold text-neutral-900 leading-snug">
+                      <p className="font-sans text-sm font-bold text-neutral-900 group-hover:text-brand-gold-dark transition-colors leading-snug">
                         {verifiedContactData.office.building}
                       </p>
                       <p className="font-sans text-xs text-neutral-600 leading-snug">
@@ -366,42 +366,13 @@ export function ContactClient() {
                       <p className="font-sans text-xs text-neutral-600 leading-snug">
                         {verifiedContactData.office.area}
                       </p>
-                    </div>
-                  </div>
-
-                  {/* Visual Map Preview Thumbnail */}
-                  <a
-                    href={verifiedContactData.office.googleMapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative block w-full h-32 rounded-lg overflow-hidden border border-brand-beige shadow-xs hover:border-brand-gold transition-all duration-200"
-                    aria-label="View Antico Paints Office location on Google Maps"
-                  >
-                    <Image
-                      src={verifiedContactData.office.mapImageUrl || "/images/contact/office-map.jpg"}
-                      alt="Antico Paints Office Map - Gulbai Tekra, Ahmedabad"
-                      fill
-                      className="object-cover object-[18%_68%] transition-transform duration-300 group-hover:scale-105"
-                      sizes="(min-width: 1024px) 30vw, 100vw"
-                    />
-                    {/* Location Pin Indicator on thumbnail */}
-                    <div className="absolute top-[68%] left-[18%] transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
-                      <span className="w-4 h-4 rounded-full bg-brand-gold/60 animate-ping absolute" />
-                      <div className="relative w-5 h-5 rounded-full bg-neutral-900 border-2 border-brand-gold flex items-center justify-center text-brand-gold shadow-md">
-                        <MapPin className="w-3 h-3 text-brand-gold" />
-                      </div>
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-neutral-950/20 to-transparent flex items-end justify-between p-2.5">
-                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-white group-hover:text-brand-gold transition-colors">
-                        <span>View on Google Maps</span>
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand-gold pt-1 group-hover:underline">
+                        <span>Get Directions on Google Maps</span>
                         <ExternalLink className="w-3 h-3" />
                       </span>
-                      <span className="text-[10px] uppercase font-bold tracking-wider text-brand-gold bg-black/60 px-1.5 py-0.5 rounded backdrop-blur-xs">
-                        Ahmedabad
-                      </span>
                     </div>
-                  </a>
-                </div>
+                  </div>
+                </a>
               </div>
             </div>
 
@@ -1156,165 +1127,6 @@ export function ContactClient() {
 
           </div>
 
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* 3. Office Location & Map Section                          */}
-      {/* ========================================================= */}
-      <section id="office-map-section" className="border-t border-brand-beige/80 py-12 sm:py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div className="space-y-2">
-              <span className="text-xs uppercase tracking-[0.18em] font-sans font-bold text-brand-gold block">
-                FIND US ON THE MAP
-              </span>
-              <h2 className="font-sans text-2xl sm:text-3xl font-bold text-neutral-900 tracking-tight">
-                Antico Paints Head Office
-              </h2>
-              <p className="font-sans text-sm text-neutral-600 max-w-2xl">
-                {verifiedContactData.office.fullAddress}
-              </p>
-            </div>
-
-            {/* Controls: Mode Switcher & Direct Google Maps CTA */}
-            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-              <div className="inline-flex p-1 bg-brand-offwhite border border-brand-beige rounded-lg">
-                <button
-                  type="button"
-                  onClick={() => setMapMode("visual")}
-                  className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${
-                    mapMode === "visual"
-                      ? "bg-neutral-900 text-white shadow-xs"
-                      : "text-neutral-600 hover:text-neutral-900"
-                  }`}
-                >
-                  Area Map View
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setMapMode("interactive")}
-                  className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${
-                    mapMode === "interactive"
-                      ? "bg-neutral-900 text-white shadow-xs"
-                      : "text-neutral-600 hover:text-neutral-900"
-                  }`}
-                >
-                  Live Google Map
-                </button>
-              </div>
-
-              <a
-                href={verifiedContactData.office.googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-neutral-900 text-white rounded-lg text-xs font-semibold hover:bg-brand-gold hover:text-black transition-colors shrink-0 shadow-xs"
-              >
-                <MapPin className="w-3.5 h-3.5 text-brand-gold" />
-                <span>Open in Google Maps</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
-          </div>
-
-          {/* Map Display Container */}
-          <div className="relative w-full h-[400px] sm:h-[480px] lg:h-[540px] rounded-2xl border border-brand-beige shadow-card overflow-hidden bg-[#F5EFE6]">
-            {mapMode === "visual" ? (
-              <div className="relative w-full h-full group">
-                {/* Visual Area Map Image (User Provided Authentic Ahmedabad Map) */}
-                <Image
-                  src={verifiedContactData.office.mapImageUrl || "/images/contact/office-map.jpg"}
-                  alt="Antico Paints Office Map - Gulbai Tekra, Ahmedabad"
-                  fill
-                  priority
-                  className="object-cover object-[18%_68%] sm:object-center transition-transform duration-500 ease-out group-hover:scale-[1.01]"
-                  sizes="100vw"
-                />
-
-                {/* Animated Location Pin situated at Gulbai Tekra */}
-                <div
-                  className="absolute top-[68%] left-[18%] sm:left-[17%] sm:top-[67%] transform -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none"
-                  style={{ willChange: "transform" }}
-                >
-                  {/* Outer Pulsing Radar Rings */}
-                  <span className="absolute -inset-6 rounded-full bg-brand-gold/30 animate-ping" />
-                  <span className="absolute -inset-3 rounded-full bg-brand-gold/50 animate-pulse" />
-
-                  {/* Marker Pin Badge */}
-                  <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-neutral-900 border-2 border-brand-gold text-brand-gold flex items-center justify-center shadow-2xl">
-                    <MapPin className="w-5 h-5 text-brand-gold fill-brand-gold/30" />
-                  </div>
-                </div>
-
-                {/* Floating Office Card Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-md bg-white/95 backdrop-blur-md p-5 rounded-xl border border-brand-beige/90 shadow-2xl z-30 space-y-3">
-                  <div className="flex items-center justify-between gap-2 border-b border-brand-beige/70 pb-2.5">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-brand-gold animate-pulse" />
-                      <span className="text-[11px] uppercase tracking-wider font-bold text-neutral-800">
-                        Antico Paints Head Office
-                      </span>
-                    </div>
-                    <span className="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-[#F5EFE6] text-brand-gold-dark rounded">
-                      Gulbai Tekra, Ahmedabad
-                    </span>
-                  </div>
-
-                  <div className="space-y-1 text-xs font-sans text-neutral-700">
-                    <p className="font-bold text-sm text-neutral-900">
-                      {verifiedContactData.office.building}
-                    </p>
-                    <p className="text-neutral-600">
-                      {verifiedContactData.office.landmark}
-                    </p>
-                    <p className="text-neutral-600">
-                      {verifiedContactData.office.area}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-2 pt-1">
-                    <a
-                      href={verifiedContactData.office.googleMapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-neutral-900 text-white rounded-lg text-xs font-semibold hover:bg-brand-gold hover:text-black transition-colors shadow-xs"
-                    >
-                      <Navigation className="w-3.5 h-3.5 text-brand-gold" />
-                      <span>Get Directions</span>
-                    </a>
-                    <a
-                      href="tel:+918000642900"
-                      className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-brand-offwhite text-neutral-900 border border-brand-beige rounded-lg text-xs font-semibold hover:border-brand-gold transition-colors"
-                    >
-                      <Phone className="w-3.5 h-3.5 text-brand-gold" />
-                      <span>Call Office</span>
-                    </a>
-                  </div>
-                </div>
-
-                {/* Clickable Overlay to Open Map */}
-                <a
-                  href={verifiedContactData.office.googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 z-10 cursor-pointer"
-                  aria-label="Open Antico Paints Office location in Google Maps"
-                />
-              </div>
-            ) : (
-              <iframe
-                title="Antico Paints Office Location - Gulbai Tekra, Ahmedabad"
-                src={verifiedContactData.office.mapEmbedUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full"
-              />
-            )}
-          </div>
         </div>
       </section>
 
