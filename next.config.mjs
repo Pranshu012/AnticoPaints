@@ -12,6 +12,9 @@ const nextConfig = {
   trailingSlash: true,
   basePath: basePath || undefined,
   assetPrefix: basePath ? `${basePath}/` : undefined,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
 };
 
 export default nextConfig;

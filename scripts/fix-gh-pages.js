@@ -24,7 +24,8 @@ function walk(dir) {
       file.endsWith('.html') ||
       file.endsWith('.js') ||
       file.endsWith('.css') ||
-      file.endsWith('.json')
+      file.endsWith('.json') ||
+      file.endsWith('.txt')
     ) {
       let content = fs.readFileSync(fullPath, 'utf8');
       let changed = false;
@@ -36,6 +37,12 @@ function walk(dir) {
         content.includes('(/images/')
       ) {
         content = content.replace(/(["'\(])\/images\//g, '$1/AnticoPaints/images/');
+        changed = true;
+      }
+
+      // Also handle escaped slashes in JSON strings: \/images\/ -> \/AnticoPaints\/images\/
+      if (content.includes('\\/images\\/')) {
+        content = content.replace(/\\\/images\\\//g, '\\/AnticoPaints\\/images\\/');
         changed = true;
       }
 
