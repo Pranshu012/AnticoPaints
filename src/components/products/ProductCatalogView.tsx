@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { ProductItem } from "@/types";
 import { CategoryFilterBar, CategoryOption } from "./CategoryFilterBar";
 import { UnifiedProductCard } from "./UnifiedProductCard";
@@ -19,24 +18,18 @@ const CATEGORY_OPTIONS: CategoryOption[] = [
 ];
 
 export function ProductCatalogView({ products }: ProductCatalogViewProps) {
-  const searchParams = useSearchParams();
-  const categoryParam = searchParams.get("category");
+  const [activeCategoryId, setActiveCategoryId] = useState<string>("all");
 
-  const [activeCategoryId, setActiveCategoryId] = useState<string>(() => {
-    if (categoryParam && CATEGORY_OPTIONS.some((c) => c.id === categoryParam)) {
-      return categoryParam;
-    }
-    return "all";
-  });
-
-  // Sync state if URL query param changes
+  // Read URL query parameter on mount without breaking Next.js static prerender
   useEffect(() => {
-    if (categoryParam && CATEGORY_OPTIONS.some((c) => c.id === categoryParam)) {
-      setActiveCategoryId(categoryParam);
-    } else if (!categoryParam) {
-      setActiveCategoryId("all");
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const categoryParam = params.get("category");
+      if (categoryParam && CATEGORY_OPTIONS.some((c) => c.id === categoryParam)) {
+        setActiveCategoryId(categoryParam);
+      }
     }
-  }, [categoryParam]);
+  }, []);
 
   const handleSelectCategory = (categoryId: string) => {
     setActiveCategoryId(categoryId);
