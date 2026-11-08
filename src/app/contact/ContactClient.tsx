@@ -309,7 +309,7 @@ export function ContactClient() {
                   className="group block p-5 bg-white border border-brand-beige rounded-xl hover:border-brand-gold transition-all duration-200 shadow-xs hover:shadow-subtle"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-[#F5EFE6] border border-brand-beige flex items-center justify-center text-brand-gold shrink-0 transition-colors group-hover:bg-brand-black group-hover:text-brand-offwhite">
+                    <div className="w-10 h-10 rounded-lg bg-brand-gold-tint border border-brand-gold/30 flex items-center justify-center text-brand-gold shrink-0 transition-colors group-hover:bg-brand-black group-hover:text-brand-offwhite">
                       <Phone className="w-4 h-4" />
                     </div>
                     <div>
@@ -329,7 +329,7 @@ export function ContactClient() {
                   className="group block p-5 bg-white border border-brand-beige rounded-xl hover:border-brand-gold transition-all duration-200 shadow-xs hover:shadow-subtle"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-[#F5EFE6] border border-brand-beige flex items-center justify-center text-brand-gold shrink-0 transition-colors group-hover:bg-brand-black group-hover:text-brand-offwhite">
+                    <div className="w-10 h-10 rounded-lg bg-brand-gold-tint border border-brand-gold/30 flex items-center justify-center text-brand-gold shrink-0 transition-colors group-hover:bg-brand-black group-hover:text-brand-offwhite">
                       <Mail className="w-4 h-4" />
                     </div>
                     <div>
@@ -346,7 +346,7 @@ export function ContactClient() {
                 {/* Office Location Card with Embedded Visual Map */}
                 <div className="p-5 bg-white border border-brand-beige rounded-xl shadow-xs space-y-4 hover:border-brand-gold/60 transition-all duration-200">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-[#F5EFE6] border border-brand-beige flex items-center justify-center text-brand-gold shrink-0 mt-0.5">
+                    <div className="w-10 h-10 rounded-lg bg-brand-gold-tint border border-brand-gold/30 flex items-center justify-center text-brand-gold shrink-0 mt-0.5">
                       <MapPin className="w-4 h-4" />
                     </div>
                     <div className="space-y-1">

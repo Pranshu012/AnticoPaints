@@ -25,13 +25,13 @@
   }
 
   ::selection {
-    background-color: #C08000;
-    color: #FCFBF8;
+    background-color: #E5A93C;
+    color: #111111;
   }
 
   /* Accessible focus indicators */
   :focus-visible {
-    outline: 2px solid #C08000;
+    outline: 2px solid #E5A93C;
     outline-offset: 3px;
   }
 }
@@ -42,10 +42,10 @@
   }
   
   .gold-gradient {
-    background: linear-gradient(135deg, #D8991B 0%, #C08000 50%, #9A6500 100%);
+    background: linear-gradient(135deg, #F5C768 0%, #E5A93C 50%, #BA8208 100%);
   }
   
   .gold-border-gradient {
-    border-image: linear-gradient(to right, #C08000, #E9E0D2) 1;
+    border-image: linear-gradient(to right, #E5A93C, #E9E0D2) 1;
   }
 }

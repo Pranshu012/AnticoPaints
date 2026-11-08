@@ -13,9 +13,10 @@ const config: Config = {
         brand: {
           black: "#111111",
           charcoal: "#222222",
-          gold: "#C08000",
-          "gold-light": "#D8991B",
-          "gold-dark": "#9A6500",
+          gold: "#E5A93C",
+          "gold-light": "#F5C768",
+          "gold-dark": "#BA8208",
+          "gold-tint": "#FFF9EA",
           beige: "#E9E0D2",
           "beige-light": "#F5EFE6",
           "beige-dark": "#D5C9B5",

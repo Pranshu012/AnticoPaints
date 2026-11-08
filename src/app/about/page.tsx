@@ -141,7 +141,7 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-3">
             <Link
               href={cta.primaryButtonLink}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#B89655] hover:bg-[#c9a764] text-[#171717] font-sans font-semibold text-sm rounded-md tracking-wide transition-colors shadow-sm"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-brand-gold hover:bg-brand-gold-light text-[#171717] font-sans font-semibold text-sm rounded-md tracking-wide transition-colors shadow-sm"
             >
               <span>{cta.primaryButtonText}</span>
               <ArrowRight className="w-4 h-4 text-[#171717]" />
