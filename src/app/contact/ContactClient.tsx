@@ -461,7 +461,7 @@ export function ContactClient() {
                   GENERAL ENQUIRIES
                 </span>
                 <h3 className="font-sans text-lg font-bold text-neutral-900">
-                  Looking for product or colour advice?
+                  Looking for product or finish advice?
                 </h3>
                 <p className="font-sans text-sm text-neutral-700 leading-relaxed">
                   Have a question about our wall textures, primers, emulsions or application specifications?

@@ -67,7 +67,7 @@ export const contactPageData = {
     eyebrow: "WE'RE HERE TO HELP",
     heading: "Let's talk about your project.",
     description:
-      "Questions about our products, colours or painting essentials? Get in touch with Antico Paints.",
+      "Questions about our products, wall finishes or painting essentials? Get in touch with Antico Paints.",
   },
   form: {
     heading: "Send us an enquiry",
@@ -284,7 +284,6 @@ export const cataloguesData: Catalogue[] = [
 export const navigationLinks = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
-  { name: "Colours", href: "/colours" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" }
 ];

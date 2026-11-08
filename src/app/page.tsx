@@ -2,7 +2,6 @@ import React from "react";
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeCategories } from "@/components/home/HomeCategories";
-import { HomeColourDiscovery } from "@/components/home/HomeColourDiscovery";
 import { HomeAboutSection } from "@/components/home/HomeAboutSection";
 import { HomeDealerCTA } from "@/components/home/HomeDealerCTA";
 
@@ -21,13 +20,10 @@ export default function HomePage() {
       {/* Section 2: Product Categories */}
       <HomeCategories />
 
-      {/* Section 3: Colour Discovery */}
-      <HomeColourDiscovery />
-
-      {/* Section 4: Short About Section */}
+      {/* Section 3: Short About Section */}
       <HomeAboutSection />
 
-      {/* Section 5: Dealership CTA */}
+      {/* Section 4: Dealership CTA */}
       <HomeDealerCTA />
     </>
   );

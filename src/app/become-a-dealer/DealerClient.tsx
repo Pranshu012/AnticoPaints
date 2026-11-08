@@ -299,7 +299,7 @@ export function DealerClient() {
           {/* Cross-Link to General Contact Form */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-brand-beige/70 pb-4 mb-8">
             <span className="text-xs text-neutral-500 font-sans">
-              Looking for paint, colour advice or general questions?
+              Looking for product information or general questions?
             </span>
             <Link
               href="/contact/?tab=general"

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "exterior weather systems",
     "mineral lime stucco",
     "paint specification",
-    "colour exploration",
+    "wall finishes",
     "LRV values",
     "low-VOC paint"
   ],

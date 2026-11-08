@@ -7,7 +7,6 @@ import { verifiedContactData } from "@/data/company";
 const FOOTER_NAV_ITEMS = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products/" },
-  { name: "Colours", href: "/colours/" },
   { name: "About", href: "/about/" },
   { name: "Contact", href: "/contact/" },
   { name: "Become a Dealer", href: "/become-a-dealer/" },
