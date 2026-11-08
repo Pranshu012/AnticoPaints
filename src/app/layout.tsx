@@ -1,8 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { companyData } from "@/data/company";
+
+export const viewport: Viewport = {
+  themeColor: "#111111",
+  colorScheme: "light",
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: {
@@ -45,8 +52,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="min-h-screen flex flex-col bg-brand-offwhite text-brand-black selection:bg-brand-gold selection:text-brand-offwhite">
+    <html lang="en" className="scroll-smooth" style={{ colorScheme: "light" }}>
+      <body
+        className="min-h-screen flex flex-col bg-brand-offwhite text-brand-black selection:bg-brand-gold selection:text-brand-black"
+        style={{ colorScheme: "light" }}
+      >
         {/* Skip to Main Content for Accessibility */}
         <a
           href="#main-content"
