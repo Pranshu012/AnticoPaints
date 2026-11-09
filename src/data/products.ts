@@ -19,9 +19,9 @@ export const authoritativeProducts: ProductItem[] = [
     slug: "texture",
     name: "Texture",
     category: "Texture & Finishes",
-    description: "Decorative finishes that add depth and character to walls.",
+    description: "Premium Venetian plaster decorative finish that adds rich tactile depth, character, and durable protection to walls (25 KG).",
     image: "/images/products/product-texture.jpg",
-    imageAlt: "Textured architectural wall finish with natural plaster depth",
+    imageAlt: "Antico Paints Venetian Plaster Decorative Wall Texture 25 KG",
     enquiryLink: "/contact?product=Texture",
   },
   {
