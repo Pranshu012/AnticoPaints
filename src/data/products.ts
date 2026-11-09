@@ -26,12 +26,12 @@ export const authoritativeProducts: ProductItem[] = [
   },
   {
     slug: "cement-wall-primer",
-    name: "Cement Wall Primer",
+    name: "Prime Pro (Wall Primer)",
     category: "Primers",
-    description: "A preparatory coat for cement-based walls before painting.",
+    description: "Professional grade interior & exterior wall primer for superior adhesion, smooth finish, better coverage, and anti-fungal protection (20 L).",
     image: "/images/products/product-cement-wall-primer.jpg",
-    imageAlt: "Cement wall primer preparatory coating application",
-    enquiryLink: "/contact?product=Cement+Wall+Primer",
+    imageAlt: "Antico Paints Prime Pro Premium Wall Primer 20 L bucket",
+    enquiryLink: "/contact?product=Prime+Pro+Wall+Primer",
   },
   {
     slug: "luxury-emulsion",
@@ -53,11 +53,11 @@ export const authoritativeProducts: ProductItem[] = [
   },
   {
     slug: "roller-masker",
-    name: "Roller Masker",
+    name: "Roller Masker (Pre-Taped Film)",
     category: "Accessories",
-    description: "A painting accessory for masking selected areas around the work zone.",
+    description: "Pre-taped protective masking film for painting and dust protection. Strong adhesion with clean, residue-free removal (1.1m x 25m).",
     image: "/images/products/product-roller-masker.jpg",
-    imageAlt: "Roller masker protective film dispenser for painting preparation",
+    imageAlt: "Antico Paints Roller Masker Pre-Taped Masking Film 1.1m x 25m",
     enquiryLink: "/contact?product=Roller+Masker",
   },
   {

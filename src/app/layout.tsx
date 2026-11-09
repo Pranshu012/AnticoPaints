@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { companyData } from "@/data/company";
 
 export const viewport: Viewport = {
-  themeColor: "#FCFBF8",
+  themeColor: "#111111",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
