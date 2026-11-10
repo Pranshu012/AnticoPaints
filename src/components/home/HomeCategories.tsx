@@ -32,14 +32,14 @@ export function HomeCategories() {
               href={cat.href}
               className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-2xl"
             >
-              {/* Image Container with rounded corners: Unzoomed product packaging display */}
-              <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-white border border-brand-beige shadow-subtle group-hover:shadow-card group-hover:border-brand-gold/60 transition-all duration-300 flex items-center justify-center p-3">
+              {/* Image Container with rounded corners */}
+              <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl bg-brand-beige/30 border border-brand-beige shadow-subtle group-hover:shadow-card group-hover:border-brand-gold/60 transition-all duration-300">
                 <Image
                   src={cat.imageSrc}
                   alt={cat.imageAlt}
                   fill
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-contain p-2"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                 />
               </div>
 

@@ -72,16 +72,16 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
       <section className="py-10 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-start">
           
-          {/* Visual Presentation Frame: Full unzoomed product view */}
+          {/* Visual Presentation Frame (4:3) */}
           <div className="md:col-span-6 lg:col-span-7">
-            <div className="relative aspect-square max-w-lg mx-auto w-full overflow-hidden border border-brand-beige rounded-md bg-white shadow-subtle p-3 flex items-center justify-center">
+            <div className="relative aspect-[4/3] w-full overflow-hidden border border-brand-beige rounded-sm bg-brand-beige/25 shadow-subtle">
               <Image
                 src={product.image}
                 alt={product.imageAlt}
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 55vw"
-                className="object-contain p-2"
+                className="object-cover"
               />
             </div>
           </div>

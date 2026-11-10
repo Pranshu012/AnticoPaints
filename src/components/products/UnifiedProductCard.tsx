@@ -12,14 +12,15 @@ export function UnifiedProductCard({ product }: UnifiedProductCardProps) {
   return (
     <article className="group bg-brand-offwhite border border-brand-beige hover:border-brand-gold/60 transition-all duration-200 rounded-sm overflow-hidden flex flex-row md:flex-col justify-between shadow-subtle hover:shadow-hover">
       
-      {/* Product Image Area: Natural contain fit with zero zoom or cropping */}
-      <div className="w-28 sm:w-36 md:w-full shrink-0 relative aspect-square bg-white overflow-hidden border-r md:border-r-0 md:border-b border-brand-beige flex items-center justify-center p-2">
+      {/* Product Image Area */}
+      {/* Mobile: Compact Left Column (4:3) | Desktop: Full Width Top (4:3) */}
+      <div className="w-28 sm:w-36 md:w-full shrink-0 relative aspect-[4/3] bg-brand-beige/20 overflow-hidden border-r md:border-r-0 md:border-b border-brand-beige">
         <Image
           src={product.image}
           alt={product.imageAlt}
           fill
           sizes="(max-width: 640px) 144px, (max-width: 1024px) 50vw, 33vw"
-          className="object-contain p-2"
+          className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-105"
         />
       </div>
 
