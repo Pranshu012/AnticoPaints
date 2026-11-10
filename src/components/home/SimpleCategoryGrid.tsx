@@ -18,7 +18,7 @@ const CATEGORIES: CategoryCard[] = [
     name: "Texture & Finishes",
     description: "Explore decorative wall textures.",
     href: "/products/?category=texture-finishes",
-    imageSrc: "/images/products/texture-wall.svg",
+    imageSrc: "/images/products/product-texture.png",
     imageAlt: "Antico decorative wall texture finish",
   },
   {
@@ -26,7 +26,7 @@ const CATEGORIES: CategoryCard[] = [
     name: "Primers",
     description: "Prepare walls before painting.",
     href: "/products/?category=primers",
-    imageSrc: "/images/products/cement-wall-primer.svg",
+    imageSrc: "/images/products/product-cement-wall-primer.png",
     imageAlt: "Antico cement wall primer application",
   },
   {
@@ -34,7 +34,7 @@ const CATEGORIES: CategoryCard[] = [
     name: "Emulsions",
     description: "Explore our wall-paint range.",
     href: "/products/?category=emulsions",
-    imageSrc: "/images/products/luxury-emulsion.svg",
+    imageSrc: "/images/products/product-luxury-emulsion.png",
     imageAlt: "Antico smooth interior luxury emulsion",
   },
   {
@@ -42,8 +42,8 @@ const CATEGORIES: CategoryCard[] = [
     name: "Accessories",
     description: "Find painting preparation essentials.",
     href: "/products/?category=accessories",
-    imageSrc: "/images/products/masking-tape.svg",
-    imageAlt: "Antico professional masking tape and accessories",
+    imageSrc: "/images/products/product-roller.png",
+    imageAlt: "Antico professional paint roller and accessories",
   },
 ];
 
