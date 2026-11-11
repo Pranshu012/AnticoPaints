@@ -4,13 +4,6 @@
  * All submissions route to anticopaints@gmail.com.
  */
 
-import {
-  generateEnquiryEmailHtml,
-  generateEnquiryEmailText,
-  normalizePhoneForWhatsApp,
-  formatPhoneForDisplay,
-} from "./emailTemplates";
-
 export interface ContactFormPayload {
   formType: "general_contact";
   fullName: string;
@@ -50,12 +43,25 @@ export function generateMailtoUrl(
   payload: ContactFormPayload | DealerFormPayload
 ): string {
   const isDealer = payload.formType === "dealer_application";
-  const d = isDealer ? (payload as DealerFormPayload) : null;
   const subject = isDealer
-    ? `Dealership Application: ${payload.fullName} (${d?.city || "New Partner"})`
-    : `Customer Inquiry: ${payload.fullName}`;
+    ? `[Dealership Enquiry] ${payload.fullName} - ${(payload as DealerFormPayload).city}`
+    : `[Contact Enquiry] ${payload.fullName}`;
 
-  const body = generateEnquiryEmailText(payload);
+  let body = `Antico Paints Enquiry Details:\n\n`;
+  body += `Full Name: ${payload.fullName}\n`;
+  body += `Mobile Number: ${payload.mobileNumber}\n`;
+  if (payload.email) body += `Email: ${payload.email}\n`;
+
+  if (isDealer) {
+    const d = payload as DealerFormPayload;
+    if (d.businessName) body += `Business/Shop Name: ${d.businessName}\n`;
+    body += `Business Type: ${d.businessType}\n`;
+    body += `City/Town: ${d.city}\n`;
+    body += `PIN Code: ${d.pincode}\n`;
+    if (d.message) body += `\nBusiness Details/Message:\n${d.message}\n`;
+  } else {
+    body += `\nMessage/Requirement:\n${payload.message}\n`;
+  }
 
   return `mailto:anticopaints@gmail.com?subject=${encodeURIComponent(
     subject
@@ -67,6 +73,7 @@ export async function submitEnquiry(
 ): Promise<SubmissionResult> {
   // 1. Check honeypot for spam detection
   if (payload.botcheck) {
+    // If bot filled the hidden honeypot, reject silently
     return {
       success: false,
       message: "Spam submission detected. Please refresh and try again.",
@@ -81,13 +88,9 @@ export async function submitEnquiry(
   const customEndpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
 
   const isDealer = payload.formType === "dealer_application";
-  const dealerPayload = isDealer ? (payload as DealerFormPayload) : null;
-  const contactPayload = !isDealer ? (payload as ContactFormPayload) : null;
-
-  // Clean, professional subject line without awkward brackets
   const subject = isDealer
-    ? `New Dealership Application: ${payload.fullName.trim()} (${dealerPayload?.city.trim() || "India"})`
-    : `New Customer Inquiry: ${payload.fullName.trim()}${contactPayload?.enquiryType ? ` (${contactPayload.enquiryType})` : ""}`;
+    ? `[Antico Paints] New Dealership Enquiry: ${payload.fullName} (${(payload as DealerFormPayload).city})`
+    : `[Antico Paints] New Contact Enquiry: ${payload.fullName}${payload.enquiryType ? ` (${payload.enquiryType})` : ""}`;
 
   const mailtoUrl = generateMailtoUrl(payload);
 
@@ -100,98 +103,17 @@ export async function submitEnquiry(
         : "https://api.web3forms.com/submit");
 
     try {
-      const formattedTimestamp =
-        new Date().toLocaleString("en-IN", {
-          timeZone: "Asia/Kolkata",
-          dateStyle: "medium",
-          timeStyle: "short",
-        }) + " IST";
-
-      // Generate both premium CRM-grade HTML and plain-text templates
-      const emailHtml = generateEnquiryEmailHtml(payload);
-      const emailText = generateEnquiryEmailText(payload);
-
-      const rawPhone = payload.mobileNumber.trim();
-      const telPhone = rawPhone.replace(/[^\d+]/g, "");
-      const waNumber = normalizePhoneForWhatsApp(rawPhone);
-
-      const displayPhone = formatPhoneForDisplay(rawPhone);
-      const email = payload.email?.trim() || "";
-      const inquiryType = isDealer
-        ? "Dealership Application"
-        : contactPayload?.enquiryType || "Customer Contact Enquiry";
-
-      // Build structured, compact CRM notification content without oversized text, excessive padding, or emojis
-      let crmBody = `YOU'VE RECEIVED A NEW ENQUIRY!\n`;
-      crmBody += `Someone has submitted the contact form on your website. Here are the details:\n\n`;
-      crmBody += `--------------------------------------------------\n`;
-      crmBody += `CUSTOMER INFORMATION\n`;
-      crmBody += `--------------------------------------------------\n`;
-      crmBody += `Inquiry Type:       ${inquiryType}\n`;
-      crmBody += `Customer Name:      ${payload.fullName.trim()}\n`;
-      crmBody += `Phone Number:       ${displayPhone}\n`;
-      if (email) {
-        crmBody += `Email Address:      ${email}\n`;
-      }
-      if (isDealer && dealerPayload) {
-        crmBody += `City / Town:        ${dealerPayload.city.trim()}${dealerPayload.pincode ? ` (PIN: ${dealerPayload.pincode.trim()})` : ""}\n`;
-        crmBody += `Firm / Shop Name:   ${dealerPayload.businessName?.trim() || "New Venture / Counter"}\n`;
-        crmBody += `Business Profile:   ${dealerPayload.businessType}\n`;
-      }
-
-      const userNote = isDealer
-        ? dealerPayload?.message?.trim()
-        : contactPayload?.message?.trim();
-      if (userNote) {
-        crmBody += `\n--------------------------------------------------\n`;
-        crmBody += `MESSAGE / DETAILS\n`;
-        crmBody += `--------------------------------------------------\n`;
-        crmBody += `${userNote}\n`;
-      }
-
-      crmBody += `\n--------------------------------------------------\n`;
-      crmBody += `QUICK ACTIONS\n`;
-      crmBody += `--------------------------------------------------\n`;
-      crmBody += `Call Customer:      tel:${telPhone}\n`;
-      if (waNumber) {
-        crmBody += `WhatsApp Chat:      https://wa.me/${waNumber}\n`;
-      }
-      if (email) {
-        crmBody += `Reply by Email:     mailto:${email}\n`;
-      }
-
-      crmBody += `\n--------------------------------------------------\n`;
-      crmBody += `SUBMISSION DETAILS\n`;
-      crmBody += `Submitted on:       ${formattedTimestamp}\n`;
-      crmBody += `Source:             Website Contact Form\n`;
-      crmBody += `--------------------------------------------------\n`;
-      crmBody += `This is an automated notification from Antico Paints website.`;
-
-      // Clean request body using standard form fields to ensure 100% reliable delivery
       const requestBody: Record<string, any> = {
         access_key: accessKey,
         subject,
-        from_name: "Antico Paints Leads",
-        name: payload.fullName.trim(),
-        phone: displayPhone,
-        message: crmBody,
+        from_name: "Antico Paints Website",
+        name: payload.fullName,
+        phone: payload.mobileNumber,
+        ...payload,
       };
 
-      // Set reply-to header so hitting "Reply" in your email client answers the customer directly
-      if (email) {
-        requestBody.email = email;
-        requestBody.replyto = email;
-      }
-
-      // Spam honeypot
-      if (payload.botcheck) {
-        requestBody.botcheck = payload.botcheck;
-      }
-
-      // Only pass custom html/text/to_email if a custom backend endpoint is specified (not Web3Forms free tier)
+      // Only pass custom to_email if a custom backend endpoint is specified
       if (customEndpoint) {
-        requestBody.html = emailHtml;
-        requestBody.text = emailText;
         requestBody.to_email = "anticopaints@gmail.com";
       }
 
