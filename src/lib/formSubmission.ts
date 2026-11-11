@@ -43,24 +43,27 @@ export function generateMailtoUrl(
   payload: ContactFormPayload | DealerFormPayload
 ): string {
   const isDealer = payload.formType === "dealer_application";
+  const d = isDealer ? (payload as DealerFormPayload) : null;
   const subject = isDealer
-    ? `[Dealership Enquiry] ${payload.fullName} - ${(payload as DealerFormPayload).city}`
-    : `[Contact Enquiry] ${payload.fullName}`;
+    ? `Dealership Application: ${payload.fullName} (${d?.city || "New Partner"})`
+    : `Customer Inquiry: ${payload.fullName}`;
 
-  let body = `Antico Paints Enquiry Details:\n\n`;
-  body += `Full Name: ${payload.fullName}\n`;
-  body += `Mobile Number: ${payload.mobileNumber}\n`;
+  let body = isDealer
+    ? `ANTICO PAINTS - DEALERSHIP APPLICATION\n======================================\n\n`
+    : `ANTICO PAINTS - CUSTOMER INQUIRY\n================================\n\n`;
+
+  body += `Name: ${payload.fullName}\n`;
+  body += `Phone: ${payload.mobileNumber}\n`;
   if (payload.email) body += `Email: ${payload.email}\n`;
 
-  if (isDealer) {
-    const d = payload as DealerFormPayload;
-    if (d.businessName) body += `Business/Shop Name: ${d.businessName}\n`;
-    body += `Business Type: ${d.businessType}\n`;
-    body += `City/Town: ${d.city}\n`;
+  if (isDealer && d) {
+    body += `City: ${d.city}\n`;
     body += `PIN Code: ${d.pincode}\n`;
-    if (d.message) body += `\nBusiness Details/Message:\n${d.message}\n`;
+    body += `Business / Shop: ${d.businessName || "New Venture"}\n`;
+    body += `Business Type: ${d.businessType}\n`;
+    if (d.message) body += `\nMessage:\n${d.message}\n`;
   } else {
-    body += `\nMessage/Requirement:\n${payload.message}\n`;
+    body += `\nMessage:\n${payload.message}\n`;
   }
 
   return `mailto:anticopaints@gmail.com?subject=${encodeURIComponent(
@@ -73,7 +76,6 @@ export async function submitEnquiry(
 ): Promise<SubmissionResult> {
   // 1. Check honeypot for spam detection
   if (payload.botcheck) {
-    // If bot filled the hidden honeypot, reject silently
     return {
       success: false,
       message: "Spam submission detected. Please refresh and try again.",
@@ -88,9 +90,13 @@ export async function submitEnquiry(
   const customEndpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
 
   const isDealer = payload.formType === "dealer_application";
+  const dealerPayload = isDealer ? (payload as DealerFormPayload) : null;
+  const contactPayload = !isDealer ? (payload as ContactFormPayload) : null;
+
+  // Clean, professional subject line without awkward brackets
   const subject = isDealer
-    ? `[Antico Paints] New Dealership Enquiry: ${payload.fullName} (${(payload as DealerFormPayload).city})`
-    : `[Antico Paints] New Contact Enquiry: ${payload.fullName}${payload.enquiryType ? ` (${payload.enquiryType})` : ""}`;
+    ? `New Dealership Application: ${payload.fullName.trim()} (${dealerPayload?.city.trim() || "India"})`
+    : `New Customer Inquiry: ${payload.fullName.trim()}${contactPayload?.enquiryType ? ` (${contactPayload.enquiryType})` : ""}`;
 
   const mailtoUrl = generateMailtoUrl(payload);
 
@@ -103,14 +109,59 @@ export async function submitEnquiry(
         : "https://api.web3forms.com/submit");
 
     try {
+      const formattedTimestamp =
+        new Date().toLocaleString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          dateStyle: "medium",
+          timeStyle: "short",
+        }) + " IST";
+
+      // Build clean, human-readable fields so the resulting email has zero technical noise or duplication
       const requestBody: Record<string, any> = {
         access_key: accessKey,
         subject,
-        from_name: "Antico Paints Website",
-        name: payload.fullName,
-        phone: payload.mobileNumber,
-        ...payload,
+        from_name: "Antico Paints Leads",
       };
+
+      // Set reply-to header so hitting "Reply" in your email client answers the customer directly
+      if (payload.email && payload.email.trim()) {
+        requestBody.replyto = payload.email.trim();
+      }
+
+      if (isDealer && dealerPayload) {
+        requestBody["Inquiry Type"] = "🤝 Dealership Application";
+        requestBody["Applicant Name"] = dealerPayload.fullName.trim();
+        requestBody["Mobile / WhatsApp"] = dealerPayload.mobileNumber.trim();
+        if (dealerPayload.email && dealerPayload.email.trim()) {
+          requestBody["Email Address"] = dealerPayload.email.trim();
+        }
+        requestBody["City / Town"] = dealerPayload.city.trim();
+        requestBody["PIN Code"] = dealerPayload.pincode.trim();
+        requestBody["Firm / Shop Name"] =
+          dealerPayload.businessName?.trim() || "New Venture / Counter";
+        requestBody["Business Background"] = dealerPayload.businessType;
+        if (dealerPayload.message && dealerPayload.message.trim()) {
+          requestBody["Requirement / Message"] = dealerPayload.message.trim();
+        }
+        requestBody["Submitted On"] = formattedTimestamp;
+      } else if (contactPayload) {
+        requestBody["Inquiry Type"] = "📩 Customer Website Inquiry";
+        requestBody["Customer Name"] = contactPayload.fullName.trim();
+        requestBody["Mobile / WhatsApp"] = contactPayload.mobileNumber.trim();
+        if (contactPayload.email && contactPayload.email.trim()) {
+          requestBody["Email Address"] = contactPayload.email.trim();
+        }
+        if (contactPayload.enquiryType) {
+          requestBody["Topic / Area"] = contactPayload.enquiryType;
+        }
+        requestBody["Message / Details"] = contactPayload.message.trim();
+        requestBody["Submitted On"] = formattedTimestamp;
+      }
+
+      // Spam honeypot
+      if (payload.botcheck) {
+        requestBody.botcheck = payload.botcheck;
+      }
 
       // Only pass custom to_email if a custom backend endpoint is specified
       if (customEndpoint) {
