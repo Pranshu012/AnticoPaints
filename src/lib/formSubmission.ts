@@ -103,19 +103,27 @@ export async function submitEnquiry(
         : "https://api.web3forms.com/submit");
 
     try {
+      const requestBody: Record<string, any> = {
+        access_key: accessKey,
+        subject,
+        from_name: "Antico Paints Website",
+        name: payload.fullName,
+        phone: payload.mobileNumber,
+        ...payload,
+      };
+
+      // Only pass custom to_email if a custom backend endpoint is specified
+      if (customEndpoint) {
+        requestBody.to_email = "anticopaints@gmail.com";
+      }
+
       const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject,
-          from_name: "Antico Paints Website",
-          to_email: "anticopaints@gmail.com",
-          ...payload,
-        }),
+        body: JSON.stringify(requestBody),
       });
 
       const data = await response.json().catch(() => null);

@@ -14,6 +14,7 @@ const nextConfig = {
   assetPrefix: basePath ? `${basePath}/` : undefined,
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
+    NEXT_PUBLIC_WEB3FORMS_KEY: "d12c311d-16aa-4ba5-9d33-3a831a3ad8e4",
   },
 };
 
