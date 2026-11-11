@@ -4,6 +4,12 @@
  * All submissions route to anticopaints@gmail.com.
  */
 
+import {
+  generateEnquiryEmailHtml,
+  generateEnquiryEmailText,
+  normalizePhoneForWhatsApp,
+} from "./emailTemplates";
+
 export interface ContactFormPayload {
   formType: "general_contact";
   fullName: string;
@@ -48,23 +54,7 @@ export function generateMailtoUrl(
     ? `Dealership Application: ${payload.fullName} (${d?.city || "New Partner"})`
     : `Customer Inquiry: ${payload.fullName}`;
 
-  let body = isDealer
-    ? `ANTICO PAINTS - DEALERSHIP APPLICATION\n======================================\n\n`
-    : `ANTICO PAINTS - CUSTOMER INQUIRY\n================================\n\n`;
-
-  body += `Name: ${payload.fullName}\n`;
-  body += `Phone: ${payload.mobileNumber}\n`;
-  if (payload.email) body += `Email: ${payload.email}\n`;
-
-  if (isDealer && d) {
-    body += `City: ${d.city}\n`;
-    body += `PIN Code: ${d.pincode}\n`;
-    body += `Business / Shop: ${d.businessName || "New Venture"}\n`;
-    body += `Business Type: ${d.businessType}\n`;
-    if (d.message) body += `\nMessage:\n${d.message}\n`;
-  } else {
-    body += `\nMessage:\n${payload.message}\n`;
-  }
+  const body = generateEnquiryEmailText(payload);
 
   return `mailto:anticopaints@gmail.com?subject=${encodeURIComponent(
     subject
@@ -116,11 +106,22 @@ export async function submitEnquiry(
           timeStyle: "short",
         }) + " IST";
 
+      // Generate both premium CRM-grade HTML and plain-text templates
+      const emailHtml = generateEnquiryEmailHtml(payload);
+      const emailText = generateEnquiryEmailText(payload);
+
+      const rawPhone = payload.mobileNumber.trim();
+      const telPhone = rawPhone.replace(/[^\d+]/g, "");
+      const waNumber = normalizePhoneForWhatsApp(rawPhone);
+
       // Build clean, human-readable fields so the resulting email has zero technical noise or duplication
       const requestBody: Record<string, any> = {
         access_key: accessKey,
         subject,
         from_name: "Antico Paints Leads",
+        // Standard HTML and text payloads for custom endpoints / modern form backends
+        html: emailHtml,
+        text: emailText,
       };
 
       // Set reply-to header so hitting "Reply" in your email client answers the customer directly
@@ -143,6 +144,14 @@ export async function submitEnquiry(
         if (dealerPayload.message && dealerPayload.message.trim()) {
           requestBody["Requirement / Message"] = dealerPayload.message.trim();
         }
+        // Quick Actions directly accessible
+        requestBody["Call Customer"] = `tel:${telPhone}`;
+        if (waNumber) {
+          requestBody["WhatsApp Customer"] = `https://wa.me/${waNumber}`;
+        }
+        if (dealerPayload.email && dealerPayload.email.trim()) {
+          requestBody["Reply by Email"] = `mailto:${dealerPayload.email.trim()}`;
+        }
         requestBody["Submitted On"] = formattedTimestamp;
       } else if (contactPayload) {
         requestBody["Inquiry Type"] = "📩 Customer Website Inquiry";
@@ -155,6 +164,14 @@ export async function submitEnquiry(
           requestBody["Topic / Area"] = contactPayload.enquiryType;
         }
         requestBody["Message / Details"] = contactPayload.message.trim();
+        // Quick Actions directly accessible
+        requestBody["Call Customer"] = `tel:${telPhone}`;
+        if (waNumber) {
+          requestBody["WhatsApp Customer"] = `https://wa.me/${waNumber}`;
+        }
+        if (contactPayload.email && contactPayload.email.trim()) {
+          requestBody["Reply by Email"] = `mailto:${contactPayload.email.trim()}`;
+        }
         requestBody["Submitted On"] = formattedTimestamp;
       }
 
