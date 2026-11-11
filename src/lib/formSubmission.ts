@@ -8,6 +8,7 @@ import {
   generateEnquiryEmailHtml,
   generateEnquiryEmailText,
   normalizePhoneForWhatsApp,
+  formatPhoneForDisplay,
 } from "./emailTemplates";
 
 export interface ContactFormPayload {
@@ -114,46 +115,72 @@ export async function submitEnquiry(
       const telPhone = rawPhone.replace(/[^\d+]/g, "");
       const waNumber = normalizePhoneForWhatsApp(rawPhone);
 
-      // Build clean, human-readable fields so the resulting email has zero technical noise or duplication
+      const displayPhone = formatPhoneForDisplay(rawPhone);
+      const email = payload.email?.trim() || "";
+      const inquiryType = isDealer
+        ? "Dealership Application"
+        : contactPayload?.enquiryType || "Customer Contact Enquiry";
+
+      // Build structured, compact CRM notification content without oversized text, excessive padding, or emojis
+      let crmBody = `YOU'VE RECEIVED A NEW ENQUIRY!\n`;
+      crmBody += `Someone has submitted the contact form on your website. Here are the details:\n\n`;
+      crmBody += `--------------------------------------------------\n`;
+      crmBody += `CUSTOMER INFORMATION\n`;
+      crmBody += `--------------------------------------------------\n`;
+      crmBody += `Inquiry Type:       ${inquiryType}\n`;
+      crmBody += `Customer Name:      ${payload.fullName.trim()}\n`;
+      crmBody += `Phone Number:       ${displayPhone}\n`;
+      if (email) {
+        crmBody += `Email Address:      ${email}\n`;
+      }
+      if (isDealer && dealerPayload) {
+        crmBody += `City / Town:        ${dealerPayload.city.trim()}${dealerPayload.pincode ? ` (PIN: ${dealerPayload.pincode.trim()})` : ""}\n`;
+        crmBody += `Firm / Shop Name:   ${dealerPayload.businessName?.trim() || "New Venture / Counter"}\n`;
+        crmBody += `Business Profile:   ${dealerPayload.businessType}\n`;
+      }
+
+      const userNote = isDealer
+        ? dealerPayload?.message?.trim()
+        : contactPayload?.message?.trim();
+      if (userNote) {
+        crmBody += `\n--------------------------------------------------\n`;
+        crmBody += `MESSAGE / DETAILS\n`;
+        crmBody += `--------------------------------------------------\n`;
+        crmBody += `${userNote}\n`;
+      }
+
+      crmBody += `\n--------------------------------------------------\n`;
+      crmBody += `QUICK ACTIONS\n`;
+      crmBody += `--------------------------------------------------\n`;
+      crmBody += `Call Customer:      tel:${telPhone}\n`;
+      if (waNumber) {
+        crmBody += `WhatsApp Chat:      https://wa.me/${waNumber}\n`;
+      }
+      if (email) {
+        crmBody += `Reply by Email:     mailto:${email}\n`;
+      }
+
+      crmBody += `\n--------------------------------------------------\n`;
+      crmBody += `SUBMISSION DETAILS\n`;
+      crmBody += `Submitted on:       ${formattedTimestamp}\n`;
+      crmBody += `Source:             Website Contact Form\n`;
+      crmBody += `--------------------------------------------------\n`;
+      crmBody += `This is an automated notification from Antico Paints website.`;
+
+      // Clean request body using standard form fields to ensure 100% reliable delivery
       const requestBody: Record<string, any> = {
         access_key: accessKey,
         subject,
         from_name: "Antico Paints Leads",
+        name: payload.fullName.trim(),
+        phone: displayPhone,
+        message: crmBody,
       };
 
       // Set reply-to header so hitting "Reply" in your email client answers the customer directly
-      if (payload.email && payload.email.trim()) {
-        requestBody.replyto = payload.email.trim();
-      }
-
-      if (isDealer && dealerPayload) {
-        requestBody["Inquiry Type"] = "🤝 Dealership Application";
-        requestBody["Applicant Name"] = dealerPayload.fullName.trim();
-        requestBody["Mobile / WhatsApp"] = dealerPayload.mobileNumber.trim();
-        if (dealerPayload.email && dealerPayload.email.trim()) {
-          requestBody["Email Address"] = dealerPayload.email.trim();
-        }
-        requestBody["City / Town"] = dealerPayload.city.trim();
-        requestBody["PIN Code"] = dealerPayload.pincode.trim();
-        requestBody["Firm / Shop Name"] =
-          dealerPayload.businessName?.trim() || "New Venture / Counter";
-        requestBody["Business Background"] = dealerPayload.businessType;
-        if (dealerPayload.message && dealerPayload.message.trim()) {
-          requestBody["Requirement / Message"] = dealerPayload.message.trim();
-        }
-        requestBody["Submitted On"] = formattedTimestamp;
-      } else if (contactPayload) {
-        requestBody["Inquiry Type"] = "📩 Customer Website Inquiry";
-        requestBody["Customer Name"] = contactPayload.fullName.trim();
-        requestBody["Mobile / WhatsApp"] = contactPayload.mobileNumber.trim();
-        if (contactPayload.email && contactPayload.email.trim()) {
-          requestBody["Email Address"] = contactPayload.email.trim();
-        }
-        if (contactPayload.enquiryType) {
-          requestBody["Topic / Area"] = contactPayload.enquiryType;
-        }
-        requestBody["Message / Details"] = contactPayload.message.trim();
-        requestBody["Submitted On"] = formattedTimestamp;
+      if (email) {
+        requestBody.email = email;
+        requestBody.replyto = email;
       }
 
       // Spam honeypot

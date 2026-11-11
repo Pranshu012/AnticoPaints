@@ -366,9 +366,9 @@ export function generateEnquiryEmailHtml(
                         ? `<span class="action-stack" style="display: inline-block; margin-right: 8px; margin-bottom: 8px;">
                       <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="display: inline-block;">
                         <tr>
-                          <td style="background-color: #111111; border-radius: 7px;">
-                            <a href="${mailtoUrl}" target="_blank" style="display: inline-block; padding: 10px 18px; font-size: 13px; font-weight: 600; color: #FFFFFF; text-decoration: none; border-radius: 7px; font-family: inherit;">
-                              &#9993;&nbsp; Reply by Email
+                          <td style="background-color: #111111; border-radius: 6px;">
+                            <a href="${mailtoUrl}" target="_blank" style="display: inline-block; padding: 9px 16px; font-size: 13px; font-weight: 600; color: #FFFFFF; text-decoration: none; border-radius: 6px; font-family: inherit;">
+                              Reply by Email
                             </a>
                           </td>
                         </tr>
@@ -380,9 +380,9 @@ export function generateEnquiryEmailHtml(
                     <span class="action-stack" style="display: inline-block; margin-right: 8px; margin-bottom: 8px;">
                       <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="display: inline-block;">
                         <tr>
-                          <td style="background-color: #FFFFFF; border: 1px solid #D4D4D8; border-radius: 7px;">
-                            <a href="tel:${telPhone}" style="display: inline-block; padding: 9px 16px; font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; border-radius: 7px; font-family: inherit;">
-                              &#9742;&nbsp; Call Customer
+                          <td style="background-color: #FFFFFF; border: 1px solid #D4D4D8; border-radius: 6px;">
+                            <a href="tel:${telPhone}" style="display: inline-block; padding: 8px 15px; font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; border-radius: 6px; font-family: inherit;">
+                              Call Customer
                             </a>
                           </td>
                         </tr>
@@ -394,9 +394,9 @@ export function generateEnquiryEmailHtml(
                         ? `<span class="action-stack" style="display: inline-block; margin-bottom: 8px;">
                       <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="display: inline-block;">
                         <tr>
-                          <td style="background-color: #25D366; border-radius: 7px;">
-                            <a href="${waUrl}" target="_blank" style="display: inline-block; padding: 10px 16px; font-size: 13px; font-weight: 600; color: #FFFFFF; text-decoration: none; border-radius: 7px; font-family: inherit;">
-                              &#128172;&nbsp; WhatsApp
+                          <td style="background-color: #25D366; border-radius: 6px;">
+                            <a href="${waUrl}" target="_blank" style="display: inline-block; padding: 9px 16px; font-size: 13px; font-weight: 600; color: #FFFFFF; text-decoration: none; border-radius: 6px; font-family: inherit;">
+                              WhatsApp
                             </a>
                           </td>
                         </tr>
