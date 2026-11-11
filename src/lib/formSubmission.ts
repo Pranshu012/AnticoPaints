@@ -119,9 +119,6 @@ export async function submitEnquiry(
         access_key: accessKey,
         subject,
         from_name: "Antico Paints Leads",
-        // Standard HTML and text payloads for custom endpoints / modern form backends
-        html: emailHtml,
-        text: emailText,
       };
 
       // Set reply-to header so hitting "Reply" in your email client answers the customer directly
@@ -144,14 +141,6 @@ export async function submitEnquiry(
         if (dealerPayload.message && dealerPayload.message.trim()) {
           requestBody["Requirement / Message"] = dealerPayload.message.trim();
         }
-        // Quick Actions directly accessible
-        requestBody["Call Customer"] = `tel:${telPhone}`;
-        if (waNumber) {
-          requestBody["WhatsApp Customer"] = `https://wa.me/${waNumber}`;
-        }
-        if (dealerPayload.email && dealerPayload.email.trim()) {
-          requestBody["Reply by Email"] = `mailto:${dealerPayload.email.trim()}`;
-        }
         requestBody["Submitted On"] = formattedTimestamp;
       } else if (contactPayload) {
         requestBody["Inquiry Type"] = "📩 Customer Website Inquiry";
@@ -164,14 +153,6 @@ export async function submitEnquiry(
           requestBody["Topic / Area"] = contactPayload.enquiryType;
         }
         requestBody["Message / Details"] = contactPayload.message.trim();
-        // Quick Actions directly accessible
-        requestBody["Call Customer"] = `tel:${telPhone}`;
-        if (waNumber) {
-          requestBody["WhatsApp Customer"] = `https://wa.me/${waNumber}`;
-        }
-        if (contactPayload.email && contactPayload.email.trim()) {
-          requestBody["Reply by Email"] = `mailto:${contactPayload.email.trim()}`;
-        }
         requestBody["Submitted On"] = formattedTimestamp;
       }
 
@@ -180,8 +161,10 @@ export async function submitEnquiry(
         requestBody.botcheck = payload.botcheck;
       }
 
-      // Only pass custom to_email if a custom backend endpoint is specified
+      // Only pass custom html/text/to_email if a custom backend endpoint is specified (not Web3Forms free tier)
       if (customEndpoint) {
+        requestBody.html = emailHtml;
+        requestBody.text = emailText;
         requestBody.to_email = "anticopaints@gmail.com";
       }
 
