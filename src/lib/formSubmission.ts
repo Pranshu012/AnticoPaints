@@ -106,11 +106,18 @@ export async function submitEnquiry(
         timeZone: "Asia/Kolkata",
       }).format(new Date());
 
-      // Format clean phone for direct dial and WhatsApp
-      const rawDigits = payload.mobileNumber.replace(/\D/g, "");
-      const last10 = rawDigits.slice(-10);
-      const waLink = last10.length === 10 ? `https://wa.me/91${last10}` : undefined;
-      const telLink = `tel:${payload.mobileNumber.trim().replace(/\s+/g, "")}`;
+      // Format strictly 10-digit Indian phone number
+      let digits10 = payload.mobileNumber.replace(/\D/g, "");
+      if (digits10.length === 12 && digits10.startsWith("91")) {
+        digits10 = digits10.slice(2);
+      } else if (digits10.length === 11 && digits10.startsWith("0")) {
+        digits10 = digits10.slice(1);
+      }
+      digits10 = digits10.slice(0, 10);
+
+      const formattedPhone = digits10.length === 10 ? `+91 ${digits10}` : payload.mobileNumber.trim();
+      const waLink = digits10.length === 10 ? `https://wa.me/91${digits10}` : undefined;
+      const telLink = digits10.length === 10 ? `tel:+91${digits10}` : `tel:${payload.mobileNumber.trim()}`;
 
       let requestBody: Record<string, any>;
 
@@ -125,7 +132,7 @@ export async function submitEnquiry(
           from_name: "Antico Paints Website",
           "Enquiry Category": "Dealership & Distribution Partner Application",
           "Applicant Name": applicantName,
-          "Mobile Number": d.mobileNumber.trim().slice(0, 15),
+          "Mobile Number": formattedPhone,
           "Email Address": d.email?.trim().slice(0, 100) || "Not provided",
           "Business / Shop Name": d.businessName?.trim().slice(0, 100) || "Not specified",
           "Business Type": d.businessType,
@@ -147,7 +154,7 @@ export async function submitEnquiry(
           from_name: "Antico Paints Website",
           "Enquiry Category": category,
           "Customer Name": customerName,
-          "Mobile Number": c.mobileNumber.trim().slice(0, 15),
+          "Mobile Number": formattedPhone,
           "Email Address": c.email?.trim().slice(0, 100) || "Not provided",
           "Message / Requirement": c.message.trim().slice(0, 1000),
           "Click to Call": telLink,

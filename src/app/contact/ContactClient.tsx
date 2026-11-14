@@ -720,28 +720,37 @@ export function ContactClient() {
                       >
                         Mobile Number <span className="text-red-600">*</span>
                       </label>
-                      <input
-                        id="gen-mobileNumber"
-                        type="tel"
-                        required
-                        maxLength={15}
-                        value={generalFormData.mobileNumber}
-                        onChange={(e) => {
-                          const filtered = e.target.value.replace(/[^\d+\s-]/g, "");
-                          setGeneralFormData({
-                            ...generalFormData,
-                            mobileNumber: filtered,
-                          });
-                          if (generalErrors.mobileNumber)
-                            setGeneralErrors({ ...generalErrors, mobileNumber: undefined });
-                        }}
-                        placeholder="e.g. 9876543210"
-                        className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-lg focus:outline-none transition-colors ${
-                          generalErrors.mobileNumber
-                            ? "border-red-500 bg-red-50/20"
-                            : "border-brand-beige focus:border-brand-gold"
-                        }`}
-                      />
+                      <div className="relative flex rounded-lg">
+                        <span className="inline-flex items-center px-3.5 rounded-l-lg border border-r-0 border-brand-beige bg-neutral-100 text-neutral-700 text-sm font-semibold select-none">
+                          +91
+                        </span>
+                        <input
+                          id="gen-mobileNumber"
+                          type="tel"
+                          inputMode="numeric"
+                          required
+                          maxLength={10}
+                          value={generalFormData.mobileNumber}
+                          onChange={(e) => {
+                            let val = e.target.value.replace(/\D/g, "");
+                            if (val.length === 12 && val.startsWith("91")) val = val.slice(2);
+                            else if (val.length === 11 && val.startsWith("0")) val = val.slice(1);
+                            val = val.slice(0, 10);
+                            setGeneralFormData({
+                              ...generalFormData,
+                              mobileNumber: val,
+                            });
+                            if (generalErrors.mobileNumber)
+                              setGeneralErrors({ ...generalErrors, mobileNumber: undefined });
+                          }}
+                          placeholder="9876543210"
+                          className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-r-lg focus:outline-none transition-colors ${
+                            generalErrors.mobileNumber
+                              ? "border-red-500 bg-red-50/20"
+                              : "border-brand-beige focus:border-brand-gold"
+                          }`}
+                        />
+                      </div>
                       {generalErrors.mobileNumber && (
                         <p className="text-xs text-red-600 mt-1">
                           {generalErrors.mobileNumber}
@@ -999,28 +1008,37 @@ export function ContactClient() {
                       >
                         Mobile Number <span className="text-red-600">*</span>
                       </label>
-                      <input
-                        id="deal-mobileNumber"
-                        type="tel"
-                        required
-                        maxLength={15}
-                        value={dealerFormData.mobileNumber}
-                        onChange={(e) => {
-                          const filtered = e.target.value.replace(/[^\d+\s-]/g, "");
-                          setDealerFormData({
-                            ...dealerFormData,
-                            mobileNumber: filtered,
-                          });
-                          if (dealerErrors.mobileNumber)
-                            setDealerErrors({ ...dealerErrors, mobileNumber: undefined });
-                        }}
-                        placeholder="e.g. 8000642900"
-                        className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-lg focus:outline-none transition-colors ${
-                          dealerErrors.mobileNumber
-                            ? "border-red-500 bg-red-50/20"
-                            : "border-brand-beige focus:border-brand-gold"
-                        }`}
-                      />
+                      <div className="relative flex rounded-lg">
+                        <span className="inline-flex items-center px-3.5 rounded-l-lg border border-r-0 border-brand-beige bg-neutral-100 text-neutral-700 text-sm font-semibold select-none">
+                          +91
+                        </span>
+                        <input
+                          id="deal-mobileNumber"
+                          type="tel"
+                          inputMode="numeric"
+                          required
+                          maxLength={10}
+                          value={dealerFormData.mobileNumber}
+                          onChange={(e) => {
+                            let val = e.target.value.replace(/\D/g, "");
+                            if (val.length === 12 && val.startsWith("91")) val = val.slice(2);
+                            else if (val.length === 11 && val.startsWith("0")) val = val.slice(1);
+                            val = val.slice(0, 10);
+                            setDealerFormData({
+                              ...dealerFormData,
+                              mobileNumber: val,
+                            });
+                            if (dealerErrors.mobileNumber)
+                              setDealerErrors({ ...dealerErrors, mobileNumber: undefined });
+                          }}
+                          placeholder="8000642900"
+                          className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-r-lg focus:outline-none transition-colors ${
+                            dealerErrors.mobileNumber
+                              ? "border-red-500 bg-red-50/20"
+                              : "border-brand-beige focus:border-brand-gold"
+                          }`}
+                        />
+                      </div>
                       {dealerErrors.mobileNumber && (
                         <p className="text-xs text-red-600 mt-1">{dealerErrors.mobileNumber}</p>
                       )}

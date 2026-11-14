@@ -34,57 +34,47 @@ export function validateFullName(name: string): ValidationResult {
 }
 
 /**
- * Validates Indian mobile number with prefix [6-9] and length constraints
+ * Validates Indian mobile number (strictly 10 digits starting with [6-9])
  */
 export function validateMobileNumber(phone: string): ValidationResult {
   const trimmed = phone.trim();
   if (!trimmed) {
-    return { isValid: false, error: "Please enter your mobile number." };
+    return { isValid: false, error: "Please enter your 10-digit mobile number." };
   }
 
-  // Extract numeric digits
-  const digits = trimmed.replace(/\D/g, "");
-
-  // 10-digit Indian mobile
-  if (digits.length === 10) {
-    if (!/^[6-9]/.test(digits)) {
-      return {
-        isValid: false,
-        error: "Indian mobile numbers must start with 6, 7, 8, or 9.",
-      };
-    }
+  // Extract numeric digits and strip +91 or leading 0 if pasted
+  let digits = trimmed.replace(/\D/g, "");
+  if (digits.length === 12 && digits.startsWith("91")) {
+    digits = digits.slice(2);
   } else if (digits.length === 11 && digits.startsWith("0")) {
-    if (!/^0[6-9]/.test(digits)) {
-      return {
-        isValid: false,
-        error: "Mobile number starting with 0 must be followed by 6, 7, 8, or 9.",
-      };
-    }
-  } else if (digits.length === 12 && digits.startsWith("91")) {
-    if (!/^91[6-9]/.test(digits)) {
-      return {
-        isValid: false,
-        error: "Mobile number with +91 country code must start with 6, 7, 8, or 9.",
-      };
-    }
-  } else {
+    digits = digits.slice(1);
+  }
+
+  // Strictly 10 digits
+  if (digits.length !== 10) {
     return {
       isValid: false,
-      error: "Please enter a valid 10-digit mobile number.",
+      error: "Please enter a valid 10-digit Indian mobile number.",
+    };
+  }
+
+  if (!/^[6-9]/.test(digits)) {
+    return {
+      isValid: false,
+      error: "Indian mobile numbers must start with 6, 7, 8, or 9.",
     };
   }
 
   // Reject all repetitive dummy numbers like 0000000000, 1111111111, 9999999999
-  const last10 = digits.slice(-10);
-  if (/^(\d)\1{9}$/.test(last10)) {
+  if (/^(\d)\1{9}$/.test(digits)) {
     return {
       isValid: false,
       error: "Please enter a genuine, active mobile number.",
     };
   }
 
-  // Sequential dummy test: 1234567890 or 9876543210
-  if (last10 === "1234567890" || last10 === "0123456789") {
+  // Sequential dummy test: 1234567890 or 0123456789
+  if (digits === "1234567890" || digits === "0123456789") {
     return {
       isValid: false,
       error: "Please enter a valid personal mobile number.",

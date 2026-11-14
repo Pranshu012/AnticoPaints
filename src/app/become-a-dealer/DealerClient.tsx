@@ -482,25 +482,34 @@ export function DealerClient() {
                 >
                   Mobile Number <span className="text-red-600" aria-label="required">*</span>
                 </label>
-                <input
-                  id="dealer-mobileNumber"
-                  type="tel"
-                  required
-                  maxLength={15}
-                  value={formData.mobileNumber}
-                  onChange={(e) => {
-                    const filtered = e.target.value.replace(/[^\d+\s-]/g, "");
-                    setFormData({ ...formData, mobileNumber: filtered });
-                    if (errors.mobileNumber) setErrors({ ...errors, mobileNumber: undefined });
-                  }}
-                  placeholder="e.g. 8000642900"
-                  className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-lg focus:outline-none transition-colors ${
-                    errors.mobileNumber
-                      ? "border-red-500 focus:border-red-600 bg-red-50/20"
-                      : "border-brand-beige focus:border-brand-gold"
-                  }`}
-                  aria-invalid={errors.mobileNumber ? "true" : "false"}
-                />
+                <div className="relative flex rounded-lg">
+                  <span className="inline-flex items-center px-3.5 rounded-l-lg border border-r-0 border-brand-beige bg-neutral-100 text-neutral-700 text-sm font-semibold select-none">
+                    +91
+                  </span>
+                  <input
+                    id="dealer-mobileNumber"
+                    type="tel"
+                    inputMode="numeric"
+                    required
+                    maxLength={10}
+                    value={formData.mobileNumber}
+                    onChange={(e) => {
+                      let val = e.target.value.replace(/\D/g, "");
+                      if (val.length === 12 && val.startsWith("91")) val = val.slice(2);
+                      else if (val.length === 11 && val.startsWith("0")) val = val.slice(1);
+                      val = val.slice(0, 10);
+                      setFormData({ ...formData, mobileNumber: val });
+                      if (errors.mobileNumber) setErrors({ ...errors, mobileNumber: undefined });
+                    }}
+                    placeholder="8000642900"
+                    className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-r-lg focus:outline-none transition-colors ${
+                      errors.mobileNumber
+                        ? "border-red-500 focus:border-red-600 bg-red-50/20"
+                        : "border-brand-beige focus:border-brand-gold"
+                    }`}
+                    aria-invalid={errors.mobileNumber ? "true" : "false"}
+                  />
+                </div>
                 {errors.mobileNumber && (
                   <p className="text-xs text-red-600 mt-1">{errors.mobileNumber}</p>
                 )}
