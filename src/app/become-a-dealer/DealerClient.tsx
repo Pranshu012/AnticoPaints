@@ -15,14 +15,27 @@ import {
 } from "lucide-react";
 import { dealerPageData, verifiedContactData } from "@/data/company";
 import { submitEnquiry } from "@/lib/formSubmission";
+import {
+  validateFullName,
+  validateMobileNumber,
+  validateEmail,
+  validateMessage,
+  validateCity,
+  validatePincode,
+  validateBusinessName,
+  checkSubmissionCooldown,
+  recordSubmissionSuccess,
+} from "@/lib/formValidation";
 
 interface FormErrors {
   fullName?: string;
   mobileNumber?: string;
   email?: string;
+  businessName?: string;
   businessType?: string;
   city?: string;
   pincode?: string;
+  message?: string;
   consent?: string;
 }
 
@@ -64,38 +77,64 @@ export function DealerClient() {
   };
 
   const validate = (): boolean => {
+    // 1. Cooldown rate limit check
+    const cooldown = checkSubmissionCooldown();
+    if (!cooldown.allowed) {
+      setSubmitStatus("error");
+      setStatusMessage(`Please wait ${cooldown.remainingSeconds} seconds before submitting another application.`);
+      return false;
+    }
+
     const newErrors: FormErrors = {};
 
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = "Please enter your full name.";
+    // 2. Full Name validation
+    const nameRes = validateFullName(formData.fullName);
+    if (!nameRes.isValid) {
+      newErrors.fullName = nameRes.error;
     }
 
-    const phoneDigits = formData.mobileNumber.replace(/\D/g, "");
-    if (!formData.mobileNumber.trim()) {
-      newErrors.mobileNumber = "Please enter your mobile number.";
-    } else if (phoneDigits.length < 10) {
-      newErrors.mobileNumber = "Please enter a valid 10-digit mobile number.";
+    // 3. Mobile Number validation
+    const phoneRes = validateMobileNumber(formData.mobileNumber);
+    if (!phoneRes.isValid) {
+      newErrors.mobileNumber = phoneRes.error;
     }
 
-    if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
-      newErrors.email = "Please enter a valid email address.";
+    // 4. Email validation (optional)
+    const emailRes = validateEmail(formData.email);
+    if (!emailRes.isValid) {
+      newErrors.email = emailRes.error;
     }
 
+    // 5. Business Name validation (optional)
+    const bizRes = validateBusinessName(formData.businessName);
+    if (!bizRes.isValid) {
+      newErrors.businessName = bizRes.error;
+    }
+
+    // 6. Business Type
     if (!formData.businessType) {
       newErrors.businessType = "Please select a business type.";
     }
 
-    if (!formData.city.trim()) {
-      newErrors.city = "Please enter your city or town.";
+    // 7. City validation
+    const cityRes = validateCity(formData.city);
+    if (!cityRes.isValid) {
+      newErrors.city = cityRes.error;
     }
 
-    const pinDigits = formData.pincode.replace(/\D/g, "");
-    if (!formData.pincode.trim()) {
-      newErrors.pincode = "Please enter your PIN code.";
-    } else if (pinDigits.length !== 6) {
-      newErrors.pincode = "Please enter a valid 6-digit PIN code.";
+    // 8. PIN code validation
+    const pinRes = validatePincode(formData.pincode);
+    if (!pinRes.isValid) {
+      newErrors.pincode = pinRes.error;
     }
 
+    // 9. Message / Business Note (optional)
+    const msgRes = validateMessage(formData.message, false);
+    if (!msgRes.isValid) {
+      newErrors.message = msgRes.error;
+    }
+
+    // 10. Consent validation
     if (!formData.consent) {
       newErrors.consent = "Please agree to be contacted regarding this dealership enquiry.";
     }
@@ -132,6 +171,7 @@ export function DealerClient() {
     setIsSubmitting(false);
 
     if (result.success) {
+      recordSubmissionSuccess();
       setSubmitStatus("success");
       setStatusMessage(result.message);
       setMailtoUrl(result.mailtoUrl || null);
@@ -397,6 +437,7 @@ export function DealerClient() {
                 name="botcheck"
                 tabIndex={-1}
                 autoComplete="off"
+                aria-hidden="true"
                 value={formData.botcheck}
                 onChange={(e) => setFormData({ ...formData, botcheck: e.target.value })}
               />
@@ -415,6 +456,7 @@ export function DealerClient() {
                   id="dealer-fullName"
                   type="text"
                   required
+                  maxLength={80}
                   value={formData.fullName}
                   onChange={(e) => {
                     setFormData({ ...formData, fullName: e.target.value });
@@ -444,9 +486,11 @@ export function DealerClient() {
                   id="dealer-mobileNumber"
                   type="tel"
                   required
+                  maxLength={15}
                   value={formData.mobileNumber}
                   onChange={(e) => {
-                    setFormData({ ...formData, mobileNumber: e.target.value });
+                    const filtered = e.target.value.replace(/[^\d+\s-]/g, "");
+                    setFormData({ ...formData, mobileNumber: filtered });
                     if (errors.mobileNumber) setErrors({ ...errors, mobileNumber: undefined });
                   }}
                   placeholder="e.g. 8000642900"
@@ -475,6 +519,7 @@ export function DealerClient() {
                 <input
                   id="dealer-email"
                   type="email"
+                  maxLength={100}
                   value={formData.email}
                   onChange={(e) => {
                     setFormData({ ...formData, email: e.target.value });
@@ -502,11 +547,22 @@ export function DealerClient() {
                 <input
                   id="dealer-businessName"
                   type="text"
+                  maxLength={100}
                   value={formData.businessName}
-                  onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
+                  onChange={(e) => {
+                    setFormData({ ...formData, businessName: e.target.value });
+                    if (errors.businessName) setErrors({ ...errors, businessName: undefined });
+                  }}
                   placeholder="e.g. Sharma Paint & Hardware"
-                  className="w-full px-4 py-3 bg-brand-offwhite border border-brand-beige text-sm text-neutral-900 rounded-lg focus:outline-none focus:border-brand-gold"
+                  className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-lg focus:outline-none transition-colors ${
+                    errors.businessName
+                      ? "border-red-500 focus:border-red-600"
+                      : "border-brand-beige focus:border-brand-gold"
+                  }`}
                 />
+                {errors.businessName && (
+                  <p className="text-xs text-red-600 mt-1">{errors.businessName}</p>
+                )}
               </div>
             </div>
 
@@ -546,6 +602,7 @@ export function DealerClient() {
                   id="dealer-city"
                   type="text"
                   required
+                  maxLength={60}
                   value={formData.city}
                   onChange={(e) => {
                     setFormData({ ...formData, city: e.target.value });
@@ -577,7 +634,8 @@ export function DealerClient() {
                   required
                   value={formData.pincode}
                   onChange={(e) => {
-                    setFormData({ ...formData, pincode: e.target.value });
+                    const digits = e.target.value.replace(/\D/g, "").slice(0, 6);
+                    setFormData({ ...formData, pincode: digits });
                     if (errors.pincode) setErrors({ ...errors, pincode: undefined });
                   }}
                   placeholder="6-digit PIN code"
@@ -604,11 +662,29 @@ export function DealerClient() {
               <textarea
                 id="dealer-message"
                 rows={3}
+                maxLength={1000}
                 value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                onChange={(e) => {
+                  setFormData({ ...formData, message: e.target.value });
+                  if (errors.message) setErrors({ ...errors, message: undefined });
+                }}
                 placeholder="Share any additional details about your existing retail setup or plans..."
-                className="w-full px-4 py-3 bg-brand-offwhite border border-brand-beige text-sm text-neutral-900 rounded-lg focus:outline-none focus:border-brand-gold resize-y"
+                className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-lg focus:outline-none transition-colors ${
+                  errors.message
+                    ? "border-red-500 focus:border-red-600"
+                    : "border-brand-beige focus:border-brand-gold"
+                } resize-y`}
               />
+              <div className="flex justify-between items-center mt-1 text-xs">
+                {errors.message ? (
+                  <p className="text-red-600">{errors.message}</p>
+                ) : (
+                  <span className="text-neutral-400">Optional</span>
+                )}
+                <span className="text-neutral-400 font-mono ml-auto">
+                  {formData.message.length} / 1000
+                </span>
+              </div>
             </div>
 
             {/* Consent Checkbox */}

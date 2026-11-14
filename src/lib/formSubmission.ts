@@ -72,7 +72,7 @@ export async function submitEnquiry(
   payload: ContactFormPayload | DealerFormPayload
 ): Promise<SubmissionResult> {
   // 1. Check honeypot for spam detection
-  if (payload.botcheck) {
+  if (payload.botcheck && payload.botcheck.trim() !== "") {
     // If bot filled the hidden honeypot, reject silently
     return {
       success: false,
@@ -88,10 +88,6 @@ export async function submitEnquiry(
   const customEndpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT;
 
   const isDealer = payload.formType === "dealer_application";
-  const subject = isDealer
-    ? `[Antico Paints] New Dealership Enquiry: ${payload.fullName} (${(payload as DealerFormPayload).city})`
-    : `[Antico Paints] New Contact Enquiry: ${payload.fullName}${payload.enquiryType ? ` (${payload.enquiryType})` : ""}`;
-
   const mailtoUrl = generateMailtoUrl(payload);
 
   // If a provider endpoint or key is configured
@@ -103,14 +99,67 @@ export async function submitEnquiry(
         : "https://api.web3forms.com/submit");
 
     try {
-      const requestBody: Record<string, any> = {
-        access_key: accessKey,
-        subject,
-        from_name: "Antico Paints Website",
-        name: payload.fullName,
-        phone: payload.mobileNumber,
-        ...payload,
-      };
+      // Format Indian Standard Time (IST) timestamp
+      const submissionDate = new Intl.DateTimeFormat("en-IN", {
+        dateStyle: "full",
+        timeStyle: "short",
+        timeZone: "Asia/Kolkata",
+      }).format(new Date());
+
+      // Format clean phone for direct dial and WhatsApp
+      const rawDigits = payload.mobileNumber.replace(/\D/g, "");
+      const last10 = rawDigits.slice(-10);
+      const waLink = last10.length === 10 ? `https://wa.me/91${last10}` : undefined;
+      const telLink = `tel:${payload.mobileNumber.trim().replace(/\s+/g, "")}`;
+
+      let requestBody: Record<string, any>;
+
+      if (isDealer) {
+        const d = payload as DealerFormPayload;
+        const applicantName = d.fullName.trim().slice(0, 80);
+        const city = d.city.trim().slice(0, 60);
+
+        requestBody = {
+          access_key: accessKey,
+          subject: `[Antico Paints] 🤝 Dealership Application — ${applicantName} (${city})`,
+          from_name: "Antico Paints Website",
+          "Enquiry Category": "Dealership & Distribution Partner Application",
+          "Applicant Name": applicantName,
+          "Mobile Number": d.mobileNumber.trim().slice(0, 15),
+          "Email Address": d.email?.trim().slice(0, 100) || "Not provided",
+          "Business / Shop Name": d.businessName?.trim().slice(0, 100) || "Not specified",
+          "Business Type": d.businessType,
+          "City / Town": city,
+          "PIN Code": d.pincode.trim().slice(0, 6),
+          "Business Details / Note": d.message?.trim().slice(0, 1000) || "No additional note provided",
+          "Click to Call": telLink,
+          ...(waLink ? { "Click to WhatsApp": waLink } : {}),
+          "Submission Date & Time": `${submissionDate} (IST)`,
+        };
+      } else {
+        const c = payload as ContactFormPayload;
+        const customerName = c.fullName.trim().slice(0, 80);
+        const category = c.enquiryType?.trim() || "General Customer Enquiry";
+
+        requestBody = {
+          access_key: accessKey,
+          subject: `[Antico Paints] 📩 New Contact Enquiry — ${customerName}`,
+          from_name: "Antico Paints Website",
+          "Enquiry Category": category,
+          "Customer Name": customerName,
+          "Mobile Number": c.mobileNumber.trim().slice(0, 15),
+          "Email Address": c.email?.trim().slice(0, 100) || "Not provided",
+          "Message / Requirement": c.message.trim().slice(0, 1000),
+          "Click to Call": telLink,
+          ...(waLink ? { "Click to WhatsApp": waLink } : {}),
+          "Submission Date & Time": `${submissionDate} (IST)`,
+        };
+      }
+
+      // If customer provided an email address, configure Reply-To so replying hits their email directly
+      if (payload.email && payload.email.trim()) {
+        requestBody.replyto = payload.email.trim();
+      }
 
       // Only pass custom to_email if a custom backend endpoint is specified
       if (customEndpoint) {

@@ -17,6 +17,17 @@ import {
 } from "lucide-react";
 import { contactPageData, dealerPageData, verifiedContactData } from "@/data/company";
 import { submitEnquiry } from "@/lib/formSubmission";
+import {
+  validateFullName,
+  validateMobileNumber,
+  validateEmail,
+  validateMessage,
+  validateCity,
+  validatePincode,
+  validateBusinessName,
+  checkSubmissionCooldown,
+  recordSubmissionSuccess,
+} from "@/lib/formValidation";
 
 interface GeneralFormErrors {
   fullName?: string;
@@ -30,9 +41,11 @@ interface DealerFormErrors {
   fullName?: string;
   mobileNumber?: string;
   email?: string;
+  businessName?: string;
   businessType?: string;
   city?: string;
   pincode?: string;
+  message?: string;
   consent?: string;
 }
 
@@ -87,30 +100,45 @@ export function ContactClient() {
   const [generalMailto, setGeneralMailto] = useState<string | null>(null);
 
   const validateGeneral = (): boolean => {
+    // 1. Cooldown rate limit check
+    const cooldown = checkSubmissionCooldown();
+    if (!cooldown.allowed) {
+      setGeneralStatus("error");
+      setGeneralMessage(`Please wait ${cooldown.remainingSeconds} seconds before submitting another enquiry.`);
+      return false;
+    }
+
     const errs: GeneralFormErrors = {};
-    if (!generalFormData.fullName.trim()) {
-      errs.fullName = "Please enter your full name.";
+
+    // 2. Full Name validation
+    const nameRes = validateFullName(generalFormData.fullName);
+    if (!nameRes.isValid) {
+      errs.fullName = nameRes.error;
     }
-    const phoneDigits = generalFormData.mobileNumber.replace(/\D/g, "");
-    if (!generalFormData.mobileNumber.trim()) {
-      errs.mobileNumber = "Please enter your mobile number.";
-    } else if (phoneDigits.length < 10) {
-      errs.mobileNumber = "Please enter a valid 10-digit mobile number.";
+
+    // 3. Mobile Number validation
+    const phoneRes = validateMobileNumber(generalFormData.mobileNumber);
+    if (!phoneRes.isValid) {
+      errs.mobileNumber = phoneRes.error;
     }
-    if (
-      generalFormData.email.trim() &&
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(generalFormData.email.trim())
-    ) {
-      errs.email = "Please enter a valid email address.";
+
+    // 4. Email validation (optional)
+    const emailRes = validateEmail(generalFormData.email);
+    if (!emailRes.isValid) {
+      errs.email = emailRes.error;
     }
-    if (!generalFormData.message.trim()) {
-      errs.message = "Please enter your message.";
-    } else if (generalFormData.message.trim().length < 5) {
-      errs.message = "Please share a few more details so we can assist you.";
+
+    // 5. Message validation (required, min 10 chars)
+    const msgRes = validateMessage(generalFormData.message, true);
+    if (!msgRes.isValid) {
+      errs.message = msgRes.error;
     }
+
+    // 6. Consent validation
     if (!generalFormData.consent) {
       errs.consent = "Please agree to be contacted regarding this enquiry.";
     }
+
     setGeneralErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -136,6 +164,7 @@ export function ContactClient() {
     setGeneralSubmitting(false);
 
     if (result.success) {
+      recordSubmissionSuccess();
       setGeneralStatus("success");
       setGeneralMessage(result.message);
       setGeneralMailto(result.mailtoUrl || null);
@@ -177,37 +206,68 @@ export function ContactClient() {
   const [dealerMailto, setDealerMailto] = useState<string | null>(null);
 
   const validateDealer = (): boolean => {
+    // 1. Cooldown rate limit check
+    const cooldown = checkSubmissionCooldown();
+    if (!cooldown.allowed) {
+      setDealerStatus("error");
+      setDealerMessage(`Please wait ${cooldown.remainingSeconds} seconds before submitting another application.`);
+      return false;
+    }
+
     const errs: DealerFormErrors = {};
-    if (!dealerFormData.fullName.trim()) {
-      errs.fullName = "Please enter your full name.";
+
+    // 2. Full Name validation
+    const nameRes = validateFullName(dealerFormData.fullName);
+    if (!nameRes.isValid) {
+      errs.fullName = nameRes.error;
     }
-    const phoneDigits = dealerFormData.mobileNumber.replace(/\D/g, "");
-    if (!dealerFormData.mobileNumber.trim()) {
-      errs.mobileNumber = "Please enter your mobile number.";
-    } else if (phoneDigits.length < 10) {
-      errs.mobileNumber = "Please enter a valid 10-digit mobile number.";
+
+    // 3. Mobile Number validation
+    const phoneRes = validateMobileNumber(dealerFormData.mobileNumber);
+    if (!phoneRes.isValid) {
+      errs.mobileNumber = phoneRes.error;
     }
-    if (
-      dealerFormData.email.trim() &&
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dealerFormData.email.trim())
-    ) {
-      errs.email = "Please enter a valid email address.";
+
+    // 4. Email validation (optional)
+    const emailRes = validateEmail(dealerFormData.email);
+    if (!emailRes.isValid) {
+      errs.email = emailRes.error;
     }
+
+    // 5. Business Name (optional)
+    const bizRes = validateBusinessName(dealerFormData.businessName);
+    if (!bizRes.isValid) {
+      errs.businessName = bizRes.error;
+    }
+
+    // 6. Business Type
     if (!dealerFormData.businessType) {
       errs.businessType = "Please select your business type.";
     }
-    if (!dealerFormData.city.trim()) {
-      errs.city = "Please enter your city or town.";
+
+    // 7. City validation
+    const cityRes = validateCity(dealerFormData.city);
+    if (!cityRes.isValid) {
+      errs.city = cityRes.error;
     }
-    const pinDigits = dealerFormData.pincode.replace(/\D/g, "");
-    if (!dealerFormData.pincode.trim()) {
-      errs.pincode = "Please enter your PIN code.";
-    } else if (pinDigits.length !== 6) {
-      errs.pincode = "Please enter a valid 6-digit Indian PIN code.";
+
+    // 8. PIN code validation
+    const pinRes = validatePincode(dealerFormData.pincode);
+    if (!pinRes.isValid) {
+      errs.pincode = pinRes.error;
     }
+
+    // 9. Message / Business Note (optional)
+    const msgRes = validateMessage(dealerFormData.message, false);
+    if (!msgRes.isValid) {
+      errs.message = msgRes.error;
+    }
+
+    // 10. Consent validation
     if (!dealerFormData.consent) {
       errs.consent = "Please agree to be contacted regarding this dealership enquiry.";
     }
+
     setDealerErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -237,6 +297,7 @@ export function ContactClient() {
     setDealerSubmitting(false);
 
     if (result.success) {
+      recordSubmissionSuccess();
       setDealerStatus("success");
       setDealerMessage(result.message);
       setDealerMailto(result.mailtoUrl || null);
@@ -611,6 +672,7 @@ export function ContactClient() {
                       type="text"
                       tabIndex={-1}
                       autoComplete="off"
+                      aria-hidden="true"
                       value={generalFormData.botcheck}
                       onChange={(e) =>
                         setGeneralFormData({ ...generalFormData, botcheck: e.target.value })
@@ -630,6 +692,7 @@ export function ContactClient() {
                       id="gen-fullName"
                       type="text"
                       required
+                      maxLength={80}
                       value={generalFormData.fullName}
                       onChange={(e) => {
                         setGeneralFormData({ ...generalFormData, fullName: e.target.value });
@@ -661,11 +724,13 @@ export function ContactClient() {
                         id="gen-mobileNumber"
                         type="tel"
                         required
+                        maxLength={15}
                         value={generalFormData.mobileNumber}
                         onChange={(e) => {
+                          const filtered = e.target.value.replace(/[^\d+\s-]/g, "");
                           setGeneralFormData({
                             ...generalFormData,
-                            mobileNumber: e.target.value,
+                            mobileNumber: filtered,
                           });
                           if (generalErrors.mobileNumber)
                             setGeneralErrors({ ...generalErrors, mobileNumber: undefined });
@@ -695,6 +760,7 @@ export function ContactClient() {
                       <input
                         id="gen-email"
                         type="email"
+                        maxLength={100}
                         value={generalFormData.email}
                         onChange={(e) => {
                           setGeneralFormData({ ...generalFormData, email: e.target.value });
@@ -726,22 +792,30 @@ export function ContactClient() {
                       id="gen-message"
                       required
                       rows={4}
+                      maxLength={1000}
                       value={generalFormData.message}
                       onChange={(e) => {
                         setGeneralFormData({ ...generalFormData, message: e.target.value });
                         if (generalErrors.message)
                           setGeneralErrors({ ...generalErrors, message: undefined });
                       }}
-                      placeholder="Share details regarding your question or project..."
+                      placeholder="Share details regarding your question or project (minimum 10 characters)..."
                       className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-lg focus:outline-none transition-colors ${
                         generalErrors.message
                           ? "border-red-500 bg-red-50/20"
                           : "border-brand-beige focus:border-brand-gold"
                       }`}
                     />
-                    {generalErrors.message && (
-                      <p className="text-xs text-red-600 mt-1">{generalErrors.message}</p>
-                    )}
+                    <div className="flex justify-between items-center mt-1 text-xs">
+                      {generalErrors.message ? (
+                        <p className="text-red-600">{generalErrors.message}</p>
+                      ) : (
+                        <span className="text-neutral-500">Minimum 10 characters</span>
+                      )}
+                      <span className="text-neutral-400 font-mono ml-auto">
+                        {generalFormData.message.length} / 1000
+                      </span>
+                    </div>
                   </div>
 
                   {/* Consent */}
@@ -878,6 +952,7 @@ export function ContactClient() {
                       type="text"
                       tabIndex={-1}
                       autoComplete="off"
+                      aria-hidden="true"
                       value={dealerFormData.botcheck}
                       onChange={(e) =>
                         setDealerFormData({ ...dealerFormData, botcheck: e.target.value })
@@ -898,6 +973,7 @@ export function ContactClient() {
                         id="deal-fullName"
                         type="text"
                         required
+                        maxLength={80}
                         value={dealerFormData.fullName}
                         onChange={(e) => {
                           setDealerFormData({ ...dealerFormData, fullName: e.target.value });
@@ -927,11 +1003,13 @@ export function ContactClient() {
                         id="deal-mobileNumber"
                         type="tel"
                         required
+                        maxLength={15}
                         value={dealerFormData.mobileNumber}
                         onChange={(e) => {
+                          const filtered = e.target.value.replace(/[^\d+\s-]/g, "");
                           setDealerFormData({
                             ...dealerFormData,
-                            mobileNumber: e.target.value,
+                            mobileNumber: filtered,
                           });
                           if (dealerErrors.mobileNumber)
                             setDealerErrors({ ...dealerErrors, mobileNumber: undefined });
@@ -962,6 +1040,7 @@ export function ContactClient() {
                       <input
                         id="deal-email"
                         type="email"
+                        maxLength={100}
                         value={dealerFormData.email}
                         onChange={(e) => {
                           setDealerFormData({ ...dealerFormData, email: e.target.value });
@@ -991,16 +1070,26 @@ export function ContactClient() {
                       <input
                         id="deal-businessName"
                         type="text"
+                        maxLength={100}
                         value={dealerFormData.businessName}
-                        onChange={(e) =>
+                        onChange={(e) => {
                           setDealerFormData({
                             ...dealerFormData,
                             businessName: e.target.value,
-                          })
-                        }
+                          });
+                          if (dealerErrors.businessName)
+                            setDealerErrors({ ...dealerErrors, businessName: undefined });
+                        }}
                         placeholder="e.g. Sharma Paint & Hardware"
-                        className="w-full px-4 py-3 bg-brand-offwhite border border-brand-beige text-sm text-neutral-900 rounded-lg focus:outline-none focus:border-brand-gold"
+                        className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-lg focus:outline-none transition-colors ${
+                          dealerErrors.businessName
+                            ? "border-red-500 bg-red-50/20"
+                            : "border-brand-beige focus:border-brand-gold"
+                        }`}
                       />
+                      {dealerErrors.businessName && (
+                        <p className="text-xs text-red-600 mt-1">{dealerErrors.businessName}</p>
+                      )}
                     </div>
                   </div>
 
@@ -1050,6 +1139,7 @@ export function ContactClient() {
                         id="deal-city"
                         type="text"
                         required
+                        maxLength={60}
                         value={dealerFormData.city}
                         onChange={(e) => {
                           setDealerFormData({ ...dealerFormData, city: e.target.value });
@@ -1082,7 +1172,8 @@ export function ContactClient() {
                         maxLength={6}
                         value={dealerFormData.pincode}
                         onChange={(e) => {
-                          setDealerFormData({ ...dealerFormData, pincode: e.target.value });
+                          const digits = e.target.value.replace(/\D/g, "").slice(0, 6);
+                          setDealerFormData({ ...dealerFormData, pincode: digits });
                           if (dealerErrors.pincode)
                             setDealerErrors({ ...dealerErrors, pincode: undefined });
                         }}
@@ -1111,13 +1202,30 @@ export function ContactClient() {
                     <textarea
                       id="deal-message"
                       rows={3}
+                      maxLength={1000}
                       value={dealerFormData.message}
-                      onChange={(e) =>
-                        setDealerFormData({ ...dealerFormData, message: e.target.value })
-                      }
+                      onChange={(e) => {
+                        setDealerFormData({ ...dealerFormData, message: e.target.value });
+                        if (dealerErrors.message)
+                          setDealerErrors({ ...dealerErrors, message: undefined });
+                      }}
                       placeholder="Share any additional details about your existing retail setup or plans..."
-                      className="w-full px-4 py-3 bg-brand-offwhite border border-brand-beige text-sm text-neutral-900 rounded-lg focus:outline-none focus:border-brand-gold"
+                      className={`w-full px-4 py-3 bg-brand-offwhite border text-sm text-neutral-900 rounded-lg focus:outline-none transition-colors ${
+                        dealerErrors.message
+                          ? "border-red-500 bg-red-50/20"
+                          : "border-brand-beige focus:border-brand-gold"
+                      }`}
                     />
+                    <div className="flex justify-between items-center mt-1 text-xs">
+                      {dealerErrors.message ? (
+                        <p className="text-red-600">{dealerErrors.message}</p>
+                      ) : (
+                        <span className="text-neutral-400">Optional</span>
+                      )}
+                      <span className="text-neutral-400 font-mono ml-auto">
+                        {dealerFormData.message.length} / 1000
+                      </span>
+                    </div>
                   </div>
 
                   {/* Consent Checkbox */}
