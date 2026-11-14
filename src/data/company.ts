@@ -60,6 +60,25 @@ export const verifiedContactData = {
       "https://maps.google.com/maps?q=103%2C+Gala+Building%2C+Beside+KP+Hostel%2C+Near+Samarpan+Flats%2C+Gulbai+Tekra%2C+Ahmedabad&t=&z=16&ie=UTF8&iwloc=&output=embed",
     mapImageUrl: "/images/contact/office-map.jpg",
   },
+  social: {
+    instagram: {
+      name: "Instagram",
+      handle: "@anticopaints_",
+      label: "Follow @anticopaints_ on Instagram",
+      href: "https://www.instagram.com/anticopaints_/",
+      fullUrl: "https://www.instagram.com/anticopaints_?dlrf=MTF2bHVxMXZ0bGZkYQ%3D%3D",
+    },
+  },
+};
+
+export const socialMediaLinks = {
+  instagram: {
+    name: "Instagram",
+    handle: "@anticopaints_",
+    label: "Follow us on Instagram",
+    url: "https://www.instagram.com/anticopaints_/",
+    fullUrl: "https://www.instagram.com/anticopaints_?dlrf=MTF2bHVxMXZ0bGZkYQ%3D%3D",
+  },
 };
 
 export const contactPageData = {

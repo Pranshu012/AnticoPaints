@@ -1,8 +1,11 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Phone, Mail, MapPin } from "lucide-react";
-import { verifiedContactData } from "@/data/company";
+import { ArrowRight, Phone, Mail, MapPin, Instagram } from "lucide-react";
+import { verifiedContactData, socialMediaLinks } from "@/data/company";
+import { trackSocialClick } from "@/lib/analytics";
 
 const FOOTER_NAV_ITEMS = [
   { name: "Home", href: "/" },
@@ -22,8 +25,8 @@ export function Footer() {
         {/* Main Footer Row */}
         <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-10 pb-10 border-b border-brand-charcoal">
           
-          {/* Logo & Brief Tagline */}
-          <div className="space-y-3 max-w-sm">
+          {/* Logo, Brief Tagline & Social Links */}
+          <div className="space-y-4 max-w-sm">
             <Link href="/" className="inline-block" aria-label="Antico Paints Home">
               <Image
                 src="/images/logo/antico-logo-white.png"
@@ -37,6 +40,29 @@ export function Footer() {
             <p className="text-xs text-brand-beige/70 font-sans leading-relaxed">
               Quality wall finishes, primers, emulsions and painting essentials.
             </p>
+
+            {/* Social Media Link */}
+            <div className="pt-1">
+              <a
+                href={socialMediaLinks.instagram.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  trackSocialClick({
+                    platform: "instagram",
+                    url: socialMediaLinks.instagram.url,
+                    location: "footer_brand_column",
+                  })
+                }
+                className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-brand-gold text-brand-beige/85 hover:text-brand-gold transition-all duration-200 text-xs font-sans group shadow-xs"
+                aria-label="Follow Antico Paints on Instagram"
+              >
+                <div className="w-5 h-5 rounded-md bg-brand-gold/15 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition-colors">
+                  <Instagram className="w-3 h-3" />
+                </div>
+                <span className="font-medium tracking-wide">{socialMediaLinks.instagram.handle}</span>
+              </a>
+            </div>
           </div>
 
           {/* Navigation Links & Direct Contact */}
@@ -56,7 +82,7 @@ export function Footer() {
               </ul>
             </nav>
 
-            {/* Direct Verified Contact Links */}
+            {/* Direct Verified Contact & Social Links */}
             <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-xs font-sans text-brand-beige/80">
               <a
                 href={verifiedContactData.phone.href}
@@ -72,6 +98,24 @@ export function Footer() {
               >
                 <Mail className="w-3.5 h-3.5 text-brand-gold" />
                 <span>{verifiedContactData.email.address}</span>
+              </a>
+
+              <a
+                href={socialMediaLinks.instagram.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  trackSocialClick({
+                    platform: "instagram",
+                    url: socialMediaLinks.instagram.url,
+                    location: "footer_contact_row",
+                  })
+                }
+                className="inline-flex items-center gap-2 hover:text-brand-gold transition-colors"
+                aria-label="Follow Antico Paints on Instagram"
+              >
+                <Instagram className="w-3.5 h-3.5 text-brand-gold" />
+                <span>{socialMediaLinks.instagram.handle}</span>
               </a>
 
               <a

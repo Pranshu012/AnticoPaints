@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeCategories } from "@/components/home/HomeCategories";
 import { HomeAboutSection } from "@/components/home/HomeAboutSection";
+import { HomeInstagramSection } from "@/components/home/HomeInstagramSection";
 import { HomeDealerCTA } from "@/components/home/HomeDealerCTA";
 
 export const metadata: Metadata = {
@@ -23,7 +24,10 @@ export default function HomePage() {
       {/* Section 3: Short About Section */}
       <HomeAboutSection />
 
-      {/* Section 4: Dealership CTA */}
+      {/* Section 4: Instagram Community & Inspiration */}
+      <HomeInstagramSection />
+
+      {/* Section 5: Dealership CTA */}
       <HomeDealerCTA />
     </>
   );
