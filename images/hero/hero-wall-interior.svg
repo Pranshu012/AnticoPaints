@@ -1,0 +1,173 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Wall Base Gradient -->
+    <linearGradient id="wallBackdrop" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FCFBF8"/>
+      <stop offset="45%" stop-color="#F2EBE1"/>
+      <stop offset="100%" stop-color="#E5DCce"/>
+    </linearGradient>
+
+    <!-- Side Wall in Soft Shadow -->
+    <linearGradient id="sideWallGrad" x1="0" y1="0" x2="240" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D7CEBF"/>
+      <stop offset="85%" stop-color="#E2D9CB"/>
+      <stop offset="100%" stop-color="#EFE8DC"/>
+    </linearGradient>
+
+    <!-- Floor Gradient -->
+    <linearGradient id="floorGrad" x1="400" y1="460" x2="400" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#DDD3C3"/>
+      <stop offset="30%" stop-color="#CFC4B2"/>
+      <stop offset="100%" stop-color="#BAADA0"/>
+    </linearGradient>
+
+    <!-- Sunlight Beam -->
+    <linearGradient id="sunBeam" x1="120" y1="0" x2="680" y2="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFDF5" stop-opacity="0.85"/>
+      <stop offset="40%" stop-color="#FAF3E6" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#FCFBF8" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Pedestal Travertine / Stone Gradient -->
+    <linearGradient id="pedestalFront" x1="480" y1="340" x2="640" y2="540" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F7F3EC"/>
+      <stop offset="100%" stop-color="#DFD7C7"/>
+    </linearGradient>
+
+    <linearGradient id="pedestalTop" x1="480" y1="320" x2="640" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#EEE6D8"/>
+    </linearGradient>
+
+    <!-- Ceramic Vase Gradient -->
+    <linearGradient id="vaseGrad" x1="530" y1="180" x2="590" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4A453F"/>
+      <stop offset="40%" stop-color="#2D2926"/>
+      <stop offset="100%" stop-color="#171717"/>
+    </linearGradient>
+
+    <!-- Gold Accent Line -->
+    <linearGradient id="goldAccent" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C08000"/>
+      <stop offset="50%" stop-color="#E5B25D"/>
+      <stop offset="100%" stop-color="#B89655"/>
+    </linearGradient>
+
+    <!-- Shadow filter for soft natural shadow -->
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="12"/>
+      <feOffset dx="16" dy="20"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="pedestalDropShadow" x="-30%" y="-10%" width="160%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="16"/>
+      <feOffset dx="24" dy="24"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.15"/></feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 1. Background Main Wall -->
+  <rect width="800" height="470" fill="url(#wallBackdrop)"/>
+
+  <!-- Subtle Painted Wall Texture Lines -->
+  <g stroke="#C5BCAE" stroke-opacity="0.25" stroke-width="1" stroke-linecap="round">
+    <path d="M120 80 Q 240 78, 360 82 T 600 80"/>
+    <path d="M220 160 Q 380 156, 520 162 T 780 158"/>
+    <path d="M180 240 Q 320 244, 480 238 T 720 242"/>
+    <path d="M260 320 Q 420 316, 580 322"/>
+    <path d="M150 400 Q 300 404, 460 398 T 700 402"/>
+  </g>
+
+  <!-- 2. Left Architectural Return Wall (Depth & Dimension) -->
+  <polygon points="0,0 200,0 200,470 0,470" fill="url(#sideWallGrad)"/>
+  <line x1="200" y1="0" x2="200" y2="470" stroke="#C5BAA9" stroke-width="1.5"/>
+
+  <!-- 3. Slanted Floor Plane (Architectural Perspective) -->
+  <polygon points="0,470 800,470 800,600 0,600" fill="url(#floorGrad)"/>
+  
+  <!-- Baseboard / Skirting Trim in Warm Off-White -->
+  <rect x="0" y="460" width="800" height="12" fill="#F4EFE6"/>
+  <line x1="0" y1="460" x2="800" y2="460" stroke="#C5BAA9" stroke-width="1"/>
+  <line x1="0" y1="472" x2="800" y2="472" stroke="#B3A796" stroke-width="1.5"/>
+
+  <!-- 4. Soft Window Daylight Wash Across Wall -->
+  <polygon points="140,0 460,0 720,470 260,470" fill="url(#sunBeam)" style="mix-blend-mode: screen;"/>
+
+  <!-- Architectural Wall Arch Recess (Subtle depth) -->
+  <g opacity="0.6">
+    <path d="M300 460 L300 210 A 100 100 0 0 1 500 210 L500 460 Z" fill="#EAE2D4" fill-opacity="0.5"/>
+    <path d="M300 460 L300 210 A 100 100 0 0 1 500 210 L500 460" stroke="#D3C7B5" stroke-width="1.5" fill="none"/>
+  </g>
+
+  <!-- 5. Minimal Travertine Pedestal with Soft Cast Shadow -->
+  <g filter="url(#pedestalDropShadow)">
+    <!-- Pedestal Base Shadow on Floor -->
+    <ellipse cx="570" cy="535" rx="90" ry="16" fill="#171717" fill-opacity="0.12"/>
+    <!-- Pedestal Front Face -->
+    <rect x="490" y="325" width="160" height="210" rx="2" fill="url(#pedestalFront)"/>
+    <!-- Pedestal Top Surface (isometric bevel) -->
+    <polygon points="490,325 515,310 675,310 650,325" fill="url(#pedestalTop)"/>
+    <!-- Pedestal Right Side Face -->
+    <polygon points="650,325 675,310 675,520 650,535" fill="#C5BCAE"/>
+    <!-- Fine corner highlight -->
+    <line x1="650" y1="325" x2="650" y2="535" stroke="#FFFDF8" stroke-width="1" stroke-opacity="0.5"/>
+  </g>
+
+  <!-- 6. Sculptural Matte Ceramic Vessel on Pedestal -->
+  <g filter="url(#softShadow)">
+    <!-- Vase Body -->
+    <path d="M570 310 C535 310, 520 280, 530 240 C538 210, 550 200, 560 170 L585 170 C595 200, 607 210, 615 240 C625 280, 610 310, 570 310 Z" fill="url(#vaseGrad)"/>
+    <!-- Lip of vase -->
+    <ellipse cx="572.5" cy="170" rx="12.5" ry="3.5" fill="#171717"/>
+    <!-- Subtle specular sheen down vase curve -->
+    <path d="M555 210 Q 548 245, 552 285" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Olive / Botanical Branch reaching gracefully -->
+  <g stroke="#3D3A34" stroke-width="1.8" stroke-linecap="round">
+    <path d="M572 170 Q 570 120, 545 70 Q 540 55, 530 45"/>
+    <path d="M558 130 Q 585 105, 610 95"/>
+    <path d="M548 85 Q 525 75, 505 80"/>
+  </g>
+  <!-- Leaves with warm muted olive tone -->
+  <g fill="#4F5243" fill-opacity="0.85">
+    <path d="M530 45 Q 522 35, 515 42 Q 522 50, 530 45 Z"/>
+    <path d="M545 70 Q 532 62, 535 76 Q 545 76, 545 70 Z"/>
+    <path d="M505 80 Q 492 78, 495 90 Q 507 90, 505 80 Z"/>
+    <path d="M575 115 Q 590 105, 588 120 Q 575 125, 575 115 Z"/>
+    <path d="M610 95 Q 625 90, 624 102 Q 612 105, 610 95 Z"/>
+  </g>
+
+  <!-- 7. Premium Paint Swatch Overlay Card (Showcase Touch) -->
+  <g filter="url(#softShadow)" transform="translate(80, 260)">
+    <!-- Swatch Card Base -->
+    <rect width="210" height="150" rx="4" fill="#FFFFFF"/>
+    <rect width="210" height="150" rx="4" stroke="#E9E0D2" stroke-width="1"/>
+    
+    <!-- Top Painted Swatch Area (Warm Cashmere Beige) -->
+    <rect x="12" y="12" width="186" height="76" rx="2" fill="#E8DEC9"/>
+    
+    <!-- Fine Gold Accent Bar between swatch and typography -->
+    <rect x="12" y="94" width="28" height="2" fill="url(#goldAccent)"/>
+    
+    <!-- Swatch Label Typography -->
+    <text x="12" y="112" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#171717" letter-spacing="1">ANTICO FINISH</text>
+    <text x="12" y="126" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#666666">Velvet Touch • Warm Cashmere</text>
+    <text x="12" y="140" font-family="monospace" font-size="9" fill="#B89655" letter-spacing="0.5">SHADE NO. 104</text>
+    
+    <!-- Clean Minimal Paint Droplet Graphic -->
+    <circle cx="182" cy="120" r="10" fill="#E8DEC9" stroke="#B89655" stroke-width="1"/>
+  </g>
+
+  <!-- 8. Subtle Restrained Gold Reveal Inlay on Baseboard -->
+  <line x1="0" y1="461" x2="800" y2="461" stroke="url(#goldAccent)" stroke-width="1.5" stroke-opacity="0.85"/>
+</svg>
