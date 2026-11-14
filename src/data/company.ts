@@ -68,6 +68,11 @@ export const verifiedContactData = {
       href: "https://www.instagram.com/anticopaints_/",
       fullUrl: "https://www.instagram.com/anticopaints_?dlrf=MTF2bHVxMXZ0bGZkYQ%3D%3D",
     },
+    whatsapp: {
+      name: "WhatsApp",
+      number: "+91 8000642900",
+      href: "https://wa.me/918000642900?text=Hello%20Antico%20Paints%2C%20I%20would%20like%20to%20enquire%20about%20your%20wall%20finishes%20and%20products.",
+    },
   },
 };
 
@@ -78,6 +83,12 @@ export const socialMediaLinks = {
     label: "Follow us on Instagram",
     url: "https://www.instagram.com/anticopaints_/",
     fullUrl: "https://www.instagram.com/anticopaints_?dlrf=MTF2bHVxMXZ0bGZkYQ%3D%3D",
+  },
+  whatsapp: {
+    name: "WhatsApp",
+    number: "+91 8000642900",
+    url: "https://wa.me/918000642900",
+    enquiryUrl: "https://wa.me/918000642900?text=Hello%20Antico%20Paints%2C%20I%20would%20like%20to%20enquire%20about%20your%20wall%20finishes%20and%20products.",
   },
 };
 
